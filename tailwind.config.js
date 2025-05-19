@@ -4,12 +4,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: '#026242', // 베이지 색
-        secondary: '#F59E0B', // 초록 색
+        primary: '#F7F4EB', // 베이지 색
+        secondary: '#BED0A2', // 초록 색
         // bg-primary
         button: {
-          primary: '#F0A500',
-          secondary: '#637C5A',
+          primary: '#637C5A',
+          secondary: '#F0A500',
+          tertiary: '#888888',
           // bg-button-primary
         },
       },
