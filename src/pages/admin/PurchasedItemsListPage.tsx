@@ -38,7 +38,7 @@ const PurchasedItemsListPage = () => {
 
   return (
     <div className='flex justify-center w-full'>
-      <div className='flex flex-col w-[1280px] px-4 desktop:px-8'>
+      <div className='flex flex-col w-[1280px] px-4 tablet:px-8'>
         <div className='flex flex-col gap-6 desktop:gap-12 py-16 items-center'>
           <h1 className='text-24 tablet:text-28 desktop:text-32 font-semibold'>구매 상품 목록</h1>
           <div className='flex flex-col gap-2 desktop:gap-4 w-full text-12 tablet:text-14 desktop:text-16'>
