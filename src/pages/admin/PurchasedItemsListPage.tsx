@@ -39,10 +39,10 @@ const PurchasedItemsListPage = () => {
   return (
     <div className='flex justify-center w-full'>
       <div className='flex flex-col w-[1280px] px-4 desktop:px-8'>
-        <div className='flex flex-col gap-12 py-16 items-center'>
+        <div className='flex flex-col gap-6 desktop:gap-12 py-16 items-center'>
           <h1 className='text-24 tablet:text-28 desktop:text-32 font-semibold'>구매 상품 목록</h1>
-          <div className='flex flex-col gap-4 w-full text-12 tablet:text-14 desktop:text-16'>
-            <div className='grid grid-cols-[2fr_2fr_1fr_1fr] bg-button-primary text-white rounded-lg py-4 px-2 justify-items-center'>
+          <div className='flex flex-col gap-2 desktop:gap-4 w-full text-12 tablet:text-14 desktop:text-16'>
+            <div className='grid grid-cols-[2fr_2fr_1fr_1fr] bg-button-primary text-white rounded-lg py-4 px-2 justify-items-center font-semibold'>
               <p>상품이름</p>
               <p>닉네임</p>
               <p>주문번호</p>
