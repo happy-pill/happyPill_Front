@@ -1,4 +1,3 @@
-
 export interface InfoPageProps {
   title: string;
   description: string;
@@ -7,5 +6,10 @@ export interface InfoPageProps {
 
 export interface Section {
   title: string;
-  content: string | string[];
+  content: Paragraph[] | string;
+}
+
+export interface Paragraph {
+  heading: string;
+  body: string;
 }
