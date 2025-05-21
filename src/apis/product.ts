@@ -8,13 +8,16 @@ import instance from './instance/main'
  * @returns Axios 응답 객체
  */
 
-const getProductList = async (categoryId: number, lastProductId: number, size: number = 8) => {
-  const response = await instance.get(
-    `/api/products?categories=${categoryId}&lastProductId=${lastProductId}&size=${size}`,
-  )
+const getProductList = async (categoryId: number, lastProductId?: number, size: number = 8) => {
+  let url = `/api/products?categories=${categoryId}&size=${size}`
+
+  if (lastProductId !== undefined) {
+    url += `&lastProductId=${lastProductId}`
+  }
+
+  const response = await instance.get(url)
   return response
 }
-
 const productAPI = {
   getProductList,
 }
