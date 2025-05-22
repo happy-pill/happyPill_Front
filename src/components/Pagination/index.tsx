@@ -1,0 +1,113 @@
+import {
+  createContext,
+  Dispatch,
+  FC,
+  HTMLAttributes,
+  ReactNode,
+  SetStateAction,
+  useMemo,
+  useState,
+} from "react";
+import PaginationButtons from "./PaginationButtons";
+import PaginationNavigator from "./PaginationNavigator";
+
+interface PaginationCompoundProps {
+  Buttons: typeof PaginationButtons;
+  Navigator: typeof PaginationNavigator;
+}
+
+interface PaginationContextProps {
+  onPageChange: (value: number) => void;
+  currentPage: number;
+  setCurrentPage: Dispatch<SetStateAction<number>>;
+  totalPageLength: number;
+  pages: number[];
+  blockSize: number;
+  color?: string;
+}
+
+export const PaginationContext = createContext<PaginationContextProps>({
+  onPageChange: () => {},
+  currentPage: 0,
+  setCurrentPage: () => {},
+  totalPageLength: 0,
+  pages: [],
+  blockSize: 0,
+  color: "oklch(0.637 0.237 25.331)",
+});
+
+interface PagenationProps extends HTMLAttributes<HTMLDivElement> {
+  children: ReactNode;
+  className?: string;
+  total: number;
+  value: number;
+  onPageChange: (value: number) => void;
+  blockSize?: number;
+  pageSize?: number;
+  color?: string;
+}
+
+const Pagination: FC<PagenationProps> & PaginationCompoundProps = (props) => {
+  const {
+    children,
+    total,
+    value = 0,
+    onPageChange,
+    blockSize = 10,
+    pageSize = 20,
+    className,
+    color = "oklch(0.637 0.237 25.331)",
+  } = props;
+  const [currentPage, setCurrentPage] = useState(value);
+
+  const totalPageLength = useMemo(
+    () => Math.floor(Math.ceil(total / pageSize)),
+    [total, pageSize]
+  );
+
+  const firstPageFromCurrent = useMemo(
+    () => Math.floor(currentPage / blockSize) * blockSize,
+    [currentPage, blockSize]
+  );
+
+  const lastPageFromCurrent = useMemo(() => {
+    const last =
+      Math.floor(currentPage / blockSize) * blockSize + blockSize - 1;
+    return last < totalPageLength - 1 ? last : totalPageLength - 1;
+  }, [currentPage, blockSize, totalPageLength]);
+
+  const blockLengthFromCurrent = useMemo(
+    () => lastPageFromCurrent - firstPageFromCurrent + 1,
+    [lastPageFromCurrent, firstPageFromCurrent]
+  );
+
+  const pages = useMemo(
+    () =>
+      Array.from(
+        { length: blockLengthFromCurrent },
+        (_, index) => firstPageFromCurrent + index
+      ),
+    [blockLengthFromCurrent, firstPageFromCurrent]
+  );
+
+  const contextValue = {
+    onPageChange,
+    currentPage,
+    setCurrentPage,
+    totalPageLength,
+    pages,
+    blockSize,
+    color,
+  };
+
+  return (
+    <PaginationContext.Provider value={contextValue}>
+      <div className={className}>{children}</div>
+    </PaginationContext.Provider>
+  );
+};
+
+Pagination.Buttons = PaginationButtons;
+Pagination.Navigator = PaginationNavigator;
+
+export default Pagination;

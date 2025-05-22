@@ -1,6 +1,7 @@
 // router.tsx
-import { createBrowserRouter } from 'react-router-dom';
-import { Layout, ErrorPage, LoginPage, MyPage, Mainpage, RefundPage, AboutPage } from './utils';
+import { createBrowserRouter } from 'react-router-dom'
+import { Layout, ErrorPage, LoginPage, MyPage, Mainpage } from './utils'
+import PurchasedItemsListPage from './pages/admin/PurchasedItemsListPage'
 
 const router = createBrowserRouter([
   {
@@ -14,13 +15,14 @@ const router = createBrowserRouter([
       { path: 'refund', element: <RefundPage /> },
       { path: 'commpony', element: <AboutPage /> },
 
-      {}
+      { path: 'purchased', element: <PurchasedItemsListPage /> },
+      {},
     ],
   },
   {
     path: '/login',
     element: <LoginPage />, // 헤더/푸터 없는 페이지
   },
-]);
+])
 
-export default router;
+export default router
