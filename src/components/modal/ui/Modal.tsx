@@ -36,7 +36,7 @@ export const useModalContext = () => {
 const Modal: React.FC<ModalProps> & ModalCompoundProps = ({ className, children }) => {
   const { openModal, closeModal } = useModal()
 
-  const modalBaseCls = `fixed inset-0 z-50`
+  const modalBaseCls = `fixed inset-0 z-50 pointer-events-auto`
   const contextValue = {
     openModal,
     closeModal,
@@ -44,7 +44,9 @@ const Modal: React.FC<ModalProps> & ModalCompoundProps = ({ className, children 
 
   return (
     <ModalContext.Provider value={contextValue}>
-      <div className={cn(modalBaseCls, className)}>{children}</div>
+      <div className={cn(modalBaseCls, className)} role='dialog' aria-modal='true'>
+        {children}
+      </div>
     </ModalContext.Provider>
   )
 }
