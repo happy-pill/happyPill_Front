@@ -1,6 +1,6 @@
 // router.tsx
 import { createBrowserRouter } from 'react-router-dom'
-import { Layout, ErrorPage, LoginPage, MyPage, Mainpage } from './utils'
+import { Layout, ErrorPage, LoginPage, MyPage, Mainpage, RefundPage, AboutPage } from './utils'
 import PurchasedItemsListPage from './pages/admin/PurchasedItemsListPage'
 
 const router = createBrowserRouter([
