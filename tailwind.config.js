@@ -11,6 +11,7 @@ export default {
       colors: {
         primary: '#F7F4EB', // 베이지 색
         secondary: '#BED0A2', // 초록 색
+        tertiary: '#FAF9F6', // 푸터 색
         // bg-primary
         button: {
           primary: '#637C5A',
@@ -23,6 +24,10 @@ export default {
         sans: ['Pretendard', 'sans-serif'],
       },
       fontSize: {
+        8: ['0.5rem', { lineHeight: '0.75rem' }],   // 8px
+        9: ['0.5625rem', { lineHeight: '0.875rem' }], // 9px
+        10: ['0.625rem', { lineHeight: '0.875rem' }], // 10px
+        11: ['0.6875rem', { lineHeight: '1rem' }], // 11px
         12: ['0.75rem', { lineHeight: '1rem' }], // 12px
         14: ['0.875rem', { lineHeight: '1.25rem' }], // 14px
         16: ['1rem', { lineHeight: '1.5rem' }], // 16px

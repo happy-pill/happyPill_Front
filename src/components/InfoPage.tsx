@@ -4,7 +4,7 @@ const InfoPage = ({ title, description, sections }: InfoPageProps) => {
   const isAboutPage = title === '회사소개'
 
   return (
-    <div className='min-h-screen bg-primary py-10'>
+    <div className=' bg-primary pt-10'>
       <div className='max-w-[1280px] mx-auto mb-2 px-4 tablet:px-8'>
         <h1 className='text-24 tablet:text-28 desktop:text-32 font-bold mb-2 text-black pl-1'>
           {title}
