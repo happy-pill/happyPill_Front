@@ -13,7 +13,7 @@ const router = createBrowserRouter([
       // 헤더/푸터가 있는 페이지들
       { path: 'mypage', element: <MyPage /> },
       { path: 'refund', element: <RefundPage /> },
-      { path: 'commpony', element: <AboutPage /> },
+      { path: 'company', element: <AboutPage /> },
 
       { path: 'purchased', element: <PurchasedItemsListPage /> },
       {},
