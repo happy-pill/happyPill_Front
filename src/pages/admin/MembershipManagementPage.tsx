@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import Pagination from '../../components/pagination'
 import Button from '../../components/Button'
-import Input from '../../components/Input'
 
 interface membership {
   userId: number
