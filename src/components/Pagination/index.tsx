@@ -7,23 +7,23 @@ import {
   SetStateAction,
   useMemo,
   useState,
-} from "react";
-import PaginationButtons from "./PaginationButtons";
-import PaginationNavigator from "./PaginationNavigator";
+} from 'react'
+import PaginationButtons from './PaginationButtons'
+import PaginationNavigator from './PaginationNavigator'
 
 interface PaginationCompoundProps {
-  Buttons: typeof PaginationButtons;
-  Navigator: typeof PaginationNavigator;
+  Buttons: typeof PaginationButtons
+  Navigator: typeof PaginationNavigator
 }
 
 interface PaginationContextProps {
-  onPageChange: (value: number) => void;
-  currentPage: number;
-  setCurrentPage: Dispatch<SetStateAction<number>>;
-  totalPageLength: number;
-  pages: number[];
-  blockSize: number;
-  color?: string;
+  onPageChange: (value: number) => void
+  currentPage: number
+  setCurrentPage: Dispatch<SetStateAction<number>>
+  totalPageLength: number
+  pages: number[]
+  blockSize: number
+  color?: string
 }
 
 export const PaginationContext = createContext<PaginationContextProps>({
@@ -33,18 +33,18 @@ export const PaginationContext = createContext<PaginationContextProps>({
   totalPageLength: 0,
   pages: [],
   blockSize: 0,
-  color: "oklch(0.637 0.237 25.331)",
-});
+  color: '#637c0a',
+})
 
 interface PagenationProps extends HTMLAttributes<HTMLDivElement> {
-  children: ReactNode;
-  className?: string;
-  total: number;
-  value: number;
-  onPageChange: (value: number) => void;
-  blockSize?: number;
-  pageSize?: number;
-  color?: string;
+  children: ReactNode
+  className?: string
+  total: number
+  value: number
+  onPageChange: (value: number) => void
+  blockSize?: number
+  pageSize?: number
+  color?: string
 }
 
 const Pagination: FC<PagenationProps> & PaginationCompoundProps = (props) => {
@@ -56,39 +56,32 @@ const Pagination: FC<PagenationProps> & PaginationCompoundProps = (props) => {
     blockSize = 10,
     pageSize = 20,
     className,
-    color = "oklch(0.637 0.237 25.331)",
-  } = props;
-  const [currentPage, setCurrentPage] = useState(value);
+    color = '#637c0a',
+  } = props
+  const [currentPage, setCurrentPage] = useState(value)
 
-  const totalPageLength = useMemo(
-    () => Math.floor(Math.ceil(total / pageSize)),
-    [total, pageSize]
-  );
+  const totalPageLength = useMemo(() => Math.floor(Math.ceil(total / pageSize)), [total, pageSize])
 
   const firstPageFromCurrent = useMemo(
     () => Math.floor(currentPage / blockSize) * blockSize,
-    [currentPage, blockSize]
-  );
+    [currentPage, blockSize],
+  )
 
   const lastPageFromCurrent = useMemo(() => {
-    const last =
-      Math.floor(currentPage / blockSize) * blockSize + blockSize - 1;
-    return last < totalPageLength - 1 ? last : totalPageLength - 1;
-  }, [currentPage, blockSize, totalPageLength]);
+    const last = Math.floor(currentPage / blockSize) * blockSize + blockSize - 1
+    return last < totalPageLength - 1 ? last : totalPageLength - 1
+  }, [currentPage, blockSize, totalPageLength])
 
   const blockLengthFromCurrent = useMemo(
     () => lastPageFromCurrent - firstPageFromCurrent + 1,
-    [lastPageFromCurrent, firstPageFromCurrent]
-  );
+    [lastPageFromCurrent, firstPageFromCurrent],
+  )
 
   const pages = useMemo(
     () =>
-      Array.from(
-        { length: blockLengthFromCurrent },
-        (_, index) => firstPageFromCurrent + index
-      ),
-    [blockLengthFromCurrent, firstPageFromCurrent]
-  );
+      Array.from({ length: blockLengthFromCurrent }, (_, index) => firstPageFromCurrent + index),
+    [blockLengthFromCurrent, firstPageFromCurrent],
+  )
 
   const contextValue = {
     onPageChange,
@@ -98,16 +91,16 @@ const Pagination: FC<PagenationProps> & PaginationCompoundProps = (props) => {
     pages,
     blockSize,
     color,
-  };
+  }
 
   return (
     <PaginationContext.Provider value={contextValue}>
       <div className={className}>{children}</div>
     </PaginationContext.Provider>
-  );
-};
+  )
+}
 
-Pagination.Buttons = PaginationButtons;
-Pagination.Navigator = PaginationNavigator;
+Pagination.Buttons = PaginationButtons
+Pagination.Navigator = PaginationNavigator
 
-export default Pagination;
+export default Pagination
