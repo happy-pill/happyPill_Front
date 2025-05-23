@@ -1,7 +1,7 @@
-// router.tsx
 import { createBrowserRouter } from 'react-router-dom'
 import { Layout, ErrorPage, LoginPage, MyPage, RefundPage, AboutPage, MainPage } from './utils'
-import PurchasedItemsListPage from './pages/admin/PurchasedItemsListPage'
+import MembershipManagementPage from './pages/admin/MembershipManagementPage'
+import SubscriptionListPage from './pages/admin/SubscriptionListPage'
 
 const router = createBrowserRouter([
   {
@@ -14,9 +14,14 @@ const router = createBrowserRouter([
       { path: 'mypage', element: <MyPage /> },
       { path: 'refund', element: <RefundPage /> },
       { path: 'company', element: <AboutPage /> },
-
-      { path: 'purchased', element: <PurchasedItemsListPage /> },
       {},
+      {
+        path: 'admin',
+        children: [
+          { path: 'subscription', element: <SubscriptionListPage /> },
+          { path: 'membership', element: <MembershipManagementPage /> },
+        ],
+      },
     ],
   },
   {
