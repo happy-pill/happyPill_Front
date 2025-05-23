@@ -1,22 +1,27 @@
-import AddToCartModal from './AddToCartModal'
+import CartAddSuccessModal from './CartAddSuccessModal'
 import useModalStore from '../../store/modal'
 import ReactDOM from 'react-dom'
+import { ModalItem, ModalPropsMap, ModalType } from '../../types/modal'
+import AddToCartModal from './AddToCartModal'
 
-const MODAL_COMPONENTS = {
+const MODAL_COMPONENTS: { [K in ModalType]: React.FC<ModalPropsMap[K]> } = {
   addToCart: AddToCartModal,
-} as const
+  cartAddSuccess: CartAddSuccessModal,
+}
 
-type ModalType = keyof typeof MODAL_COMPONENTS
+const renderModal = <T extends ModalType>(modal: ModalItem<T>, index: number) => {
+  const Component = MODAL_COMPONENTS[modal.type] as React.FC<ModalPropsMap[T]>
+
+  return ReactDOM.createPortal(<Component key={index} {...modal.props} />, document.body)
+}
 
 const GlobalContainer = () => {
   const modals = useModalStore((state) => state.modals)
 
   return (
     <>
-      {modals.map(({ type, props }, index) => {
-        const ModalComponent = MODAL_COMPONENTS[type as ModalType]
-        if (!ModalComponent) return null
-        return ReactDOM.createPortal(<ModalComponent key={index} {...props} />, document.body)
+      {modals.map((modal: ModalItem, index) => {
+        return renderModal(modal, index)
       })}
     </>
   )
