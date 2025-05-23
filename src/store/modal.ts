@@ -1,13 +1,9 @@
 import { create } from 'zustand'
-
-export interface ModalConfig {
-  type: string
-  props?: Record<string, unknown>
-}
+import { ModalItem } from '../types/modal'
 
 interface ModalState {
-  modals: ModalConfig[]
-  openModal: (modal: ModalConfig) => void
+  modals: ModalItem[]
+  openModal: (modal: ModalItem) => void
   closeModal: () => void
 }
 
