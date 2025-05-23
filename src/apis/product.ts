@@ -5,7 +5,7 @@ import instance from './instance/main'
  * @param  categoryId 카테고리 아이디
  * @param  lastProductId 마지막으로 페칭된 상품의 아이디
  * @param  size 페이지 당 항목 수
- * @returns Axios 응답 객체
+ * @returns {response} {products: Product[], lastProductId: number, hasNext: boolean}
  */
 
 const getProductList = async (categoryId: number, lastProductId?: number, size: number = 8) => {
