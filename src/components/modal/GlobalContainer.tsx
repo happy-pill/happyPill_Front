@@ -8,7 +8,7 @@ import type { ModalItem, ModalPropsMap, ModalType } from '@/types/modal';
 
 import useModalStore from '@/stores/modal';
 
-export const MODAL_COMPONENTS = {
+const MODAL_COMPONENTS = {
   addToCart: AddToCartModal,
   cartAddSuccess: CartAddSuccessModal,
   message: MessageModal,
