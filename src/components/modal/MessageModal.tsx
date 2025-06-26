@@ -1,49 +1,49 @@
-import React from 'react'
-import Modal from './ui/Modal'
-import { CgClose } from 'react-icons/cg'
+import { CgClose } from 'react-icons/cg';
+
+import Modal from './ui/Modal';
 
 interface MessageModalProps {
-  type: 'confirm' | 'alert'
-  title?: string
-  message?: string
-  onConfirm: () => void
+  type: 'confirm' | 'alert';
+  title?: string;
+  message?: string;
+  onConfirm: () => void;
 }
 
 const MessageModal: React.FC<MessageModalProps> = (props) => {
-  const { type, title, message, onConfirm } = props
+  const { type, title, message, onConfirm } = props;
   return (
     <Modal>
       <Modal.Backdrop />
-      <Modal.Content className='relative max-w-[430px] w-full'>
+      <Modal.Content className='relative w-full max-w-[430px]'>
         <Modal.Close className='absolute right-2 top-2'>
           <CgClose color='#777777' />
         </Modal.Close>
-        <div className='flex flex-col items-center mb-8'>
+        <div className='mb-8 flex flex-col items-center'>
           <h2 className='text-22 font-semibold'>{title}</h2>
         </div>
-        <div className='text-center text-[18px] py-5 break-all'>{message}</div>
+        <div className='break-all py-5 text-center text-[18px]'>{message}</div>
         {type == 'confirm' ? (
-          <div className='flex gap-x-4 items-center mt-10'>
+          <div className='mt-10 flex items-center gap-x-4'>
             <button
               onClick={() => onConfirm()}
-              className='py-2 w-full rounded-3xl font-semibold text-white bg-button-secondary'
+              className='w-full rounded-3xl bg-button-secondary py-2 font-semibold text-white'
             >
               확인
             </button>
-            <Modal.Close className='text-14 py-2 border border-solid w-full rounded-3xl font-semibold   border-button-secondary bg-white text-button-secondary'>
+            <Modal.Close className='w-full rounded-3xl border border-solid border-button-secondary bg-white py-2 text-14 font-semibold text-button-secondary'>
               취소
             </Modal.Close>
           </div>
         ) : (
-          <div className='text-center mt-10'>
-            <Modal.Close className='w-[150px] text-14 py-2 rounded-3xl font-semibold  text-white bg-button-secondary'>
+          <div className='mt-10 text-center'>
+            <Modal.Close className='w-[150px] rounded-3xl bg-button-secondary py-2 text-14 font-semibold text-white'>
               확인
             </Modal.Close>
           </div>
         )}
       </Modal.Content>
     </Modal>
-  )
-}
+  );
+};
 
-export default MessageModal
+export default MessageModal;

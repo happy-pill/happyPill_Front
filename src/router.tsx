@@ -1,5 +1,6 @@
-import { createBrowserRouter } from 'react-router-dom'
-import { Layout, MainPage } from './pages/index'
+import { createBrowserRouter } from 'react-router-dom';
+
+import { Layout, MainPage } from './pages/index';
 
 const router = createBrowserRouter([
   {
@@ -8,6 +9,6 @@ const router = createBrowserRouter([
     errorElement: '',
     children: [{ index: true, element: <MainPage /> }],
   },
-])
+]);
 
-export default router
+export default router;

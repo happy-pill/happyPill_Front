@@ -1,18 +1,18 @@
-import { create } from 'zustand'
-import { createJSONStorage, persist } from 'zustand/middleware'
+import { create } from 'zustand';
+import { createJSONStorage, persist } from 'zustand/middleware';
 
 interface CheckoutProduct {
-  productId: string
-  name: string
-  price: number
-  period: number
-  thumbnailUrl: string
+  productId: string;
+  name: string;
+  price: number;
+  period: number;
+  thumbnailUrl: string;
 }
 
 interface CheckoutStoreState {
-  items: CheckoutProduct[]
-  setItems: (items: CheckoutProduct[]) => void
-  clearItems: () => void
+  items: CheckoutProduct[];
+  setItems: (items: CheckoutProduct[]) => void;
+  clearItems: () => void;
 }
 
 const useCheckoutStore = create<CheckoutStoreState>()(
@@ -30,6 +30,6 @@ const useCheckoutStore = create<CheckoutStoreState>()(
       storage: createJSONStorage(() => sessionStorage),
     },
   ),
-)
+);
 
-export default useCheckoutStore
+export default useCheckoutStore;

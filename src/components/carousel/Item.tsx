@@ -1,23 +1,23 @@
-import React from 'react'
-import { useCarouselContext } from './Carousel'
-import { cn } from '../../utils/classNames'
+import { useCarouselContext } from './Carousel';
+
+import { cn } from '@/utils/classNames';
 
 interface ItemProps {
-  children: React.ReactNode
-  className?: string
-  onClick?: () => void
+  children: React.ReactNode;
+  className?: string;
+  onClick?: () => void;
 }
 
 const Item: React.FC<ItemProps> = ({ children, className, onClick }) => {
-  const { dragging, isDraggingRef } = useCarouselContext()
+  const { dragging, isDraggingRef } = useCarouselContext();
 
   const handleClick = (e: React.MouseEvent) => {
     if (isDraggingRef.current) {
-      e.preventDefault()
-      return
+      e.preventDefault();
+      return;
     }
-    onClick?.()
-  }
+    onClick?.();
+  };
   return (
     <div
       className={cn('flex-shrink-0 select-none', className)}
@@ -27,7 +27,7 @@ const Item: React.FC<ItemProps> = ({ children, className, onClick }) => {
         {children}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Item
+export default Item;

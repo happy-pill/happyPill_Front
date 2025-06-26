@@ -1,30 +1,32 @@
-import { useEffect } from 'react'
-import useModalStore from '../stores/modal'
-import type { ModalItem } from '../types/modal'
+import { useEffect } from 'react';
+
+import type { ModalItem } from '@/types/modal';
+
+import useModalStore from '@/stores/modal';
 
 const useModal = () => {
-  const { modals, openModal, closeModal } = useModalStore()
+  const { modals, openModal, closeModal } = useModalStore();
 
   useEffect(() => {
     if (modals.length === 0) {
-      document.body.style.removeProperty('overflow')
+      document.body.style.removeProperty('overflow');
     } else {
-      document.body.style.overflowY = 'hidden'
+      document.body.style.overflowY = 'hidden';
     }
 
     return () => {
-      document.body.style.removeProperty('overflow')
-    }
-  }, [modals.length])
+      document.body.style.removeProperty('overflow');
+    };
+  }, [modals.length]);
 
   const handleOpenModal = (modal: ModalItem) => {
-    openModal(modal)
-  }
+    openModal(modal);
+  };
 
   const handleCloseModal = () => {
-    closeModal()
-  }
-  return { modals, openModal: handleOpenModal, closeModal: handleCloseModal }
-}
+    closeModal();
+  };
+  return { modals, openModal: handleOpenModal, closeModal: handleCloseModal };
+};
 
-export default useModal
+export default useModal;

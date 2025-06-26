@@ -1,26 +1,28 @@
-import React, { useEffect, Children } from 'react'
-import { useCarouselContext } from './Carousel'
-import { cn } from '../../utils/classNames'
+import { Children, useEffect } from 'react';
+
+import { useCarouselContext } from './Carousel';
+
+import { cn } from '@/utils/classNames';
 
 interface ItemListProps {
-  children: React.ReactNode
-  className?: string
+  children: React.ReactNode;
+  className?: string;
 }
 
 const ItemList: React.FC<ItemListProps> = ({ children, className }) => {
-  const { listRef, scrollX, dragging, onDragStart, setSlideCount } = useCarouselContext()
+  const { listRef, scrollX, dragging, onDragStart, setSlideCount } = useCarouselContext();
 
   useEffect(() => {
-    setSlideCount(Children.count(children))
-  }, [children, setSlideCount])
+    setSlideCount(Children.count(children));
+  }, [children, setSlideCount]);
 
   return (
     <div
       ref={listRef}
       className={cn(
-        'flex gap-x-5 h-auto z-0 bg-transparent cursor-grab',
+        'z-0 flex h-auto cursor-grab gap-x-5 bg-transparent',
         dragging && 'cursor-grabbing duration-0',
-        !dragging && 'transition-transform ease-out duration-300',
+        !dragging && 'transition-transform duration-300 ease-out',
         className,
       )}
       style={{
@@ -31,7 +33,7 @@ const ItemList: React.FC<ItemListProps> = ({ children, className }) => {
     >
       {children}
     </div>
-  )
-}
+  );
+};
 
-export default ItemList
+export default ItemList;
