@@ -1,18 +1,17 @@
-import React from 'react'
-import { useTabContext } from './Tabs'
+import { useTabContext } from './Tabs';
 
 interface PanelProps {
-  children: React.ReactNode
-  value: string
+  children: React.ReactNode;
+  value: string;
 }
 
 const Panel: React.FC<PanelProps> = ({ children, value }) => {
-  const { selectedTab } = useTabContext()
-  const isActive = selectedTab === value
+  const { selectedTab } = useTabContext();
+  const isActive = selectedTab === value;
 
-  if (!isActive) return null
+  if (!isActive) return null;
 
-  return <div>{children}</div>
-}
+  return <div>{children}</div>;
+};
 
-export default Panel
+export default Panel;

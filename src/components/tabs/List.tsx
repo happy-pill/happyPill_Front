@@ -1,15 +1,14 @@
-import React from 'react'
-import { cn } from '../../utils/classNames'
+import { cn } from '@/utils/classNames';
 
 interface ListProps {
-  children: React.ReactNode
-  className?: string
+  children: React.ReactNode;
+  className?: string;
 }
 
 const List: React.FC<ListProps> = ({ children, className }) => {
   return (
-    <div className={cn('flex items-center gap-x-5 bg-white rounded-md', className)}>{children}</div>
-  )
-}
+    <div className={cn('flex items-center gap-x-5 rounded-md bg-white', className)}>{children}</div>
+  );
+};
 
-export default List
+export default List;

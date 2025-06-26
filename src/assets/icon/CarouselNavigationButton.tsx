@@ -1,7 +1,5 @@
-import React from 'react'
-
 interface ArrowIconProps {
-  className?: string
+  className?: string;
 }
 
 const CarouselNavigationButton: React.FC<ArrowIconProps> = ({ className }) => {
@@ -23,7 +21,7 @@ const CarouselNavigationButton: React.FC<ArrowIconProps> = ({ className }) => {
         strokeLinejoin='round'
       />
     </svg>
-  )
-}
+  );
+};
 
-export default CarouselNavigationButton
+export default CarouselNavigationButton;
