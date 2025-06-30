@@ -2,8 +2,8 @@ import { useMemo, useState } from 'react';
 
 import type { Category, CategoryBlock } from '@/types/category';
 
-import categoryAPI from '@/apis/category.api';
-import productAPI from '@/apis/product.api';
+import categoryAPI from '@/apis/member/category.api';
+import productAPI from '@/apis/member/product.api';
 
 export const useCategoryProductFlow = () => {
   const [categoryList, setCategoryList] = useState<Category[]>([]); // 카테고리 버튼 리스트 및 배너
