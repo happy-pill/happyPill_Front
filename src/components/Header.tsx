@@ -8,12 +8,14 @@ import IconLanguage from '@/assets/icon/IconLanguage';
 
 // TODO  기능 추가 필요/반응형 작업 필요
 const Header: React.FC = () => {
+  const ICON_SIZE = 25;
   const [isLogined] = useState(false); // 임시 상태
+
   const commonItems = [
     {
       type: 'cart',
       name: '장바구니',
-      icon: <CiShoppingCart size={25} />,
+      icon: <CiShoppingCart size={ICON_SIZE} />,
       path: '/cart',
     },
   ];
@@ -22,7 +24,7 @@ const Header: React.FC = () => {
     {
       type: 'login',
       name: '로그인',
-      icon: <CiLogin size={25} />,
+      icon: <CiLogin size={ICON_SIZE} />,
       path: '/login',
     },
   ];
@@ -31,13 +33,13 @@ const Header: React.FC = () => {
     {
       type: 'logout',
       name: '로그아웃',
-      icon: <CiLogout size={25} />,
+      icon: <CiLogout size={ICON_SIZE} />,
       path: '/',
     },
     {
       type: 'user',
       name: '내정보',
-      icon: <CiUser size={25} />,
+      icon: <CiUser size={ICON_SIZE} />,
       path: '/mypage',
     },
   ];
