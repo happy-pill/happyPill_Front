@@ -6,9 +6,9 @@ import { Link } from 'react-router-dom';
 import { Logo } from '@/assets/icon';
 import IconLanguage from '@/assets/icon/IconLanguage';
 
-// TODO  기능 추가 필요
+// TODO  기능 추가 필요/반응형 작업 필요
 const Header: React.FC = () => {
-  const [isLogined] = useState(false);
+  const [isLogined] = useState(false); // 임시 상태
   const commonItems = [
     {
       type: 'cart',
