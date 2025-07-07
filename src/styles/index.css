@@ -83,18 +83,14 @@ body {
 @layer components {
   /* container */
   .max-width-container {
-    max-width: var(--container-max-width);
+    @apply max-w-max-width;
   }
   .min-width-container {
-    min-width: var(--container-min-width);
+    @apply min-w-min-width;
   }
 }
 
 @layer utilities {
-  .text-primary {
-    color: var(--color-text-primary);
-  }
-
   /* 10px 400 */
   .text-xxs-regular {
     @apply font-regular text-xxs leading-tight;
