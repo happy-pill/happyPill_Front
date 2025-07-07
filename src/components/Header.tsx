@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { CiLogin, CiLogout, CiShoppingCart, CiUser } from 'react-icons/ci';
+import { CiLogin, CiLogout, CiUser } from 'react-icons/ci';
 import { IoMdArrowDropdown } from 'react-icons/io';
+import { PiShoppingBagLight } from 'react-icons/pi';
 import { Link } from 'react-router-dom';
 
 import { Logo } from '@/assets/icon';
@@ -15,7 +16,7 @@ const Header: React.FC = () => {
     {
       type: 'cart',
       name: '장바구니',
-      icon: <CiShoppingCart size={ICON_SIZE} />,
+      icon: <PiShoppingBagLight size={ICON_SIZE} />,
       path: '/cart',
     },
   ];
