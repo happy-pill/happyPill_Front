@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { CiLogin, CiLogout, CiUser } from 'react-icons/ci';
 import { IoMdArrowDropdown } from 'react-icons/io';
 import { PiShoppingBagLight } from 'react-icons/pi';
@@ -6,11 +5,12 @@ import { Link } from 'react-router-dom';
 
 import { Logo } from '@/assets/icon';
 import IconLanguage from '@/assets/icon/IconLanguage';
+import useAuthStore from '@/stores/auth';
 
 // TODO  기능 추가 필요/반응형 작업 필요
 const Header: React.FC = () => {
   const ICON_SIZE = 25;
-  const [isLogined] = useState(false); // 임시 상태
+  const isLogined = useAuthStore((state) => state.isLogined);
 
   const commonItems = [
     {
