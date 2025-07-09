@@ -1,4 +1,7 @@
 @import 'tailwindcss';
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+@layer theme, base, components, utilities;
 
 @theme {
   /* Brand Colors */
@@ -6,12 +9,13 @@
   --color-secondary: #f0a500;
   --color-tertiary: #121212;
   --color-baseBg: #f7f4eb;
+  --color-primary-text: #272626;
 
   /* Typography */
-  --font-size-title: 32px;
-  --font-size-body-large: 16px;
-  --font-size-body: 14px;
-  --font-size-caption: 12px;
+  --text-title: 32px;
+  --text-body-large: 16px;
+  --text-body: 14px;
+  --text-caption: 12px;
 
   --font-weight-bold: 700;
   --font-weight-regular: 400;
@@ -22,8 +26,8 @@
   --font-line-height-caption: 18px;
 
   /* Layout */
-  --max-width: 1280px;
-  --min-width: 760px;
+  --container-max-width: 1280px;
+  --container-min-width: 760px;
 
   /* Border Radius */
   --radius-md: 10px;
@@ -42,6 +46,28 @@
   --spacing-3xl: 48px;
   --spacing-4xl: 56px;
   --spacing-5xl: 64px;
+
+  /* Font Sizes */
+  --text-xxs: 10px;
+  --text-xs: 12px;
+  --text-s: 14px;
+  --text-m: 16px;
+  --text-l: 18px;
+  --text-xl: 20px;
+  --text-2xl: 24px;
+  --text-3xl: 30px;
+  --text-4xl: 36px;
+  --text-5xl: 40px;
+
+  /* Font Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+
+  /* Line Heights*/
+  --leading-tight: 120%;
+  --leading-normal: 130%;
+  --leading-relaxed: 140%;
 }
 
 * {
@@ -49,7 +75,106 @@
 }
 
 body {
+  font-family: 'Pretendard', sans-serif;
   background: var(--color-baseBg);
-  color: var(--color-gray-900);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--color-primary-text);
+}
+
+@layer components {
+  /* container */
+  .max-width-container {
+    @apply max-w-max-width;
+  }
+  .min-width-container {
+    @apply min-w-min-width;
+  }
+}
+
+@layer utilities {
+  /* 10px 400 */
+  .text-xxs-regular {
+    @apply font-regular text-xxs leading-tight;
+  }
+
+  /* 12px 400 */
+  .text-xs-regular {
+    @apply font-regular text-xs leading-relaxed;
+  }
+
+  /* 14px 400 */
+  .text-s-regular {
+    @apply font-regular text-xs leading-relaxed;
+  }
+
+  /* 14px 500 */
+  .text-s-medium {
+    @apply text-s leading-relaxed font-medium;
+  }
+
+  /* 16px 400*/
+  .text-m-regular {
+    @apply text-m font-regular leading-relaxed;
+  }
+
+  /* 16px 500 */
+  .text-m-medium {
+    @apply text-m leading-relaxed font-medium;
+  }
+
+  /* 18px 400 */
+  .text-l-regular {
+    @apply text-l font-regular leading-relaxed;
+  }
+
+  /* 18px 600 */
+  .text-l-bold {
+    @apply text-l leading-relaxed font-bold;
+  }
+
+  /* 20px 400*/
+  .text-xl-regular {
+    @apply font-regular text-xl leading-normal;
+  }
+
+  /* 20px 600 */
+  .text-xl-bold {
+    @apply text-xl leading-normal font-bold;
+  }
+
+  /* 24px 400 */
+  .text-2xl-regular {
+    @apply font-regular text-2xl leading-normal;
+  }
+
+  /* 24px 600*/
+  .text-2xl-bold {
+    @apply text-2xl leading-normal font-bold;
+  }
+
+  /* 30px 400 */
+  .text-3xl-regular {
+    @apply font-regular text-3xl leading-tight;
+  }
+  /* 30px 600 */
+  .text-3xl-bold {
+    @apply text-3xl leading-tight font-bold;
+  }
+
+  /* 36px 400*/
+  .text-4xl-regular {
+    @apply font-regular text-4xl leading-tight;
+  }
+
+  /* 36px 600 */
+  .text-4xl-bold {
+    @apply text-4xl leading-tight font-bold;
+  }
+  /* 40px 400*/
+  .text-5xl-regular {
+    @apply font-regular text-5xl leading-tight;
+  }
+  /* 40px 600*/
+  .text-5xl-bold {
+    @apply text-5xl leading-tight font-bold;
+  }
 }
