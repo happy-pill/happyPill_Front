@@ -1,4 +1,4 @@
-const TesterButtonBox = () => {
+const GuestButtonBox = () => {
   return (
     <div className='*:p-md *:text-md flex gap-2 *:rounded-[8px] *:font-semibold *:text-white'>
       <button className='bg-[#88D37B]'>회원 로그인</button>
@@ -7,4 +7,4 @@ const TesterButtonBox = () => {
   );
 };
 
-export default TesterButtonBox;
+export default GuestButtonBox;
