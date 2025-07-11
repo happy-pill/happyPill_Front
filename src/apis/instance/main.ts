@@ -13,6 +13,11 @@ instance.defaults.timeout = 2500;
 
 // TODO : request header Authorization 설정
 // TODO : 로그인 만료 처리 interceptors
+
+/**
+ * 리프레쉬 토큰으로 액세스 토큰 재발급 가능한 api 필요
+ * 리프레쉬 토큰
+ */
 // 요청 인터셉터 추가하기
 instance.interceptors.request.use(
   function (config) {
@@ -27,5 +32,10 @@ instance.interceptors.request.use(
     return Promise.reject(error);
   },
 );
+
+instance.interceptors.response.use((config) => {
+  config.headers.Authorization = null;
+  return config;
+});
 
 export default instance;
