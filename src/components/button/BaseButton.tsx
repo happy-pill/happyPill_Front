@@ -8,9 +8,10 @@ interface BaseButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const Button = forwardRef<HTMLButtonElement, BaseButtonProps>(
-  ({ className, children, ...rest }: BaseButtonProps) => {
+  ({ className, children, ...rest }, ref) => {
     return (
       <button
+        ref={ref}
         type='button'
         className={cn('inline-flex items-center justify-center', className)}
         {...rest}
