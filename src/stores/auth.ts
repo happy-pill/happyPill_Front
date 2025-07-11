@@ -3,6 +3,7 @@ import { persist, createJSONStorage } from 'zustand/middleware';
 
 import { ACCESS_TOKEN } from '@/constants/auth';
 
+// FIXME setLoadined만 생성하기
 interface AuthState {
   accessToken: string | null;
   isLogined: boolean;

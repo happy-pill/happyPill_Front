@@ -80,6 +80,12 @@ body {
   color: var(--color-primary-text);
 }
 
+@layer base {
+  button {
+    @apply cursor-pointer;
+  }
+}
+
 @layer components {
   /* container */
   .max-width-container {
