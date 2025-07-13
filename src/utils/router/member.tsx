@@ -1,8 +1,9 @@
+import { routePath } from '@/constants/path';
 import { Layout, MainPage } from '@/pages';
 
 const memberRouter = [
   {
-    path: '/',
+    path: routePath.common.root,
     element: <Layout />,
     errorElement: '',
     children: [{ index: true, element: <MainPage /> }],
