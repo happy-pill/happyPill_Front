@@ -1,5 +1,5 @@
-import GuestButtonBox from './components/GuestButtonBox';
-import LoginButtonBox from './components/LoginButtonBox';
+import GuestButtonBox from '../molecule/GuestButtonBox';
+import LoginButtonBox from '../molecule/LoginButtonBox';
 
 import HappyPillLetter from '@/assets/images/happypill-letter.svg';
 
