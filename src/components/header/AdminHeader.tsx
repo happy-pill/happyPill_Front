@@ -23,7 +23,7 @@ const AdminHeader: React.FC = () => {
   ];
 
   return (
-    <header className='px-md flex h-[100px] items-center bg-white'>
+    <header className='px-md flex h-[100px] items-center border-b border-solid border-[#E2E2E2] bg-white'>
       <div className='mx-auto flex w-full max-w-(--max-width) items-center justify-between'>
         <h2 className='flex items-center gap-1'>
           <Link to='/' title='admin home'>

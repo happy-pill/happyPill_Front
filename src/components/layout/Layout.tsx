@@ -1,8 +1,8 @@
 import { Outlet } from 'react-router-dom';
 
-import Footer from './Footer';
-import Header from './Header';
-import GlobalContainer from './modal/GlobalContainer';
+import Footer from '../footer/Footer';
+import Header from '../header/Header';
+import GlobalContainer from '../modal/GlobalContainer';
 
 // TODO 각 페이지 확인 후 LayoutContainer 추가 여부 관련 수정 필요
 const Layout = () => {

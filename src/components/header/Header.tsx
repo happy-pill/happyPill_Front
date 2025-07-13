@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 
 import { Logo } from '@/assets/icon';
 import IconLanguage from '@/assets/icon/IconLanguage';
+import { routePath } from '@/constants/path';
 
 // TODO  기능 추가 필요/반응형 작업 필요
 const Header: React.FC = () => {
@@ -17,7 +18,7 @@ const Header: React.FC = () => {
       type: 'cart',
       name: '장바구니',
       icon: <PiShoppingBagLight size={ICON_SIZE} />,
-      path: '/cart',
+      path: routePath.common.cart,
     },
   ];
 
@@ -26,7 +27,7 @@ const Header: React.FC = () => {
       type: 'login',
       name: '로그인',
       icon: <CiLogin size={ICON_SIZE} />,
-      path: '/login',
+      path: routePath.common.login,
     },
   ];
 
@@ -41,7 +42,7 @@ const Header: React.FC = () => {
       type: 'user',
       name: '내정보',
       icon: <CiUser size={ICON_SIZE} />,
-      path: '/mypage',
+      path: routePath.member.mypage,
     },
   ];
 
@@ -68,7 +69,7 @@ const Header: React.FC = () => {
           {headerItems.map((item) => (
             <Link
               key={item.type}
-              to={item.path}
+              to={item.path as string}
               className='relative flex flex-col items-center justify-center gap-1'
             >
               {item.type === 'cart' && (

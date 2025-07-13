@@ -1,9 +1,9 @@
 import { Outlet } from 'react-router-dom';
 
-import AdminHeader from './AdminHeader';
-import LayoutContainer from './container/LayoutContainer';
-import GlobalContainer from './modal/GlobalContainer';
-import AdminNavigation from './navigation/AdminNavigation';
+import AdminContainer from '../container/AdminContainer';
+import AdminHeader from '../header/AdminHeader';
+import GlobalContainer from '../modal/GlobalContainer';
+import AdminNavigation from '../navigation/AdminNavigation';
 
 // TODO 각 페이지 확인 후 LayoutContainer 추가 여부 관련 수정 필요
 const AdminLayout = () => {
@@ -11,11 +11,11 @@ const AdminLayout = () => {
     <div className='flex min-h-screen flex-col'>
       <AdminHeader />
 
-      <div className='flex h-full w-full'>
+      <div className='flex h-[calc(100vh-100px)] w-full'>
         <AdminNavigation />
-        <LayoutContainer>
+        <AdminContainer>
           <Outlet />
-        </LayoutContainer>
+        </AdminContainer>
       </div>
 
       <GlobalContainer />
