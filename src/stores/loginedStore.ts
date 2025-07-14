@@ -1,12 +1,12 @@
 import { create } from 'zustand';
 
 interface LoginedState {
-  isLogined: boolean;
+  isLogined: boolean | null;
   setLoadined: (token: string | null) => void;
 }
 
 const useLoginedStore = create<LoginedState>()((set) => ({
-  isLogined: false,
+  isLogined: null,
   setLoadined: (token) => set({ isLogined: !!token }),
 }));
 
