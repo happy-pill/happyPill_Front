@@ -25,3 +25,7 @@ export const getCookie = ({ keyName }: { keyName: string }) => {
       ?.split('=')[1] ?? null
   );
 };
+
+export const deleteCookie = ({ keyName }: { keyName: string }) => {
+  document.cookie = `${keyName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+};
