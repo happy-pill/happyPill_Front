@@ -1,7 +1,9 @@
-import type { loginItem } from '../molecule/LoginButtonBox';
+import type { LoginItem } from '../molecule/LoginButtonBox';
+
+import { cn } from '@/utils/classNames';
 
 interface LoginButtonProps {
-  loginItem: loginItem;
+  loginItem: LoginItem;
 }
 
 const LoginButton = ({ loginItem }: LoginButtonProps) => {
@@ -14,7 +16,7 @@ const LoginButton = ({ loginItem }: LoginButtonProps) => {
 
   return (
     <button
-      className={`p-md flex w-full items-center justify-center rounded-[8px] px-[50px] ${style}`}
+      className={cn('p-md flex w-full items-center justify-center rounded-[8px] px-[50px]', style)}
       onClick={() => handleOAuthLogin(type)}
     >
       <div className='flex w-full justify-start gap-7'>

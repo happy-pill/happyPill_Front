@@ -2,7 +2,7 @@ import LoginButton from '../atom/LoginButtoon';
 
 import { IconKakao, IconGoogle } from '@/assets/icon';
 
-export interface loginItem {
+export interface LoginItem {
   icon: string;
   type: string;
   name: string;

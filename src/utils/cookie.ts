@@ -1,3 +1,7 @@
+/**
+ * 데이터 쿠키에 저장
+ * @param {keyName, value, days}
+ */
 export const setCookie = ({
   keyName,
   value,
@@ -17,6 +21,11 @@ export const setCookie = ({
   }
 };
 
+/**
+ * 쿠키 데이터 가져오기
+ * @param keyName
+ * @returns data
+ */
 export const getCookie = ({ keyName }: { keyName: string }) => {
   return (
     document.cookie
@@ -26,6 +35,10 @@ export const getCookie = ({ keyName }: { keyName: string }) => {
   );
 };
 
+/**
+ * 쿠키 삭제
+ * @param keyName
+ */
 export const deleteCookie = ({ keyName }: { keyName: string }) => {
   document.cookie = `${keyName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
 };
