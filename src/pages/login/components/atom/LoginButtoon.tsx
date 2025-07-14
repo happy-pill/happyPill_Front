@@ -8,7 +8,7 @@ const LoginButton = ({ loginItem }: LoginButtonProps) => {
   const { type, icon, name, style } = loginItem;
 
   const handleOAuthLogin = (type: string) => {
-    const url = `https://happypill-api.jiheon2234.dev/oauth2/authorization/${type}`;
+    const url = `${import.meta.env.VITE_API_URL}/oauth2/authorization/${type}`;
     window.open(url);
   };
 
