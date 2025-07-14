@@ -28,7 +28,7 @@ const LoginButtonBox = () => {
   return (
     <div className='mb-[108px] flex w-full flex-col gap-2'>
       {loginItems.map((item) => (
-        <LoginButton loginItem={item} />
+        <LoginButton key={item.type} loginItem={item} />
       ))}
     </div>
   );
