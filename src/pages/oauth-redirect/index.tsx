@@ -2,8 +2,7 @@ import { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import { ACCESS_TOKEN, REFRESH_TOKEN } from '@/constants/auth';
-import useAuthStore from '@/stores/auth';
-import { setCookie } from '@/utils/cookie';
+import { setToken } from '@/utils/authToken';
 
 const OauthRedirect = () => {
   const [searchParams] = useSearchParams();
@@ -13,8 +12,7 @@ const OauthRedirect = () => {
 
   useEffect(() => {
     if (accessToken && refreshToken) {
-      useAuthStore.getState().setAccessToken(accessToken);
-      setCookie({ keyName: REFRESH_TOKEN, value: refreshToken, days: 7 });
+      setToken({ accessToken, refreshToken });
       navigate('/');
     }
   }, [accessToken, navigate, refreshToken]);
