@@ -5,12 +5,12 @@ import { Link } from 'react-router-dom';
 
 import { Logo } from '@/assets/icon';
 import IconLanguage from '@/assets/icon/IconLanguage';
-import useAuthStore from '@/stores/auth';
+import useLoginedStore from '@/stores/loginedStore';
 
 // TODO  기능 추가 필요/반응형 작업 필요
 const Header: React.FC = () => {
   const ICON_SIZE = 25;
-  const isLogined = useAuthStore((state) => state.isLogined); // NOTE 임시 상태 메인 페이지 작업 시 확인 후 수정 필요!!
+  const isLogined = useLoginedStore((state) => state.isLogined); // 임시 상태
 
   const commonItems = [
     {
