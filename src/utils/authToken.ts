@@ -1,13 +1,20 @@
-import { deleteCookie, setCookie } from './cookie';
+import { deleteCookie, getCookie, setCookie } from './cookie';
 
 import instance from '@/apis/instance/main';
 import { REFRESH_TOKEN } from '@/constants/auth';
 import useLoginedStore from '@/stores/loginedStore';
 
 /**
- * accessToken header에 바로 추가
- * isLogined true 변경
- * refreshToken 쿠키에 저장
+ * 쿠키에 저장된 refrshToken 있는지 확인
+ * @returns boolean
+ */
+export const checkToken = () => {
+  return getCookie({ keyName: REFRESH_TOKEN }) ? true : false;
+};
+
+/**
+ * token 세팅
+ * isLogined는 메인페이지에서 처리
  * @param {accessToken, refreshToken}
  */
 export const setToken = ({
@@ -19,14 +26,11 @@ export const setToken = ({
 }) => {
   if (!accessToken || !refreshToken) return;
   instance.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
-
-  useLoginedStore.getState().setLoadined(accessToken);
   setCookie({ keyName: REFRESH_TOKEN, value: refreshToken, days: 7 });
 };
 
 /**
- * isLogined false 변경
- * refreshToken 쿠키에서 제거
+ * token 초기화
  */
 export const resetToken = () => {
   useLoginedStore.getState().setLoadined(null);
