@@ -3,14 +3,12 @@ import { redirect } from 'react-router-dom';
 import { resetToken } from './authToken';
 import { getCookie, setCookie } from './cookie';
 
-import { RefreshInstance } from '@/apis/instance/refresh';
+import authAPI from '@/apis/auth/auth.api';
 import { REFRESH_TOKEN } from '@/constants/auth';
 import useLoginedStore from '@/stores/loginedStore';
 
 /**
  * refreshToken를 통한 accessToken 토큰 재발급
- * accessToken | !refreshToken ? accessToken만 저장 : 둘 다 저장
- * refreshToken 없거나 error 반환 시 login 처리
  * @returns {accessToken, refreshToken}
  */
 export const setRefreshToAccessToken = async () => {
@@ -21,21 +19,15 @@ export const setRefreshToAccessToken = async () => {
 
   if (!refreshToken) {
     resetToken();
-    redirect('login');
+    redirect('/login');
   }
 
   if (refreshToken) {
     try {
-      const response = await RefreshInstance.post(
-        '/auth/refresh',
-        {},
-        {
-          headers: { Authorization: `Bearer ${refreshToken}` },
-        },
-      );
+      const response = await authAPI.postRefreshToken(refreshToken);
 
-      newAccessToken = response.data.accessToken;
-      newRefreshToken = response.data.refreshToken;
+      newAccessToken = response.accessToken;
+      newRefreshToken = response.refreshToken;
 
       if (newAccessToken) {
         useLoginedStore.getState().setLoadined(newAccessToken);
@@ -44,13 +36,7 @@ export const setRefreshToAccessToken = async () => {
         }
       }
     } catch {
-      await RefreshInstance.post(
-        '/auth/logout',
-        {},
-        {
-          headers: { Authorization: `Bearer ${refreshToken}` },
-        },
-      );
+      await authAPI.postLogout(refreshToken);
       resetToken();
       redirect('/login');
     }
