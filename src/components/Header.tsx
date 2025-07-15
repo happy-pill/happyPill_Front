@@ -57,7 +57,8 @@ const Header: React.FC = () => {
             <img src={Logo} alt='logo' width={129} height={21} />
           </h2>
         </Link>
-        {isLogined === null ? null : (
+
+        {isLogined !== null ? (
           <nav className='gap-x-md flex items-center'>
             <button className='flex items-center justify-center gap-1'>
               <IconLanguage size='20' />
@@ -81,7 +82,7 @@ const Header: React.FC = () => {
               </Link>
             ))}
           </nav>
-        )}
+        ) : null}
       </div>
     </header>
   );

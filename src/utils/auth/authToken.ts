@@ -1,4 +1,4 @@
-import { deleteCookie, getCookie, setCookie } from './cookie';
+import { deleteCookie, getCookie, setCookie } from '../cookie';
 
 import instance from '@/apis/instance/main';
 import { REFRESH_TOKEN } from '@/constants/auth';
@@ -14,7 +14,6 @@ export const checkToken = () => {
 
 /**
  * token 세팅
- * isLogined는 메인페이지에서 처리
  * @param {accessToken, refreshToken}
  */
 export const setToken = ({

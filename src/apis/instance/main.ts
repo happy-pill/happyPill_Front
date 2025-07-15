@@ -2,7 +2,7 @@ import axios, { AxiosError, type AxiosInstance } from 'axios';
 import { redirect } from 'react-router-dom';
 
 import { appStorage } from '@/utils/appStorage';
-import { setRefreshToAccessToken } from '@/utils/refreshToAccessToken';
+import { setRefreshToAccessToken } from '@/utils/auth/refreshToAccessToken';
 
 // 인스턴스 생성
 export const instance: AxiosInstance = axios.create({
