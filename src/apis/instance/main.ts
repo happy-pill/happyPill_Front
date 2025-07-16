@@ -7,7 +7,6 @@ import { setRefreshToAccessToken } from '@/utils/auth/refreshToAccessToken';
 // 인스턴스 생성
 export const instance: AxiosInstance = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
-  headers: { language: 'ko' },
 });
 
 // 요청 타임아웃
@@ -16,7 +15,9 @@ instance.defaults.timeout = 2500;
 // 요청
 instance.interceptors.request.use(
   function (config) {
-    appStorage.setLanguage('ko');
+    const currentLanguage = appStorage.getLanguage();
+    config.headers.language = currentLanguage;
+
     return config;
   },
   function (error) {
