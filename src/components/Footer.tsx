@@ -9,7 +9,7 @@ const Footer: React.FC = () => {
 
   return (
     <footer className='p-md bg-tertiary'>
-      <div className='mx-auto flex w-full max-w-(--max-width) flex-col items-center justify-center gap-2 text-white'>
+      <div className='max-width-container mx-auto flex w-full flex-col items-center justify-center gap-2 text-white'>
         <div className='flex items-center gap-2'>
           {footerItems.map((item) => (
             <Link key={item.type} to={item.path} className='font-bold'>
