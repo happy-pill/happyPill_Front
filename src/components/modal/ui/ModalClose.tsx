@@ -9,7 +9,7 @@ interface ModalButtonProps {
 
 const ModalClose: React.FC<ModalButtonProps> = ({ className, children }) => {
   const { closeModal } = useModalContext();
-  const modalClosecls = `px-3 py-1.5 text-sm text-gray-600 rounded`;
+  const modalClosecls = `px-3 py-1.5 text-sm text-gray-600 rounded cursor-pointer`;
   return (
     <button className={cn(modalClosecls, className)} onClick={closeModal}>
       {children}
