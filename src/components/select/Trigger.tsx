@@ -37,7 +37,7 @@ const Trigger: React.FC<SelectTriggerProps> = ({
     }
 
     // 기본 아이콘만 rotate 애니메이션 적용
-    return <IoIosArrowDown className={cn('transition-transform', isOpen && 'rotate-180')} />;
+    return <IoIosArrowDown className={cn(isOpen && 'rotate-180')} />;
   };
 
   const iconElement = renderIcon();
