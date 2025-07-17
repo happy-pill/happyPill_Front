@@ -8,52 +8,73 @@ import { cn } from '@/utils/classNames';
 interface SelectContentProps {
   children: React.ReactNode;
   className?: string;
+  placement?: 'top' | 'bottom' | 'left' | 'right';
 }
 
 interface Position {
   top: number;
   left: number;
-  right: number;
   width: number;
 }
 
-const Content: React.FC<SelectContentProps> = ({ children, className }) => {
+const Content: React.FC<SelectContentProps> = ({ children, className, placement = 'bottom' }) => {
   const { contentRef, triggerRef, isOpen, onClose } = useSelectContext();
   const [contentPosition, setContentPosition] = useState<Position | null>(null);
 
   const calculatePosition = (): Position | null => {
     if (!triggerRef.current) return null;
 
-    const triggerRect = triggerRef.current.getBoundingClientRect();
+    const rect = triggerRef.current.getBoundingClientRect();
     const scrollY = window.scrollY;
+    const scrollX = window.scrollX;
+    const gap = 8;
 
-    return {
-      top: triggerRect.bottom + scrollY + 2, // 2px 간격으로 하단에 배치
-      left: triggerRect.left,
-      right: triggerRect.right,
-      width: triggerRect.width,
-    };
-  };
-
-  // 위치 업데이트
-  const updatePosition = () => {
-    if (isOpen) {
-      const newPosition = calculatePosition();
-
-      setContentPosition(newPosition);
+    // portal로 띄운 Content는  document.body 바로 아래에 붙게 되서 문서의 전체 기준에서 위치함
+    // scrollY(현재 문서의 수직 스크롤 위치)를 더해서 Content의 위치를 나타냄
+    switch (placement) {
+      case 'bottom':
+        return {
+          top: rect.bottom + scrollY + gap,
+          left: rect.left + scrollX,
+          width: rect.width,
+        };
+      case 'top':
+        return {
+          top: rect.top + scrollY - gap,
+          left: rect.left + scrollX,
+          width: rect.width,
+        };
+      case 'right':
+        return {
+          top: rect.top + scrollY,
+          left: rect.right + scrollX + gap,
+          width: rect.width,
+        };
+      case 'left':
+        return {
+          top: rect.top + scrollY,
+          left: rect.left + scrollX - gap,
+          width: rect.width,
+        };
+      default:
+        return null;
     }
   };
 
-  // isOpen 상태 변경 시 위치 계산
+  const updatePosition = () => {
+    if (isOpen) {
+      setContentPosition(calculatePosition());
+    }
+  };
+
   useEffect(() => {
     if (isOpen) {
       updatePosition();
     } else {
       setContentPosition(null);
     }
-  }, [isOpen]);
+  }, [isOpen, placement]);
 
-  // 스크롤 및 리사이즈 이벤트 핸들러
   useEffect(() => {
     if (!isOpen) return;
 
@@ -69,7 +90,6 @@ const Content: React.FC<SelectContentProps> = ({ children, className }) => {
     };
   }, [isOpen]);
 
-  // 외부 클릭 감지
   useEffect(() => {
     if (!isOpen) return;
 
@@ -101,7 +121,6 @@ const Content: React.FC<SelectContentProps> = ({ children, className }) => {
       style={{
         top: contentPosition.top,
         left: contentPosition.left,
-        right: contentPosition.right,
         width: contentPosition.width,
       }}
     >
@@ -109,7 +128,6 @@ const Content: React.FC<SelectContentProps> = ({ children, className }) => {
     </div>
   );
 
-  // Portal을 사용하여 body에 렌더링
   return createPortal(contentElement, document.body);
 };
 
