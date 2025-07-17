@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import AddToCartModal from './AddToCartModal';
 import CartAddSuccessModal from './CartAddSuccessModal';
 import MessageModal from './MessageModal';
+import WelcomeStepModal from './WelcomeStepModal';
 
 import type { ModalItem, ModalPropsMap, ModalType } from '@/types/modal';
 
@@ -12,6 +13,7 @@ const MODAL_COMPONENTS = {
   addToCart: AddToCartModal,
   cartAddSuccess: CartAddSuccessModal,
   message: MessageModal,
+  welcomeStep: WelcomeStepModal,
 } as const;
 
 const renderModal = <T extends ModalType>(modal: ModalItem<T>, index: number) => {
