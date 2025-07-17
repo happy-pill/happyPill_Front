@@ -16,9 +16,9 @@ const ButtonVariants = cva('flex items-center justify-center cursor-pointer w-fu
     size: {
       XL: 'max-w-[360px] rounded-lg text-xl-regular py-3 px-5',
       L: 'max-w-[180px] rounded-lg text-l-regular py-3 px-5',
-      M: 'rounded-md py-2 text-m-regular px-4',
-      S: 'rounded-md py-1 text-sm-regular px-3 text-xs',
-      XS: 'rounded-sm py-1 text-sm-regular px-2 text-xs',
+      M: 'w-fit rounded-md py-2 text-m-regular px-4',
+      S: 'w-fit rounded-md py-1 text-sm-regular px-3 text-xs',
+      XS: 'w-fit rounded-sm py-1 text-sm-regular px-2 text-xs',
     },
     variant: {
       border:
