@@ -1,10 +1,11 @@
-import type { Product } from './products';
+import type { ProductItem } from './products';
 
 // 모달별 props 타입 정의
 export type ModalPropsMap = {
-  addToCart: Omit<Product, 'company' | 'categoryId'>;
+  addToCart: Omit<ProductItem, 'company' | 'categoryId'>;
   cartAddSuccess: { name: string };
   message: { type: 'alert' | 'confirm'; title?: string; message?: string; onConfirm: () => void };
+  welcomeStep: undefined;
 };
 
 // 모달 타입을 자동 추론 하게 설정
