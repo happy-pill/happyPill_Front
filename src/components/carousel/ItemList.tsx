@@ -6,7 +6,10 @@ interface ItemListProps {
   children: React.ReactNode;
   className?: string;
 }
-
+interface CloneProps {
+  key: string;
+  className: string;
+}
 const ItemList: React.FC<ItemListProps> = ({ children, className }) => {
   const {
     listRef,
@@ -32,7 +35,7 @@ const ItemList: React.FC<ItemListProps> = ({ children, className }) => {
 
     // 마지막 슬라이드들을 앞에 복제 (순서 유지)
     const frontClones = childrenArray.slice(-effectiveCloneCount).map((child, index) => {
-      const element = child as React.ReactElement<any>;
+      const element = child as React.ReactElement<React.HTMLAttributes<HTMLElement>>;
       const originalClassName = element.props.className || '';
       const originalIndex = slideCount - effectiveCloneCount + index;
 
@@ -40,29 +43,29 @@ const ItemList: React.FC<ItemListProps> = ({ children, className }) => {
         key: `front-clone-${originalIndex}`,
         className:
           `${originalClassName} carousel-front-clone carousel-clone-${originalIndex}`.trim(),
-      } as any);
+      } as CloneProps);
     });
 
     // 첫 번째 슬라이드들을 뒤에 복제
     const backClones = childrenArray.slice(0, effectiveCloneCount).map((child, index) => {
-      const element = child as React.ReactElement<any>;
+      const element = child as React.ReactElement<React.HTMLAttributes<HTMLElement>>;
       const originalClassName = element.props.className || '';
 
       return cloneElement(element, {
-        key: `back-clone-${index}`,
-        className: `${originalClassName} carousel-back-clone carousel-clone-${index}`.trim(),
-      } as any);
+        key: `front-clone-${index}`,
+        className: `${originalClassName} carousel-front-clone carousel-clone-${index}`.trim(),
+      } as CloneProps);
     });
 
     // 원본 슬라이드에도 클래스 추가
     const originalSlides = childrenArray.map((child, index) => {
-      const element = child as React.ReactElement<any>;
+      const element = child as React.ReactElement<React.HTMLAttributes<HTMLElement>>;
       const originalClassName = element.props.className || '';
 
       return cloneElement(element, {
         key: element.key || `original-${index}`,
         className: `${originalClassName} carousel-original carousel-original-${index}`.trim(),
-      } as any);
+      } as CloneProps);
     });
 
     return [...frontClones, ...originalSlides, ...backClones];
