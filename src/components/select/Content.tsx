@@ -13,6 +13,7 @@ interface SelectContentProps {
 interface Position {
   top: number;
   left: number;
+  right: number;
   width: number;
 }
 
@@ -29,6 +30,7 @@ const Content: React.FC<SelectContentProps> = ({ children, className }) => {
     return {
       top: triggerRect.bottom + scrollY + 2, // 2px 간격으로 하단에 배치
       left: triggerRect.left,
+      right: triggerRect.right,
       width: triggerRect.width,
     };
   };
@@ -37,7 +39,7 @@ const Content: React.FC<SelectContentProps> = ({ children, className }) => {
   const updatePosition = () => {
     if (isOpen) {
       const newPosition = calculatePosition();
-      console.log('newPosition', newPosition);
+
       setContentPosition(newPosition);
     }
   };
@@ -99,6 +101,7 @@ const Content: React.FC<SelectContentProps> = ({ children, className }) => {
       style={{
         top: contentPosition.top,
         left: contentPosition.left,
+        right: contentPosition.right,
         width: contentPosition.width,
       }}
     >
