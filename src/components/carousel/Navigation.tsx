@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react';
+import { HiOutlineArrowSmRight } from 'react-icons/hi';
 
 import { useCarouselContext } from './Carousel';
 
-import CarouselNavigationButton from '@/assets/icon/CarouselNavigationButton';
+interface NavigationProps {
+  className?: string;
+}
 
-const Navigation = () => {
+const Navigation = ({ className }: NavigationProps) => {
   const { scrollX, listRef, slideCount, next, prev } = useCarouselContext();
 
   const [showPrev, setShowPrev] = useState(false);
@@ -22,21 +25,21 @@ const Navigation = () => {
   }, [scrollX, slideCount]);
 
   return (
-    <div>
+    <div className={className}>
       {showPrev && (
         <button
           onClick={prev}
-          className='absolute top-1/2 left-0 z-10 -translate-x-[50px] -translate-y-1/2'
+          className='pointer-events-auto absolute top-1/2 left-0 z-10 -translate-y-1/2 rotate-180 cursor-pointer rounded-full bg-white/50 md:p-2'
         >
-          <CarouselNavigationButton />
+          <HiOutlineArrowSmRight size={40} className='text-black/70' />
         </button>
       )}
       {showNext && (
         <button
           onClick={next}
-          className='absolute top-1/2 right-0 z-10 -translate-x-[-50px] -translate-y-1/2 rotate-180'
+          className='pointer-events-auto absolute top-1/2 right-0 z-10 -translate-y-1/2 cursor-pointer rounded-full bg-white/50 md:p-2'
         >
-          <CarouselNavigationButton />
+          <HiOutlineArrowSmRight size={40} className='text-black/70' />
         </button>
       )}
     </div>
