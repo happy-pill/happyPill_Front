@@ -28,6 +28,7 @@ interface CarouselContextProps {
   gap: number;
   cloneCount: number;
   isTransitioning: boolean;
+  active: boolean;
 }
 
 const CarouselContext = createContext<CarouselContextProps | null>(null);
@@ -48,6 +49,7 @@ interface CarouselProps {
   gap?: number;
   centerPadding?: number;
   isInfinite?: boolean;
+  active?: boolean;
 }
 
 /**
@@ -60,6 +62,7 @@ interface CarouselProps {
  * @param gap 슬라이드 간격
  * @param centerPadding 'peek'모드에서 양쪽 패딩
  * @param isInfinite 무한스크롤 여부
+ * @param active active 된 Item에 css 스타일 추가 여부
  * @returns
  */
 
@@ -70,6 +73,7 @@ const Carousel = ({
   gap = 20,
   centerPadding = 0,
   isInfinite = false,
+  active = false,
 }: CarouselProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [dragging, setDragging] = useState(false);
@@ -335,6 +339,8 @@ const Carousel = ({
   };
 
   const onDragStart = (e: React.MouseEvent | React.TouchEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
     setDragging(true);
     isDraggingRef.current = false;
     const pageX = 'touches' in e ? e.touches[0].pageX : e.pageX;
@@ -425,6 +431,7 @@ const Carousel = ({
         gap,
         cloneCount,
         isTransitioning,
+        active,
       }}
     >
       <div className='relative w-full overflow-hidden'>{children}</div>
