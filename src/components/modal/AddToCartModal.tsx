@@ -9,6 +9,7 @@ import Select from '../select/Select';
 import type { ProductItem } from '@/types/products';
 
 import { CART_MODAL } from '@/constants/locale';
+import useLocale from '@/hooks/useLocale';
 import useModal from '@/hooks/useModal';
 import { cartStorage } from '@/utils/cartStorage';
 
@@ -17,8 +18,9 @@ type CartProductProps = {
   product: Omit<ProductItem, 'company' | 'categoryId'>;
 };
 
-const AddToCartModal: React.FC<CartProductProps> = ({ product, locale }) => {
+const AddToCartModal: React.FC<CartProductProps> = ({ product }) => {
   const { productId, name, price, briefDescription, thumbnailUrl } = product;
+  const { locale } = useLocale();
   const [subscriptionOption, setSubscriptionOption] = useState<number | undefined>(undefined);
   const { openModal, closeModal } = useModal();
 
