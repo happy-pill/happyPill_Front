@@ -9,7 +9,7 @@ import logoHappypill from '@/assets/icon/logo-happypill.svg';
 import Modal from '@/components/modal/ui/Modal';
 import { CREATE_WELCOME_STEPS } from '@/constants/locale';
 import { usePostUserNickname } from '@/hooks/api/member/user';
-import useLanguage from '@/hooks/useLanguage';
+import useLocale from '@/hooks/useLocale';
 import useModal from '@/hooks/useModal';
 import useLoginedStore from '@/stores/loginedStore';
 import { logoutAndRedirect } from '@/utils/auth/logoutAndRedirect';
@@ -21,7 +21,7 @@ interface Inputs {
 
 const WelcomeStepModal: React.FC = () => {
   const [currentStep, setCurrentStep] = useState(0);
-  const { language } = useLanguage();
+  const { locale } = useLocale();
   const { closeModal } = useModal();
   const { setLogined } = useLoginedStore();
   const stepMessages = CREATE_WELCOME_STEPS;
@@ -89,8 +89,8 @@ const WelcomeStepModal: React.FC = () => {
               <img src={logoHappypill} alt='해피필 로고' className='w-32 object-contain' />
             </h2>
 
-            <span className='text-xl-bold mt-4'>{currentMessage[language].title}</span>
-            <span className='text-m-regular mt-1.5'>{currentMessage[language].description}</span>
+            <span className='text-xl-bold mt-4'>{currentMessage[locale].title}</span>
+            <span className='text-m-regular mt-1.5'>{currentMessage[locale].description}</span>
             <form onSubmit={handleSubmit(onSubmit)}>
               {currentStep == 1 && (
                 <div>
@@ -120,7 +120,7 @@ const WelcomeStepModal: React.FC = () => {
                   currentStep == 2 && 'mt-30',
                 )}
               >
-                {currentMessage[language].btnText}
+                {currentMessage[locale].btnText}
               </StyledButton>
             </form>
           </div>
