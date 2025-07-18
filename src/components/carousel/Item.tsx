@@ -21,13 +21,13 @@ const Item: React.FC<ItemProps> = ({ children, className, onClick }) => {
 
   return (
     <div
-      className={cn('flex-shrink-0 select-none', className)}
+      className='flex-shrink-0 select-none'
       style={{
         pointerEvents: dragging ? 'none' : 'auto',
         width: slideWidth > 0 ? `${slideWidth}px` : 'auto',
       }}
     >
-      <div className='pointer-events-auto h-full w-full' onClick={handleClick}>
+      <div className={cn('pointer-events-auto h-full w-full', className)} onClick={handleClick}>
         {children}
       </div>
     </div>
