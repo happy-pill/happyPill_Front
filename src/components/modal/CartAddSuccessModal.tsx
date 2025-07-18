@@ -4,14 +4,12 @@ import { HiMiniCheckCircle } from 'react-icons/hi2';
 import Modal from './ui/Modal';
 
 import { CART_COMPLETE_MODAL } from '@/constants/locale';
+import useLocale from '@/hooks/useLocale';
 import useModal from '@/hooks/useModal';
 
-interface CartAddSuccessModalProps {
-  locale: 'ko' | 'en';
-}
-
-const CartAddSuccessModal: React.FC<CartAddSuccessModalProps> = ({ locale }) => {
+const CartAddSuccessModal = () => {
   const { closeModal } = useModal();
+  const { locale } = useLocale();
   return (
     <Modal>
       <Modal.Content className='relative w-fit'>

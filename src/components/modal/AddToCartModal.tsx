@@ -48,7 +48,7 @@ const AddToCartModal: React.FC<CartProductProps> = ({ product }) => {
 
     cartStorage.save(item);
     closeModal();
-    openModal({ type: 'cartAddSuccess', props: { locale } });
+    openModal({ type: 'cartAddSuccess' });
   };
 
   //총 가격을 계산하는 함수
