@@ -2,8 +2,8 @@ import type { ProductItem } from './products';
 
 // 모달별 props 타입 정의
 export type ModalPropsMap = {
-  addToCart: { product: Omit<ProductItem, 'company' | 'categoryId'>; locale: 'ko' | 'en' };
-  cartAddSuccess: { locale: 'ko' | 'en' };
+  addToCart: { product: Omit<ProductItem, 'company' | 'categoryId'> };
+  cartAddSuccess: undefined;
   message: { type: 'alert' | 'confirm'; title?: string; message?: string; onConfirm: () => void };
   welcomeStep: undefined;
 };
