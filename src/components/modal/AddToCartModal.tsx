@@ -1,66 +1,111 @@
 import { useState } from 'react';
-import { CgClose } from 'react-icons/cg';
+import { IoClose } from 'react-icons/io5';
+import { useNavigate } from 'react-router-dom';
 
 import Modal from './ui/Modal';
-import SubscriptionPlanButton from '../button/SubscriptionPlanButton';
+import Button from '../button/StyledButton';
+import Select from '../select/Select';
 
-import type { Product } from '@/types/products';
+import type { ProductItem } from '@/types/products';
 
+import { CART_MODAL } from '@/constants/locale';
 import useModal from '@/hooks/useModal';
 import { cartStorage } from '@/utils/cartStorage';
 
-type CartProductProps = Omit<Product, 'company' | 'categoryId'>;
+type CartProductProps = {
+  locale: 'ko' | 'en';
+  product: Omit<ProductItem, 'company' | 'categoryId'>;
+};
 
-export const OPTIONS = [1, 3, 6];
-
-const AddToCartModal: React.FC<CartProductProps> = (props) => {
-  const { productId, name, price, briefDescription, thumbnailUrl } = props;
-  const [subscripionOption, setSubscriptionOption] = useState(1);
+const AddToCartModal: React.FC<CartProductProps> = ({ product, locale }) => {
+  const { productId, name, price, briefDescription, thumbnailUrl } = product;
+  const [subscriptionOption, setSubscriptionOption] = useState<number | undefined>(undefined);
   const { openModal, closeModal } = useModal();
-  const item = {
-    productId,
-    name,
-    price,
-    briefDescription,
-    thumbnailUrl,
-    period: subscripionOption,
+
+  const navigate = useNavigate();
+
+  const handleSubscriptionChange = (value: string | number) => {
+    setSubscriptionOption(Number(value));
   };
 
   const handleAddToCart = () => {
+    if (subscriptionOption === undefined) {
+      // 옵션 선택 안내 또는 기본값 설정
+      alert('구독 옵션을 선택해주세요.');
+      return;
+    }
+
+    const item = {
+      productId,
+      name,
+      price,
+      briefDescription,
+      thumbnailUrl,
+      period: subscriptionOption,
+    };
+
     cartStorage.save(item);
     closeModal();
-    openModal({ type: 'cartAddSuccess', props: { name } });
+    openModal({ type: 'cartAddSuccess', props: { locale } });
   };
+
+  //총 가격을 계산하는 함수
+  const calculateTotalPrice = () => {
+    if (subscriptionOption === undefined) return 0;
+
+    return price * subscriptionOption;
+  };
+
   return (
     <Modal>
       <Modal.Content className='relative w-full max-w-[430px]'>
-        <Modal.Close className='absolute right-2 top-2'>
-          <CgClose color='#777777' />
+        <Modal.Close className='absolute top-4 right-4' onClick={closeModal}>
+          <IoClose size={20} />
         </Modal.Close>
-
-        <div className='mb-8 flex flex-col items-center'>
-          <p className='text-18 font-semibold'>{name}</p>
-          <h2 className='text-22 font-bold text-[#026242] tablet:text-24'>장바구니 담기</h2>
-        </div>
-        <div>
-          <p className='mb-2 text-14 font-semibold'>개월 옵션</p>
-          <div className='grid grid-cols-3 gap-x-5'>
-            {OPTIONS.map((month) => (
-              <SubscriptionPlanButton
-                key={month}
-                period={month}
-                isSelected={subscripionOption === month}
-                onClick={() => setSubscriptionOption(month)}
+        <section>
+          <h2 className='text-m-medium mb-2.5'>{CART_MODAL[locale].title}</h2>
+          <div>
+            <Select value={subscriptionOption} onChange={handleSubscriptionChange}>
+              <Select.Trigger
+                className='border-1 border-[#dedede]'
+                placeholder='구독 기간을 선택하세요'
+                suffix={CART_MODAL[locale].subscriptionLabel}
               />
-            ))}
+              <Select.Content className='border-1 border-[#DEDEDE]'>
+                <Select.Group className='grid'>
+                  <Select.Item value='1' className='hover:bg-gray-100'>
+                    1{CART_MODAL[locale].subscriptionLabel}
+                  </Select.Item>
+                  <Select.Item value='3' className='hover:bg-gray-100'>
+                    3{CART_MODAL[locale].subscriptionLabel}
+                  </Select.Item>
+                  <Select.Item value='6' className='hover:bg-gray-100'>
+                    6{CART_MODAL[locale].subscriptionLabel}
+                  </Select.Item>
+                </Select.Group>
+              </Select.Content>
+            </Select>
           </div>
+        </section>
+        <section className='mt-40 flex justify-between'>
+          <h3 className='text-xl-regular'>{CART_MODAL[locale].totalPriceLabel}</h3>
+
+          <div className='grid justify-items-end'>
+            <span className='text-2xl-bold'>{calculateTotalPrice().toLocaleString()}원</span>
+            <span className='text-xs-regular text-primary'>
+              {CART_MODAL[locale].monthlyPriceLabelPrefix}
+              {price}
+            </span>
+          </div>
+        </section>
+        <div className='mt-5 flex justify-center gap-x-3'>
+          <Button variant='border' size='M' onClick={handleAddToCart}>
+            {CART_MODAL[locale].addToCart}
+          </Button>
+          <Button variant='green' size='M' onClick={() => navigate(`/payment/${productId}`)}>
+            {CART_MODAL[locale].buyNow}
+          </Button>
         </div>
-        <button
-          className='mt-8 w-full rounded-3xl bg-button-secondary py-2 font-semibold text-white tablet:py-3'
-          onClick={handleAddToCart}
-        >
-          장바구니 담기
-        </button>
       </Modal.Content>
     </Modal>
   );
