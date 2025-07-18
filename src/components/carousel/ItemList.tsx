@@ -2,6 +2,8 @@ import { Children, useEffect, cloneElement } from 'react';
 
 import { useCarouselContext } from './Carousel';
 
+import cn from '@/utils/classNames';
+
 interface ItemListProps {
   children: React.ReactNode;
   className?: string;
@@ -21,6 +23,8 @@ const ItemList: React.FC<ItemListProps> = ({ children, className }) => {
     isInfinite,
     gap,
     cloneCount,
+    active,
+    actualIndex,
   } = useCarouselContext();
 
   const childrenArray = Children.toArray(children);
@@ -38,11 +42,13 @@ const ItemList: React.FC<ItemListProps> = ({ children, className }) => {
       const element = child as React.ReactElement<{ className?: string }>;
       const originalClassName = element.props.className || '';
       const originalIndex = slideCount - effectiveCloneCount + index;
-
+      const isActive = active && actualIndex === index;
       return cloneElement(element, {
         key: `front-clone-${originalIndex}`,
-        className:
+        className: cn(
           `${originalClassName} carousel-front-clone carousel-clone-${originalIndex}`.trim(),
+          !isActive && 'opacity-50',
+        ),
       } as CloneProps);
     });
 
@@ -50,10 +56,13 @@ const ItemList: React.FC<ItemListProps> = ({ children, className }) => {
     const backClones = childrenArray.slice(0, effectiveCloneCount).map((child, index) => {
       const element = child as React.ReactElement<{ className?: string }>;
       const originalClassName = element.props.className || '';
-
+      const isActive = active && actualIndex === index;
       return cloneElement(element, {
         key: `back-clone-${index}`,
-        className: `${originalClassName} carousel-front-clone carousel-clone-${index}`.trim(),
+        className: cn(
+          `${originalClassName} carousel-front-clone carousel-clone-${index}`.trim(),
+          !isActive && 'opacity-50',
+        ),
       } as CloneProps);
     });
 
@@ -61,10 +70,13 @@ const ItemList: React.FC<ItemListProps> = ({ children, className }) => {
     const originalSlides = childrenArray.map((child, index) => {
       const element = child as React.ReactElement<{ className?: string }>;
       const originalClassName = element.props.className || '';
-
+      const isActive = active && actualIndex === index;
       return cloneElement(element, {
         key: element.key || `original-${index}`,
-        className: `${originalClassName} carousel-original carousel-original-${index}`.trim(),
+        className: cn(
+          `${originalClassName} carousel-original carousel-original-${index}`.trim(),
+          !isActive && 'opacity-50',
+        ),
       } as CloneProps);
     });
 
@@ -86,7 +98,13 @@ const ItemList: React.FC<ItemListProps> = ({ children, className }) => {
   }, [slideCount, setSlideCount]);
 
   return (
-    <div ref={listRef} className={className} style={listStyle} onMouseDown={onDragStart}>
+    <div
+      ref={listRef}
+      className={className}
+      style={listStyle}
+      onTouchStart={onDragStart}
+      onMouseDown={onDragStart}
+    >
       {slides}
     </div>
   );
