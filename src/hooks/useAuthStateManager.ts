@@ -18,9 +18,9 @@ export const useAuthStateManager = () => {
     if (isLoading || !userData) return;
 
     if (userData.nickname === null) {
-      setLogined(true);
-    } else {
       setLogined(false);
+    } else {
+      setLogined(true);
     }
   }, [userData, isLoading, setLogined]);
   return { userData, isLoading };
