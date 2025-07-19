@@ -20,12 +20,14 @@ export const useAuthStateManager = () => {
 
     if (!userData) {
       setLogined(null);
-    } else if (userData.nickname === null) {
-      navigate('/');
+    } else if (userData && userData.nickname === null) {
+      if (window.location.pathname !== '/') {
+        navigate('/');
+      }
     } else {
       setLogined(true);
     }
-  }, [userData, isLoading, setLogined, router]);
+  }, [userData, isLoading, setLogined]);
 
   return { userData, isLoading };
 };
