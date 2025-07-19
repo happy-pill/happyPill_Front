@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { useGetUserInfo } from './api/member/user';
 
@@ -9,19 +10,22 @@ import useLoginedStore from '@/stores/loginedStore';
  * @returns userData: 유저정보 isLoading: 로딩 상태
  *
  */
-
 export const useAuthStateManager = () => {
   const { data: userData, isLoading } = useGetUserInfo();
   const { setLogined } = useLoginedStore();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if (isLoading || !userData) return;
+    if (isLoading) return;
 
-    if (userData.nickname === null) {
-      setLogined(false);
+    if (!userData) {
+      setLogined(null);
+    } else if (userData.nickname === null) {
+      navigate('/');
     } else {
       setLogined(true);
     }
-  }, [userData, isLoading, setLogined]);
+  }, [userData, isLoading, setLogined, router]);
+
   return { userData, isLoading };
 };
