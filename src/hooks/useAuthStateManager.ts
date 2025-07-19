@@ -15,14 +15,13 @@ export const useAuthStateManager = () => {
   const { setLogined } = useLoginedStore();
 
   useEffect(() => {
-    if (isLoading) return;
+    if (isLoading || !userData) return;
 
-    if (userData) {
-      setLogined(userData.nickname !== null);
+    if (userData.nickname === null) {
+      setLogined(true);
     } else {
       setLogined(false);
     }
   }, [userData, isLoading, setLogined]);
-
   return { userData, isLoading };
 };
