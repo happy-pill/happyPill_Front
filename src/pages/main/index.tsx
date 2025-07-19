@@ -49,18 +49,9 @@ const Index = () => {
   const handleCategoryChange = async (category: Category, isAll?: boolean) => {
     setActiveCategoryId(isAll ? 'ALL' : category.categoryId);
   };
-  useEffect(() => {
-    if (hasNextPage && !isFetchingNextPage) {
-      const lastPage = productBlock?.pages[productBlock.pages.length - 1];
-      if (lastPage && (!lastPage.products || lastPage.products.length === 0)) {
-        fetchNextPage();
-      }
-    }
-  }, [productBlock, hasNextPage, isFetchingNextPage, fetchNextPage]);
 
   //페이지 렌더링 시, 유저 닉네임 여부 파악 후 모달 팝업
   useEffect(() => {
-    console.log('userData', userData);
     if (userData && userData.nickname === null) {
       openModal({ type: 'welcomeStep' });
     }
