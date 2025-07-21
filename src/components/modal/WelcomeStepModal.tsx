@@ -24,8 +24,7 @@ const WelcomeStepModal: React.FC = () => {
   const { locale } = useLocale();
   const { closeModal } = useModal();
   const { setLogined } = useLoginedStore();
-  const stepMessages = CREATE_WELCOME_STEPS;
-  const currentMessage = stepMessages[currentStep];
+  const currentMessage = CREATE_WELCOME_STEPS[currentStep];
   const postUserNicknameMutation = usePostUserNickname();
   const {
     register,
