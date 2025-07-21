@@ -15,7 +15,7 @@ import useLoginedStore from '@/stores/loginedStore';
 import { logoutAndRedirect } from '@/utils/auth/logoutAndRedirect';
 import cn from '@/utils/classNames';
 
-interface Inputs {
+interface NicknameInput {
   nickname: string;
 }
 
@@ -31,9 +31,9 @@ const WelcomeStepModal: React.FC = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<Inputs>();
+  } = useForm<NicknameInput>();
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
+  const onSubmit: SubmitHandler<NicknameInput> = (data) => {
     if (currentStep == 0) setCurrentStep((prev) => prev + 1);
     if (currentStep == 1) {
       postUserNicknameMutation.mutate(data.nickname, {
