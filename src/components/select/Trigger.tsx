@@ -11,7 +11,7 @@ interface SelectTriggerProps {
   className?: string;
   icon?: React.ReactNode; //아이콘(컴포넌트)
   iconPosition?: 'left' | 'right'; // 아이콘의 위치
-  hideIcon?: boolean; // 아이콘은 없앨 지
+  isHideIcon?: boolean; // 아이콘은 없앨 지
   suffix?: string; // 단위
 }
 
@@ -20,7 +20,7 @@ const Trigger: React.FC<SelectTriggerProps> = ({
   placeholder = '선택하세요',
   icon,
   iconPosition = 'right',
-  hideIcon = false,
+  isHideIcon = false,
   suffix,
 }) => {
   const { selectedValue, triggerRef, onToggle, isOpen } = useSelectContext();
@@ -30,14 +30,14 @@ const Trigger: React.FC<SelectTriggerProps> = ({
   };
 
   const renderIcon = () => {
-    if (hideIcon) return null;
+    if (isHideIcon) return null;
 
     if (icon) {
       return icon;
     }
 
     // 기본 아이콘만 rotate 애니메이션 적용
-    return <IoIosArrowDown className={cn(isOpen && 'rotate-180')} />;
+    return <IoIosArrowDown className={isOpen ? 'rotate-180' : ''} />;
   };
 
   const iconElement = renderIcon();
