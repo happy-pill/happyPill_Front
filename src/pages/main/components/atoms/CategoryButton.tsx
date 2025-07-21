@@ -8,26 +8,22 @@ interface CategoryButtonProps {
   icon?: string;
   isActive: boolean;
   className?: string;
-  onClickHandler: () => void;
+  onClick: () => void;
 }
 
 const CategoryButton: React.FC<CategoryButtonProps> = React.memo(
-  ({ value, icon, isActive, onClickHandler, className }) => {
+  ({ value, icon, isActive, onClick, className }) => {
     const buttonClasses = cn(
       'w-full min-w-fit flex justify-center items-center transition-colors duration-100',
       {
         'bg-primary-text text-white': isActive,
         'bg-white text-primary-text': !isActive,
       },
+      className,
     );
 
     return (
-      <Button
-        className={cn(buttonClasses, className)}
-        onClick={onClickHandler}
-        size='XL'
-        aria-pressed={isActive}
-      >
+      <Button className={buttonClasses} onClick={onClick} size='XL' aria-pressed={isActive}>
         {icon && (
           <img src={icon} alt={value} className='mr-2 h-[40px] w-[40px]' role='presentation' />
         )}
