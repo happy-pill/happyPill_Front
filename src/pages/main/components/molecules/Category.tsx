@@ -38,7 +38,7 @@ const CategorySection: React.FC<CategorySectionProps> = ({
           value='모든 상품'
           isActive={activeCategoryId === 'ALL'}
           className='h-10 md:h-15'
-          onClickHandler={() => onEventHandler(firstCategory, true)}
+          onClick={() => onEventHandler(firstCategory, true)}
         />
         {categories?.map((category: Category) => {
           return (
@@ -48,7 +48,7 @@ const CategorySection: React.FC<CategorySectionProps> = ({
               value={category.name}
               isActive={activeCategoryId === category.categoryId}
               className='h-10 md:h-15'
-              onClickHandler={() => onEventHandler(category)}
+              onClick={() => onEventHandler(category)}
             />
           );
         })}
@@ -57,10 +57,8 @@ const CategorySection: React.FC<CategorySectionProps> = ({
   };
 
   return (
-    <div>
-      <div className='hide-scrollbar md:gap-x-auto mb-5 flex w-full gap-x-3 gap-y-4 overflow-x-scroll px-4 md:grid md:w-48 lg:px-0'>
-        {renderContent()}
-      </div>
+    <div className='hide-scrollbar md:gap-x-auto mb-5 flex w-full gap-x-3 gap-y-4 overflow-x-scroll px-4 md:grid md:w-48 lg:px-0'>
+      {renderContent()}
     </div>
   );
 };
