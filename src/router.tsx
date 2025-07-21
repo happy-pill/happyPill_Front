@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 
-import { Layout, MainPage } from './pages/index';
+import { Layout, LoginPage, MainPage, OauthRedirectPage } from './pages/index';
 
 const router = createBrowserRouter([
   {
@@ -8,6 +8,18 @@ const router = createBrowserRouter([
     element: <Layout />,
     errorElement: '',
     children: [{ index: true, element: <MainPage /> }],
+  },
+  {
+    path: '/login',
+    element: <Layout />,
+    errorElement: '',
+    children: [{ index: true, element: <LoginPage /> }],
+  },
+  {
+    path: '/oauth-redirect',
+    element: <Layout />,
+    errorElement: '',
+    children: [{ index: true, element: <OauthRedirectPage /> }],
   },
 ]);
 
