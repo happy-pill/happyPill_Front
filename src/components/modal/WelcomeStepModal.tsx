@@ -61,7 +61,7 @@ const WelcomeStepModal: React.FC = () => {
   return (
     <Modal>
       <Modal.Content>
-        <Modal.Close className='absolute top-1 right-1' onClick={() => handleClose()}>
+        <Modal.Close className='absolute top-1 right-1' onClick={handleClose}>
           <CgClose color='#777777' size={20} />
         </Modal.Close>
 
