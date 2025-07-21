@@ -16,23 +16,28 @@ const getProductList = async (categoryId: string, lastProductId?: number, size: 
   }
 
   const response = await instance.get(url);
-  return response;
+  return response.data;
 };
 
 const getProductDetail = async (productId: string) => {
   const response = await instance.get(`/api/products/${productId}`);
-  return response;
+  return response.data;
 };
 
 const getRelatedProducts = async () => {
   const response = await instance.get('/api/products/related');
-  return response;
+  return response.data;
 };
 
+const getBestProductList = async () => {
+  const response = await instance.get(`/api/products/best`);
+  return response.data;
+};
 const productAPI = {
   getProductList,
   getProductDetail,
   getRelatedProducts,
+  getBestProductList,
 };
 
 export default productAPI;
