@@ -57,7 +57,7 @@ const CategorySection: React.FC<CategorySectionProps> = ({
   };
 
   return (
-    <div className='hide-scrollbar md:gap-x-auto mb-5 flex w-full gap-x-3 gap-y-4 overflow-x-scroll px-4 md:grid md:w-48 lg:px-0'>
+    <div className='hide-scrollbar mb-5 flex w-full gap-x-3 gap-y-4 overflow-x-auto px-4 md:w-48 md:flex-col md:gap-y-3 md:overflow-x-visible lg:px-0'>
       {renderContent()}
     </div>
   );
