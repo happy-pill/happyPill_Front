@@ -37,7 +37,7 @@ const CategorySection: React.FC<CategorySectionProps> = ({
           key={firstCategory.categoryId}
           value='모든 상품'
           isActive={activeCategoryId === 'ALL'}
-          className='h-10 md:h-15'
+          className='h-10 w-48 md:h-15'
           onClick={() => onEventHandler(firstCategory, true)}
         />
         {categories?.map((category: Category) => {
@@ -47,7 +47,7 @@ const CategorySection: React.FC<CategorySectionProps> = ({
               icon={category.thumbnailUrl}
               value={category.name}
               isActive={activeCategoryId === category.categoryId}
-              className='h-10 md:h-15'
+              className='h-10 w-48 md:h-15'
               onClick={() => onEventHandler(category)}
             />
           );
