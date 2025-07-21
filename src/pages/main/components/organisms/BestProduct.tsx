@@ -56,7 +56,7 @@ const BestProductSection: React.FC<BestProductProps> = ({ products, isLoading })
 
   return (
     <Section title='best selection' className='mt-25 px-4 md:mt-20 lg:mt-48'>
-      <div className='mx-auto w-full max-w-[1280px]'>{renderContent()}</div>
+      <div className='max-width-container mx-auto w-full'>{renderContent()}</div>
     </Section>
   );
 };
