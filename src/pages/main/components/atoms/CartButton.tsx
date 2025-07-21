@@ -3,8 +3,7 @@ import { PiShoppingBagLight } from 'react-icons/pi';
 
 import Button from '@/components/button/BaseButton';
 
-type CartButtonProps = ButtonHTMLAttributes<HTMLButtonElement>;
-const CartButton: React.FC<CartButtonProps> = ({ ...props }) => {
+const CartButton: React.FC<ButtonHTMLAttributes<HTMLButtonElement>> = ({ ...props }) => {
   return (
     <Button
       className='hover:bg-primary cursor-pointer rounded-3xl bg-gray-50 p-2 transition-colors duration-100 hover:text-white'
