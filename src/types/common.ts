@@ -1,3 +1,3 @@
-export interface LocaleProps {
+export interface LocaleType {
   locale: 'ko' | 'en';
 }
