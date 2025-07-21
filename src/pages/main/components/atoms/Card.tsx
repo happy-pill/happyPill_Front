@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import CartButton from './CartButton';
 import TagButton from './TagButton';
 
@@ -23,7 +25,7 @@ const Card = ({ product }: CardProps) => {
           {best && <TagButton value='BEST' bgColor={bestTagBgColor} />}
           <TagButton value={categoryName} bgColor={categoryTagBgColor} />
         </div>
-        <a href={`/product/${product.productId}`}>
+        <Link to={`/product/${product.productId}`}>
           <img
             className='h-full w-full object-cover'
             src='https://happypill-cdn.jiheon2234.dev/abcd.png'
@@ -32,7 +34,7 @@ const Card = ({ product }: CardProps) => {
             draggable={false}
             alt='비타민이미지'
           />
-        </a>
+        </Link>
       </div>
       <div className='px-[20px] py-[30px]'>
         <p className='text-xl-bold'>{product.name}</p>
