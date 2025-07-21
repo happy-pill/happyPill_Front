@@ -4,13 +4,14 @@ import useLocale from '@/hooks/useLocale';
 
 const MainBanner = () => {
   const { locale } = useLocale();
+  const TABLET_BREAKPOINT = 768;
   return (
     <div className='mx-auto mt-5 overflow-hidden md:mt-10'>
       <Carousel
         variant='centered'
         centerPadding={window.innerWidth < 768 ? 30 : 0}
         isInfinite
-        gap={window.innerWidth < 768 ? 15 : 20}
+        gap={window.innerWidth < TABLET_BREAKPOINT ? 15 : 20}
         active
       >
         <Carousel.ItemList>

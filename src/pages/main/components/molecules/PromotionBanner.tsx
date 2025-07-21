@@ -4,11 +4,12 @@ import useLocale from '@/hooks/useLocale';
 
 const PromotionBanner = () => {
   const { locale } = useLocale();
+  const TABLET_BREAKPOINT = 768;
   return (
     <div className='my-25 bg-[#BED0A2] lg:my-36'>
       <Carousel
         variant='centered'
-        centerPadding={window.innerWidth < 768 ? 10 : 0}
+        centerPadding={window.innerWidth < TABLET_BREAKPOINT ? 10 : 0}
         isInfinite
         active
       >
