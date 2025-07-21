@@ -1,7 +1,7 @@
 import { cva, type VariantProps } from 'class-variance-authority';
 import { type InputHTMLAttributes } from 'react';
 
-import Input from './BaseInput';
+import Input from './ui/BaseInput';
 
 import { cn } from '@/utils/classNames';
 
@@ -12,6 +12,7 @@ interface Props
   isRequired?: boolean;
   errorMsg?: string;
   iconItem?: { icon: React.ReactNode; position: 'left' | 'right' };
+  contentItem?: { item: React.ReactNode; position: 'left' | 'right' };
 }
 
 export const InputVariants = cva('flex items-center justify-center cursor-pointer w-full', {
@@ -26,7 +27,7 @@ export const InputVariants = cva('flex items-center justify-center cursor-pointe
       S: 'rounded-sm py-1 text-sm-regular text-xs',
     },
     variant: {
-      base: 'border border-solid border-[#DEDEDE] text-primary-text bg-white disabled:bg-gray-100 focus:border-gray-400 invalid:border-red-400',
+      base: 'border border-solid border-[#DEDEDE] text-primary-text bg-white disabled:bg-gray-100 focus:border-gray-400 invalid:border-invalid',
       ghost: 'text-primary-text bg-transparent',
     },
   },
@@ -45,6 +46,7 @@ const StyledInput = ({
   isRequired,
   errorMsg,
   iconItem,
+  contentItem,
   ...rest
 }: Props) => {
   const buttonClasses = cn(InputVariants({ variant, size }), className);
@@ -55,6 +57,7 @@ const StyledInput = ({
       isRequired={isRequired}
       errorMsg={errorMsg}
       iconItem={iconItem}
+      contentItem={contentItem}
       {...rest}
     />
   );
