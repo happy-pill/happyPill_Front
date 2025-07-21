@@ -11,6 +11,8 @@
   --color-baseBg: #f7f4eb;
   --color-primary-text: #272626;
 
+  --color-invalid: #f93737;
+
   /* Typography */
   --text-title: 32px;
   --text-title-admin: 24px;
