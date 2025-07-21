@@ -8,7 +8,7 @@ import { queryKey } from '@/constants/queryKey';
 
 interface PageParam {
   categoryIndex: number;
-  lastProductId?: string;
+  lastProductId?: string | null;
 }
 
 /**
@@ -61,7 +61,7 @@ export const useGetProductList = (categories: Category[], activeCategoryId: stri
       };
     },
 
-    initialPageParam: { categoryIndex: 0, lastProductId: undefined } as PageParam,
+    initialPageParam: { categoryIndex: 0, lastProductId: null } as PageParam,
     getNextPageParam: (lastPage): PageParam | undefined => {
       const { categoryIndex, lastProductId, hasNext } = lastPage;
 
