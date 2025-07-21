@@ -41,7 +41,7 @@ const Trigger: React.FC<SelectTriggerProps> = ({
   };
 
   const iconElement = renderIcon();
-  const displayValue = selectedValue != null ? `${selectedValue}${suffix || ''}` : placeholder;
+  const displayValue = selectedValue !== null ? `${selectedValue}${suffix || ''}` : placeholder;
   return (
     <Button
       ref={triggerRef}
