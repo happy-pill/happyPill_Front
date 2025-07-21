@@ -6,7 +6,7 @@ import Modal from './ui/Modal';
 import Button from '../button/StyledButton';
 import Select from '../select/Select';
 
-import type { LocaleProps } from '@/types/common';
+import type { LocaleType } from '@/types/common';
 import type { ProductItem } from '@/types/products';
 
 import { CART_MODAL } from '@/constants/locale';
@@ -15,7 +15,7 @@ import useModal from '@/hooks/useModal';
 import { cartStorage } from '@/utils/cartStorage';
 
 type CartProductProps = {
-  locale: LocaleProps;
+  locale: LocaleType;
   product: Omit<ProductItem, 'company' | 'categoryId'>;
 };
 
