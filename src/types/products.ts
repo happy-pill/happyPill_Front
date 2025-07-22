@@ -1,11 +1,19 @@
-export interface Product {
+export interface ProductItem {
   productId: string;
-  categoryId: number;
+  categoryId: string;
   name: string;
   company: string;
   price: number;
   briefDescription: string;
   thumbnailUrl: string;
+  best: boolean;
+  categoryName: string;
+}
+
+export interface Product {
+  hasNext: boolean;
+  lastProductId: string | null;
+  products: ProductItem[];
 }
 
 export interface ProductDetail {
@@ -33,4 +41,8 @@ export interface CheckoutProduct {
   price: number;
   period: number;
   thumbnailUrl: string;
+}
+
+export interface BestProduct extends ProductItem {
+  best: boolean;
 }

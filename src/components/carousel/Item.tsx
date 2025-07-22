@@ -9,7 +9,7 @@ interface ItemProps {
 }
 
 const Item: React.FC<ItemProps> = ({ children, className, onClick }) => {
-  const { dragging, isDraggingRef } = useCarouselContext();
+  const { dragging, isDraggingRef, slideWidth } = useCarouselContext();
 
   const handleClick = (e: React.MouseEvent) => {
     if (isDraggingRef.current) {
@@ -18,12 +18,16 @@ const Item: React.FC<ItemProps> = ({ children, className, onClick }) => {
     }
     onClick?.();
   };
+
   return (
     <div
-      className={cn('flex-shrink-0 select-none', className)}
-      style={{ pointerEvents: dragging ? 'none' : 'auto' }}
+      className='flex-shrink-0 select-none'
+      style={{
+        pointerEvents: dragging ? 'none' : 'auto',
+        width: slideWidth > 0 ? `${slideWidth}px` : 'auto',
+      }}
     >
-      <div className='pointer-events-auto' onClick={handleClick}>
+      <div className={cn('pointer-events-auto h-full w-full', className)} onClick={handleClick}>
         {children}
       </div>
     </div>

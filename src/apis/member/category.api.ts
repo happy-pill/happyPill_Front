@@ -7,7 +7,7 @@ import instance from '../instance/main';
 
 const getCategoryDetail = async () => {
   const response = await instance.get(`/api/categories`);
-  return response;
+  return response.data;
 };
 
 const categoryAPI = {

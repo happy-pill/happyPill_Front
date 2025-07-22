@@ -1,3 +1,4 @@
+// 1) 파일 최상단
 import { createContext, useContext } from 'react';
 
 import ModalBackDrop from './ModalBackDrop';
@@ -7,7 +8,7 @@ import ModalContent from './ModalContent';
 import type { ModalItem } from '@/types/modal';
 
 import useModal from '@/hooks/useModal';
-import { cn } from '@/utils/classNames';
+import cn from '@/utils/classNames';
 
 interface ModalContextProps {
   openModal: (modaL: ModalItem) => void;
