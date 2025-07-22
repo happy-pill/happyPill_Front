@@ -26,7 +26,7 @@ const Input = forwardRef<HTMLInputElement, BaseInputProps>(
             {isRequired && <span className='text-invalid'>*</span>}
           </InputLabel>
         )}
-        <div className='w-fulll relative'>
+        <div className='relative w-full'>
           {iconItem && (
             <InputIcon className={iconItem.position === 'left' ? 'left-2' : 'right-2'}>
               {iconItem.icon}

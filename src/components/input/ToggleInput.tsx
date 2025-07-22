@@ -2,7 +2,7 @@ import InputLabel from './ui/InputLabel';
 
 // TODO 추후 props 수정 필요
 interface ToggleInputProps {
-  label?: string;
+  label?: { text: string; position: 'top' | 'left' };
   isRequired?: boolean;
   isChecked?: boolean;
   onChange?: () => void;
@@ -10,8 +10,10 @@ interface ToggleInputProps {
 
 const ToggleInput = ({ label, isRequired, isChecked, onChange }: ToggleInputProps) => {
   return (
-    <label className='inline-flex cursor-pointer items-center'>
-      {label && <InputLabel>{label}</InputLabel>}
+    <label
+      className={`cursor-pointer items-center gap-1 ${label?.position === 'top' ? 'flex-col justify-start' : 'flex'}`}
+    >
+      {label && <InputLabel>{label.text}</InputLabel>}
       <input
         type='checkbox'
         checked={isChecked}
