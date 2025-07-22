@@ -3,7 +3,7 @@ import { useForm, type SubmitHandler } from 'react-hook-form';
 import { CgClose } from 'react-icons/cg';
 
 import StyledButton from '../button/StyledButton';
-import Input from '../input/BaseInput';
+/* import Input from '../input/BaseInput'; */
 
 import logoHappypill from '@/assets/icon/logo-happypill.svg';
 import Modal from '@/components/modal/ui/Modal';
@@ -18,6 +18,8 @@ import cn from '@/utils/classNames';
 interface NicknameInput {
   nickname: string;
 }
+
+//TODO: Input 태그 적용
 
 const WelcomeStepModal: React.FC = () => {
   const [currentStep, setCurrentStep] = useState(0);
@@ -93,7 +95,7 @@ const WelcomeStepModal: React.FC = () => {
             <form onSubmit={handleSubmit(onSubmit)}>
               {currentStep == 1 && (
                 <div>
-                  <Input
+                  <input
                     placeholder='닉네임을 입력해주세요'
                     className='mt-6 rounded-md border border-[#bbbbbb] p-3 px-5'
                     {...register('nickname', { required: '닉네임을 입력해주세요' })}

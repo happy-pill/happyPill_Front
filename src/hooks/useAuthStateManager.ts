@@ -11,23 +11,33 @@ import useLoginedStore from '@/stores/loginedStore';
  *
  */
 export const useAuthStateManager = () => {
-  const { data: userData, isLoading } = useGetUserInfo();
   const { setLogined } = useLoginedStore();
   const navigate = useNavigate();
+  const { data: userData, isLoading, error } = useGetUserInfo();
 
   useEffect(() => {
     if (isLoading) return;
 
+    // 에러가 있으면 로그아웃 상태
+    if (error) {
+      setLogined(null);
+      return;
+    }
+
+    // 유저 정보가 없으면 로그아웃 상태
     if (!userData) {
       setLogined(null);
-    } else if (userData && userData.nickname === null) {
+      return;
+    }
+    if (userData.nickname === null) {
+      // 닉네임이 없으면 온보딩 필요
       if (window.location.pathname !== '/') {
         navigate('/');
       }
     } else {
       setLogined(true);
     }
-  }, [userData, isLoading, setLogined]);
+  }, [userData, isLoading, setLogined, navigate, error]);
 
   return { userData, isLoading };
 };

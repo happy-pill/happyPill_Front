@@ -8,7 +8,7 @@ import { queryKey } from '@/constants/queryKey';
 
 interface PageParam {
   categoryIndex: number;
-  lastProductId?: string | null;
+  lastProductId?: number | null;
 }
 
 /**
@@ -40,7 +40,10 @@ export const useGetProductList = (categories: Category[], activeCategoryId: stri
       while (currentCategoryIndex < filteredCategories.length) {
         const currentCategory = filteredCategories[currentCategoryIndex];
 
-        response = await productAPI.getProductList(currentCategory.categoryId, lastProductId);
+        response = await productAPI.getProductList(
+          currentCategory.categoryId,
+          lastProductId ?? undefined,
+        );
 
         // 상품이 있으면 해당 카테고리의 데이터 반환
         if (response.products && response.products.length > 0) {

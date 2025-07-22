@@ -161,7 +161,6 @@ const Carousel = ({
         ? (availableWidth - gap * (visibleCount - 1)) / visibleCount
         : Math.max(200, (availableWidth - gap * (visibleCount - 1)) / visibleCount);
     } else {
-      // default mode
       if (visibleSlides) {
         calculatedSlideWidth = (containerWidth - gap * (visibleCount - 1)) / visibleCount;
       } else {
@@ -316,7 +315,6 @@ const Carousel = ({
 
       goTo(newIndex);
 
-      // Reset drag refs
       isDraggingRef.current = false;
       startXRef.current = null;
       startScrollXRef.current = null;

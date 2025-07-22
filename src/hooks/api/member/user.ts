@@ -7,6 +7,8 @@ export const useGetUserInfo = () => {
   return useQuery({
     queryKey: queryKey.member.user.info,
     queryFn: () => userAPI.getUserInfo(),
+    retry: false,
+    staleTime: 5 * 60 * 1000,
   });
 };
 

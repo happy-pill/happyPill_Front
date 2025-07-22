@@ -31,7 +31,7 @@ const ProductSection: React.FC<ProductSectionProps> = ({
   isFetchingNextPage,
 }) => {
   return (
-    <Section title='product list' className='px-4'>
+    <Section title='product list'>
       <div className='mb-40 flex flex-col gap-x-[8vw] md:flex-row'>
         <CategorySection
           onEventHandler={onCategoryChange}
