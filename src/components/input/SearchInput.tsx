@@ -1,6 +1,7 @@
 import { CiSearch } from 'react-icons/ci';
 
-import StyledInput, { InputVariants } from './StyledInput';
+import FiledInput from './FiledInput';
+import { InputVariants } from './StyledInput';
 import StyledButton from '../button/StyledButton';
 
 interface SearchInputProps {
@@ -11,7 +12,7 @@ interface SearchInputProps {
 const SearchInput = ({ onClick, onChange }: SearchInputProps) => {
   return (
     <div className='flex items-center gap-1'>
-      <StyledInput
+      <FiledInput
         type='search'
         className={InputVariants({ icon: 'left' })}
         iconItem={{ icon: <CiSearch size={20} />, position: 'left' }}

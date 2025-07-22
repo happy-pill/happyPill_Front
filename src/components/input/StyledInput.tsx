@@ -1,19 +1,11 @@
 import { cva, type VariantProps } from 'class-variance-authority';
-import { type InputHTMLAttributes } from 'react';
+import { forwardRef, type InputHTMLAttributes } from 'react';
 
 import Input from './ui/BaseInput';
 
 import { cn } from '@/utils/classNames';
 
-interface Props
-  extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'>,
-    VariantProps<typeof InputVariants> {
-  label?: string;
-  isRequired?: boolean;
-  errorMsg?: string;
-  iconItem?: { icon: React.ReactNode; position: 'left' | 'right' };
-  contentItem?: { item: React.ReactNode; position: 'left' | 'right' };
-}
+interface Props extends InputHTMLAttributes<HTMLInputElement>, VariantProps<typeof InputVariants> {}
 
 export const InputVariants = cva('flex items-center justify-center cursor-pointer w-full', {
   variants: {
@@ -22,7 +14,7 @@ export const InputVariants = cva('flex items-center justify-center cursor-pointe
       right: 'pr-8',
       none: 'px-2',
     },
-    size: {
+    inputSize: {
       M: 'rounded-md py-2 text-m-regular text-md',
       S: 'rounded-sm py-1 text-sm-regular text-xs',
     },
@@ -33,34 +25,16 @@ export const InputVariants = cva('flex items-center justify-center cursor-pointe
   },
   defaultVariants: {
     variant: 'base',
-    size: 'M',
+    inputSize: 'M',
     icon: 'none',
   },
 });
 
-const StyledInput = ({
-  variant,
-  size,
-  className,
-  label,
-  isRequired,
-  errorMsg,
-  iconItem,
-  contentItem,
-  ...rest
-}: Props) => {
-  const buttonClasses = cn(InputVariants({ variant, size }), className);
-  return (
-    <Input
-      className={buttonClasses}
-      label={label}
-      isRequired={isRequired}
-      errorMsg={errorMsg}
-      iconItem={iconItem}
-      contentItem={contentItem}
-      {...rest}
-    />
-  );
-};
+const StyledInput = forwardRef<HTMLInputElement, Props>(
+  ({ variant, icon, inputSize, className, ...rest }, ref) => {
+    const inputClasses = cn(InputVariants({ variant, icon, inputSize }), className);
+    return <Input ref={ref} className={inputClasses} {...rest} />;
+  },
+);
 
 export default StyledInput;
