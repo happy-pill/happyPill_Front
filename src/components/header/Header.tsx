@@ -70,7 +70,7 @@ const Header: React.FC = () => {
             {headerItems.map((item) => (
               <Link
                 key={item.type}
-                to={item.path}
+                to={item.path as string}
                 className='relative flex flex-col items-center justify-center gap-1'
               >
                 {item.type === 'cart' && (
