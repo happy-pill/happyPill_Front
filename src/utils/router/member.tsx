@@ -1,5 +1,5 @@
 import { routePath } from '@/constants/path';
-import { Layout, MainPage } from '@/pages';
+import { Layout, LoginPage, MainPage, OauthRedirectPage } from '@/pages';
 
 const memberRouter = [
   {
@@ -7,6 +7,18 @@ const memberRouter = [
     element: <Layout />,
     errorElement: '',
     children: [{ index: true, element: <MainPage /> }],
+  },
+  {
+    path: routePath.common.login,
+    element: <Layout />,
+    errorElement: '',
+    children: [{ index: true, element: <LoginPage /> }],
+  },
+  {
+    path: routePath.common.oauthRedirect,
+    element: <Layout />,
+    errorElement: '',
+    children: [{ index: true, element: <OauthRedirectPage /> }],
   },
 ];
 

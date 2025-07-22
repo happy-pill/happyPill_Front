@@ -5,6 +5,7 @@ const common = {
   root: '/',
   login: '/login',
   logout: '/logout',
+  oauthRedirect: '/oauth-redirect',
   cart: '/cart',
 };
 

@@ -1,12 +1,12 @@
 import { routePath } from '@/constants/path';
-import { AdminLayout, AdminSubscribeProductPage } from '@/pages';
+import { AdminLayout } from '@/pages';
 
 const adminRouter = [
   {
     path: routePath.admin.management.subscribe,
     element: <AdminLayout />,
     errorElement: '',
-    children: [{ index: true, element: <AdminSubscribeProductPage /> }],
+    children: [{ index: true }],
   },
   {
     path: routePath.admin.management.member,
