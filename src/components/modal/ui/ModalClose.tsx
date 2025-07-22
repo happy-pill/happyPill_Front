@@ -3,7 +3,7 @@ import { cn } from '@/utils/classNames';
 interface ModalButtonProps {
   className?: string;
   children: React.ReactNode;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 const ModalClose: React.FC<ModalButtonProps> = ({ className, children, onClick }) => {
