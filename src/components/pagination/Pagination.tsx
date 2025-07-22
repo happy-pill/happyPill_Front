@@ -3,14 +3,17 @@ import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 interface PaginationProps {
   currentPage: number;
   totalPage: number;
-  changePage: (page: number) => void;
+  onChangePage: (page: number) => void;
 }
 
-const Pagination = ({ currentPage, totalPage, changePage }: PaginationProps) => {
+const Pagination = ({ currentPage, totalPage, onChangePage }: PaginationProps) => {
   const totalPages = Array.from({ length: totalPage }).map((_, i) => i + 1);
 
   const handleChangePage = (page: number) => {
-    changePage(page);
+    const boundaryPage = Math.max(1, Math.min(page, totalPage));
+    if (boundaryPage !== currentPage) {
+      onChangePage(boundaryPage);
+    }
   };
 
   return (
