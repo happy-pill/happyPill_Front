@@ -7,22 +7,22 @@ const AdminNavigation = () => {
 
   const navItems = [
     {
-      type: '구독 상품 관리',
+      type: 'managementSubscribe',
       name: '구독 상품 관리',
       path: routePath.admin.management.subscribe,
     },
     {
-      type: '회원 관리',
+      type: 'managementMember',
       name: '회원 관리',
       path: routePath.admin.management.member,
     },
     {
-      type: '상품 관리',
+      type: 'managementProduct',
       name: '상품 관리',
       path: routePath.admin.management.product,
     },
     {
-      type: '카테고리 관리',
+      type: 'managementCategory',
       name: '카테고리 관리',
       path: routePath.admin.management.category,
     },

@@ -2,6 +2,7 @@ import { CiLogout, CiUser } from 'react-icons/ci';
 import { Link } from 'react-router-dom';
 
 import { Logo } from '@/assets/icon';
+import { routePath } from '@/constants/path';
 
 // TODO  기능 추가 필요/반응형 작업 필요
 const AdminHeader: React.FC = () => {
@@ -24,12 +25,16 @@ const AdminHeader: React.FC = () => {
 
   return (
     <header className='px-md flex h-[100px] items-center border-b border-solid border-[#E2E2E2] bg-white'>
-      <div className='mx-auto flex w-full max-w-(--max-width) items-center justify-between'>
+      <div className='max-width-container mx-auto flex w-full items-center justify-between'>
         <h2 className='flex items-center gap-1'>
-          <Link to='/' title='admin home'>
+          <Link to={routePath.common.root} title='admin home'>
             <img src={Logo} alt='logo' width={129} height={21} />
           </Link>
-          <Link to='/admin/subscription-product' title='admin home' className='text-[30px]'>
+          <Link
+            to={routePath.admin.management.subscribe}
+            title='admin home'
+            className='text-[30px]'
+          >
             Admin
           </Link>
         </h2>
