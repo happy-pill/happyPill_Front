@@ -32,6 +32,6 @@ export const setToken = ({
  * token 초기화
  */
 export const resetToken = () => {
-  useLoginedStore.getState().setLoadined(null);
+  useLoginedStore.getState().setLogined(null);
   deleteCookie({ keyName: REFRESH_TOKEN });
 };
