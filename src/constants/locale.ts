@@ -212,3 +212,22 @@ export const PRODUCT_TABS = {
     'product-detail': 'Details',
   },
 };
+
+export const PRODUCT_DETAIL = {
+  ko: {
+    name: '제품명',
+    quantityDetails: '용량/수량',
+    company: '제조사',
+    usage: '섭취방법',
+    warningMessage: '주의사항',
+    description: '제품설명',
+  },
+  en: {
+    name: 'Product Name',
+    quantityDetails: 'Capacity/Quantity',
+    company: 'Manufacturer',
+    usage: 'How to Use',
+    warningMessage: 'Precautions',
+    description: 'Product Description',
+  },
+};
