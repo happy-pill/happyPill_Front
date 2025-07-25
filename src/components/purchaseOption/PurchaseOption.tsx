@@ -12,7 +12,7 @@ interface PurchaseOptionProps {
 }
 
 const PurchaseOption = ({ className, children }: PurchaseOptionProps) => {
-  return <div className={cn(` ${className}`)}>{children}</div>;
+  return <div className={cn(`p-[30px] ${className}`)}>{children}</div>;
 };
 
 export default PurchaseOption;
