@@ -6,6 +6,7 @@ const common = {
   login: '/login',
   logout: '/logout',
   oauthRedirect: '/oauth-redirect',
+  product: '/product/:productId',
   cart: '/cart',
 };
 
