@@ -1,7 +1,14 @@
 import { createBrowserRouter } from 'react-router-dom';
 
-import { routePath } from './constants/path';
-import { AdminLayout, Layout, LoginPage, MainPage, OauthRedirectPage } from './pages/index';
+import { routePath } from '@/constants/path';
+import {
+  AdminLayout,
+  Layout,
+  LoginPage,
+  MainPage,
+  OauthRedirectPage,
+  ProductPage,
+} from '@/pages/index';
 
 const router = createBrowserRouter([
   {
@@ -15,6 +22,7 @@ const router = createBrowserRouter([
         element: <LoginPage />,
       },
       { path: routePath.common.oauthRedirect, element: <OauthRedirectPage /> },
+      { path: routePath.common.proudct, element: <ProductPage /> },
     ],
   },
   {
