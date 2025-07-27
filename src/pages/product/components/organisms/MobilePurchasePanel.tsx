@@ -7,7 +7,7 @@ import { CART_MODAL } from '@/constants/locale';
 import { SUBSCRIPTION_MONTH_OPTIONS } from '@/constants/subscription';
 import useLocale from '@/hooks/useLocale';
 
-interface MobilePurchasePanel {
+interface MobilePurchasePanelProps {
   price: number;
   subscriptionOption: number;
   setSubscriptionOption: Dispatch<SetStateAction<number>>;
@@ -21,7 +21,7 @@ const MobilePurchasePanel = ({
   setSubscriptionOption,
   onAddToCart,
   onCheckout,
-}: MobilePurchasePanel) => {
+}: MobilePurchasePanelProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const { locale } = useLocale();
   const cartLocale = CART_MODAL[locale];
