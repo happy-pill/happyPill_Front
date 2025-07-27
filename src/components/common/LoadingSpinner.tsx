@@ -1,3 +1,5 @@
+import cn from '@/utils/classNames';
+
 interface LoadingSpinnerProps {
   size?: 'sm' | 'md' | 'lg';
   color?: 'blue' | 'gray' | 'black';
@@ -18,7 +20,7 @@ const LoadingSpinner = ({ size = 'md', color = 'blue', className }: LoadingSpinn
   };
 
   return (
-    <div className={`flex flex-col items-center justify-center ${className}`}>
+    <div className={cn(`flex flex-col items-center justify-center ${className}`)}>
       <div
         className={`mx-auto mt-40 animate-spin rounded-full border-b-2 ${sizeClasses[size]} ${colorClasses[color]}`}
       />
