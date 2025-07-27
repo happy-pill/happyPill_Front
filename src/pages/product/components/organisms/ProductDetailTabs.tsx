@@ -38,7 +38,6 @@ const ProductDetailTabs = ({
     { label: PRODUCT_DETAIL[currentLocale].description, value: product.description },
   ] as const;
 
-  console.log('product', product);
   const { locale } = useLocale();
   const { isFixed, triggerRef } = useScrollTrigger();
   const TAB_KEYS = ['product-info', 'product-detail'] as const;
