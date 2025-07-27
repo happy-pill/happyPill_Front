@@ -8,13 +8,13 @@ import { cartStorage } from '../../utils/cartStorage';
 import ProductDetailTabs from './components/organisms/ProductDetailTabs';
 
 import LoadingSpinner from '@/components/common/LoadingSpinner';
+import { routePath } from '@/constants/path';
 import { useGetProductDetail, useGetRelatedProducts } from '@/hooks/api/member/product';
 
 const ProductPage: React.FC = () => {
   const { productId } = useParams();
   const [subscriptionOption, setSubscriptionOption] = useState(1);
-  console.log('script', subscriptionOption);
-  /*  const [relatedProducts, setRelatedProducts] = useState<RelatedProduct[]>([]) */
+
   const navigate = useNavigate();
   const { openModal } = useModal();
 
@@ -24,7 +24,7 @@ const ProductPage: React.FC = () => {
   const { data: bestProductData, isLoading: isLoadingRelatedProducts } = useGetRelatedProducts();
 
   const handleProductClick = (productId: string) => {
-    navigate(`/product/${productId}`);
+    navigate(routePath.common.product.route(productId));
   };
 
   // 장바구니(스토리지)에 담는 함수
@@ -45,7 +45,7 @@ const ProductPage: React.FC = () => {
   };
 
   const handlePurchase = (productId: string) => {
-    navigate(`/purchase/${productId}`);
+    navigate(routePath.common.purchase.direct.route(productId));
   };
 
   useEffect(() => {
