@@ -6,7 +6,10 @@ const common = {
   login: '/login',
   logout: '/logout',
   oauthRedirect: '/oauth-redirect',
-  product: '/product/:productId',
+  product: {
+    root: '/product/:productId',
+    route: (productId: string) => `/product/${productId}`,
+  },
   cart: '/cart',
 };
 
