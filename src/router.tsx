@@ -22,7 +22,7 @@ const router = createBrowserRouter([
         element: <LoginPage />,
       },
       { path: routePath.common.oauthRedirect, element: <OauthRedirectPage /> },
-      { path: routePath.common.product, element: <ProductPage /> },
+      { path: routePath.common.product.root, element: <ProductPage /> },
     ],
   },
   {
