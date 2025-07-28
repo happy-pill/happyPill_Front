@@ -13,7 +13,7 @@ const CartAddSuccessModal = () => {
   return (
     <Modal>
       <Modal.Content className='relative w-fit'>
-        <div className='text-xl-regular flex items-center gap-x-2'>
+        <div className='font-regular flex items-center gap-x-2 text-[clamp(14px,2vw,20px)]'>
           <HiMiniCheckCircle size={35} className='text-primary' />
           <p className='text-primary'>{CART_COMPLETE_MODAL[locale].message}</p>
           <Modal.Close onClick={closeModal}>
