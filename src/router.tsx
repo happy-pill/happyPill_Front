@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 
-
 import { routePath } from './constants/path';
+
 import {
   AdminLayout,
   AdminManagementUserPage,
