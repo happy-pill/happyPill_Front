@@ -4,21 +4,19 @@ interface TableCellProps {
   className?: string;
   attribute?: 'th' | 'td';
   type?: 'text' | 'image' | 'button';
+  textAlign?: 'center' | 'left' | 'right';
+  flexType?: 'default' | 'col' | 'row' | 'wrap';
   children: React.ReactNode;
 }
 
-const TableCell = ({ className, attribute = 'td', type = 'text', children }: TableCellProps) => {
-  const getTypeClass = () => {
-    switch (type) {
-      case 'text':
-        return 'text-sm';
-      case 'image':
-        return 'flex *:rounded-md';
-      case 'button':
-        return 'gap-1';
-    }
-  };
-
+const TableCell = ({
+  className,
+  attribute = 'td',
+  type = 'text',
+  textAlign = 'center',
+  flexType = 'default',
+  children,
+}: TableCellProps) => {
   const getAttributeClass = () => {
     switch (attribute) {
       case 'th':
@@ -28,16 +26,52 @@ const TableCell = ({ className, attribute = 'td', type = 'text', children }: Tab
     }
   };
 
-  const tableCellClass = `${className} ${getAttributeClass()} ${getTypeClass()}`;
+  const getTextAlignClass = () => {
+    if (type !== 'text') return;
+
+    switch (textAlign) {
+      case 'center':
+        return 'item-center text-center';
+      case 'left':
+        return 'text-left';
+      case 'right':
+        return 'text-right';
+    }
+  };
+
+  const getFlexTypeClass = () => {
+    switch (flexType) {
+      case 'col':
+        return 'flex-col';
+      case 'row':
+        return 'flex-row';
+      case 'wrap':
+        return 'flex-wrap';
+      case 'default':
+        return 'flex';
+    }
+  };
+
+  const tableCellClass = `${className} ${getAttributeClass()} ${getTextAlignClass()}`;
 
   return (
     <div
       className={cn(
-        'table-cell items-center justify-center gap-1 px-1 py-3 text-center align-middle',
+        'table-cell items-center justify-center gap-1 px-2 py-3 text-center align-middle text-sm break-keep',
         tableCellClass,
       )}
     >
-      {children}
+      {type === 'text' && <>{children}</>}
+      {type !== 'text' && (
+        <div
+          className={cn(
+            `w-full items-center justify-center gap-1 ${type === 'image' && '*:rounded-md'}`,
+            getFlexTypeClass(),
+          )}
+        >
+          {children}
+        </div>
+      )}
     </div>
   );
 };
