@@ -3,12 +3,21 @@ import useLocale from '@/hooks/useLocale';
 
 interface PriceDisplayProps {
   price: number;
-  quantity: number; // month → quantity로 변경
-  priceLabel: string; // 외부에서 텍스트 주입
+  quantity: number;
+  priceLabel: string;
+  monthlyPriceLabelPrefix: string;
+  monthlyPriceLabelSuffix: string;
   className?: string;
 }
 
-const PriceSection = ({ price, quantity, priceLabel, className }: PriceDisplayProps) => {
+const PriceSection = ({
+  price,
+  quantity,
+  monthlyPriceLabelPrefix,
+  monthlyPriceLabelSuffix,
+  priceLabel,
+  className,
+}: PriceDisplayProps) => {
   const { locale } = useLocale();
   const totalPrice = price * quantity;
 
@@ -19,6 +28,10 @@ const PriceSection = ({ price, quantity, priceLabel, className }: PriceDisplayPr
         <span className='text-[clamp(16px,7vw,24px)] font-bold'>
           {totalPrice.toLocaleString()}
           {CURRENCY_UNIT[locale]}
+        </span>
+        <span className='text-primary mt-[-5px] flex gap-x-1 text-[clamp(10px,1vw,12px)]'>
+          {monthlyPriceLabelPrefix} {price.toLocaleString()}
+          {monthlyPriceLabelSuffix}
         </span>
       </div>
     </section>
