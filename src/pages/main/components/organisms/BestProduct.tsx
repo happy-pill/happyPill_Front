@@ -35,7 +35,6 @@ const BestProductSection: React.FC<BestProductProps> = ({ products, isLoading })
 
     return (
       <Carousel
-        variant='default'
         visibleSlides={{
           mobile: 1,
           tablet: 2,
