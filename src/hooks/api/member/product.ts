@@ -111,6 +111,7 @@ export const useGetProductDetail = (productId: string) => {
   return useQuery({
     queryKey: queryKey.member.product.detail(productId),
     queryFn: () => productAPI.getProductDetail(productId),
+    enabled: !!productId,
   });
 };
 

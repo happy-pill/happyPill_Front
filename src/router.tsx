@@ -1,5 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 
+
 import { routePath } from './constants/path';
 import {
   AdminLayout,
@@ -10,7 +11,8 @@ import {
   LoginPage,
   MainPage,
   OauthRedirectPage,
-} from './pages/index';
+  ProductPage,
+} from '@/pages/index';
 
 const router = createBrowserRouter([
   /** MEMBER */
@@ -25,6 +27,7 @@ const router = createBrowserRouter([
         element: <LoginPage />,
       },
       { path: routePath.common.oauthRedirect, element: <OauthRedirectPage /> },
+      { path: routePath.common.product.root, element: <ProductPage /> },
     ],
   },
   /** ADMIN */

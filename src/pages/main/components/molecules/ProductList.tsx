@@ -3,6 +3,8 @@ import CardSkeleton from '../atoms/CardSkeleton';
 
 import type { ProductItem } from '@/types/products';
 
+import LoadingSpinner from '@/components/common/LoadingSpinner';
+
 interface ProductListProps {
   productBlock: ProductItem[];
   onLoadMore: () => void;
@@ -55,9 +57,7 @@ const ProductList: React.FC<ProductListProps> = ({
     <div className='w-full'>
       {renderContent()}
 
-      {isFetchingNextPage && (
-        <div className='mx-auto mt-40 h-8 w-8 animate-spin rounded-full border-b-2 border-blue-600'></div>
-      )}
+      {isFetchingNextPage && <LoadingSpinner />}
       {!isFetchingNextPage && hasNext && (
         <div className='mt-40 text-center'>
           <button

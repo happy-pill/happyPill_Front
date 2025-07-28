@@ -1,3 +1,5 @@
+import Button from './BaseButton';
+
 import { cn } from '@/utils/classNames';
 
 interface SubscriptionPlanButtonProps {
@@ -13,26 +15,26 @@ const SubscriptionPlanButton = ({
   onClick,
   className,
 }: SubscriptionPlanButtonProps) => {
-  const buttonBgClass = isSelected ? 'bg-button-primary' : 'bg-[#E2E2E2]';
-  const textColorClass = isSelected ? 'text-button-primary' : 'text-[#E2E2E2]';
+  const buttonBgClass = isSelected ? 'bg-primary' : 'bg-[#E6E3E3]';
+  const textColorClass = isSelected ? 'text-text-primary' : 'text-[#E6E3E3]';
   const subTextColor = isSelected ? 'text-white' : 'text-[#A3A2A2]';
-
+  const borderClass = isSelected ? 'border-primary' : 'border-[#E6E3E3]';
   return (
-    <button
+    <Button
       onClick={onClick}
-      className={cn('w-full rounded-xl border text-center', buttonBgClass, className)}
+      className={cn(
+        'w-full flex-col rounded-md border-2 text-center',
+        buttonBgClass,
+        borderClass,
+        className,
+      )}
       aria-pressed={isSelected}
     >
-      <div
-        className={cn(
-          'mx-[3px] my-[3px] rounded-lg bg-white py-3 text-14 font-medium',
-          textColorClass,
-        )}
-      >
+      <div className={cn('w-full rounded-md bg-white px-[3px] py-3 font-medium', textColorClass)}>
         {period}개월
       </div>
       <p className={cn('text-12 font-medium', subTextColor)}>구독</p>
-    </button>
+    </Button>
   );
 };
 
