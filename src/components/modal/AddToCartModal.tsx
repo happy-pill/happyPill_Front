@@ -8,9 +8,10 @@ import PurchaseOption from '../purchaseOption/PurchaseOption';
 import Select from '../select/Select';
 
 import type { LocaleType } from '@/types/common';
-import type { ProductItem } from '@/types/products';
+import type { ProductDetail } from '@/types/products';
 
 import { CART_MODAL } from '@/constants/locale';
+import { routePath } from '@/constants/path';
 import { SUBSCRIPTION_MONTH_OPTIONS } from '@/constants/subscription';
 import useLocale from '@/hooks/useLocale';
 import useModal from '@/hooks/useModal';
@@ -18,11 +19,11 @@ import { cartStorage } from '@/utils/cartStorage';
 
 type CartProductProps = {
   locale: LocaleType;
-  product: Omit<ProductItem, 'company' | 'categoryId'>;
+  product: ProductDetail;
 };
 
 const AddToCartModal: React.FC<CartProductProps> = ({ product }) => {
-  const { productId, name, price, briefDescription, thumbnailUrl } = product;
+  const { productId, productName, price, briefDescription, thumbnailUrl } = product;
   const [subscriptionOption, setSubscriptionOption] = useState<number>(1);
   const { openModal, closeModal } = useModal();
 
@@ -46,7 +47,7 @@ const AddToCartModal: React.FC<CartProductProps> = ({ product }) => {
 
     const item = {
       productId,
-      name,
+      productName,
       price,
       briefDescription,
       thumbnailUrl,
@@ -96,6 +97,8 @@ const AddToCartModal: React.FC<CartProductProps> = ({ product }) => {
             price={price}
             quantity={subscriptionOption}
             priceLabel={CART_MODAL[locale].totalPriceLabel}
+            monthlyPriceLabelPrefix={CART_MODAL[locale].monthlyPriceLabelPrefix}
+            monthlyPriceLabelSuffix={CART_MODAL[locale].monthlyPriceLabelSuffix}
             className='mt-40'
           />
           <PurchaseOption.ButtonGroup>
