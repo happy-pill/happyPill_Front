@@ -30,9 +30,26 @@ const buttonClones = (
     const element = child as React.ReactElement<{ className?: string }>;
     const originalClassName = element.props.className || '';
     const originalIndex = type === 'front' ? indexOffset + index : index;
-    const isActive = active && actualIndex === index;
+    const isActive = active && actualIndex === originalIndex;
     const keyPrefix = type === 'original' ? 'original' : `${type}-clone`;
     const classPrefix = `carousel-${type === 'original' ? 'original' : `${type}-clone`}`;
+    /**
+     *
+     * indexOffset : 총 원본슬라이드 개수(3개일때) - 복제 슬라이드 개수 > 3 - 1 = 2
+     * 해당 슬라이드가 앞에 클론 1번째 인 경우 > 2 + 0  원본 슬라이드 2번째꺼(originalIndex)
+     * front ? 2 : 0
+     * front이면 2번째 인덱스의 거고 아니면 backend 클론 0번째
+     * original은 3개 > 0,1,2 (index > originalIndex)
+     *
+     * actualIndex는 currentIndex - cloneCount / 실제인덱스
+     * 현재 인덱스 - 복제개수
+     * 원본 3 복제 앞뒤 1개씩 총 5
+     * 0,1,2,3,4의 index > currentIndex
+     * 0(앞클론) 1~3(원본)  4(뒷클론)
+     * 0번째 0(currentIndex) - 2(cloneCount) > -2
+     * acutalIndex = -2 > 3번째의 element 원본3
+     * 0번째 > 원본3
+     */
 
     return cloneElement(element, {
       key: `${keyPrefix}-${originalIndex}`,
