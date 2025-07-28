@@ -6,7 +6,7 @@ interface ModalContentProps {
 }
 
 const ModalContent: React.FC<ModalContentProps> = ({ className, children }) => {
-  const modalContentCls = `absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white pointer-events-auto rounded-md py-[26px] px-[32px] rounded-md shadow-md`;
+  const modalContentCls = `absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white pointer-events-auto rounded-md py-[26px] px-[clamp(15px,2vw,32px)] rounded-md shadow-md`;
   return <div className={cn(modalContentCls, className)}>{children}</div>;
 };
 
