@@ -1,5 +1,3 @@
-import type { Provider } from './common';
-
 export interface AdminUserSubscribe {
   productName: string;
   notifyEmail: string;
@@ -20,7 +18,7 @@ export interface AdminUser {
   userId: string;
   nickname: string;
   loginEmail: string;
-  provider: Provider;
+  provider: 'GOOGLE' | 'KAKAO';
   createdAt: string;
   deletedAt: string;
   isDeleted: boolean;
