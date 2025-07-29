@@ -4,6 +4,8 @@
  * @returns ex 1000 -> 1,000
  */
 export const formatValueToComma = (value: number | string) => {
+  if (!value) return '';
+
   return Number(value).toLocaleString();
 };
 
@@ -13,6 +15,8 @@ export const formatValueToComma = (value: number | string) => {
  * @returns yyyy/mm/dd
  */
 export const formatDateToFullDateSlide = (dateValue: string) => {
+  if (!dateValue) return '';
+
   const date = new Date(dateValue);
 
   const year = date.getUTCFullYear();
