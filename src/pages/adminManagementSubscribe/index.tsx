@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import Title from './components/atom/atom/Title';
+import Title from './components/atom/Title';
 import SubscribeListSection from './components/organism/SubscribeListSection';
 import TopControlsSection from './components/organism/TopControlsSection';
 
@@ -11,6 +11,7 @@ import { useGetUserSubscriptionsList } from '@/hooks/api/admin/management';
 const Index = () => {
   const [page, setPage] = useState(1);
   const [size, setSize] = useState(Math.min(...ADMIN_SELECT_ITEMS));
+
   const { data: subscribeList } = useGetUserSubscriptionsList(page, size);
 
   const onChangePage = (page: number) => {
@@ -25,9 +26,9 @@ const Index = () => {
     <LayoutContainer isMaxW={false} isHeader={false} px='px-0'>
       <Title>구독 상품 관리</Title>
 
-      <TopControlsSection crrentSize={size} onChange={onChangeSize} />
+      <TopControlsSection currentSize={size} onChange={onChangeSize} />
 
-      {subscribeList && subscribeList?.contents.length > 0 ? (
+      {subscribeList && subscribeList.contents.length > 0 ? (
         <SubscribeListSection
           subscribeList={subscribeList}
           currentPage={page}

@@ -5,7 +5,7 @@ import Table from '@/components/table/ui/Table';
 import { useGetCategoryDetail } from '@/hooks/api/member/category';
 import { formatValueToComma } from '@/utils/format';
 
-const tableHeader = ['썸네일', '이름', '제조사', '간단설명', '카테고리', '가격', '재고', ''];
+const TABLE_HEADER = ['썸네일', '이름', '제조사', '간단설명', '카테고리', '가격', '재고', ''];
 
 interface ProductTableProps {
   productList: AdminProductList;
@@ -17,7 +17,7 @@ const ProductTable = ({ productList }: ProductTableProps) => {
   return (
     <Table>
       <Table.Header>
-        {tableHeader.map((item) => (
+        {TABLE_HEADER.map((item) => (
           <Table.Cell key={item} attribute='th'>
             {item}
           </Table.Cell>

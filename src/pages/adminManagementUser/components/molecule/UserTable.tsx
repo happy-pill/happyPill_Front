@@ -5,7 +5,7 @@ import Button from '@/components/button/StyledButton';
 import Table from '@/components/table/ui/Table';
 import { formatDateToFullDateSlide } from '@/utils/format';
 
-const tableHeader = ['닉네임', '로그인 이메일', '가입수단', '가입날짜', '탈퇴날짜', ''];
+const TABLE_HEADER = ['닉네임', '로그인 이메일', '가입수단', '가입날짜', '탈퇴날짜', ''];
 
 interface UserTableProps {
   userList: AdminUserList;
@@ -15,7 +15,7 @@ const UserTable = ({ userList }: UserTableProps) => {
   return (
     <Table>
       <Table.Header>
-        {tableHeader.map((item) => (
+        {TABLE_HEADER.map((item) => (
           <Table.Cell key={item} attribute='th'>
             {item}
           </Table.Cell>

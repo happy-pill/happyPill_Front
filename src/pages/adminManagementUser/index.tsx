@@ -26,9 +26,9 @@ const Index = () => {
     <LayoutContainer isMaxW={false} isHeader={false} px='px-0'>
       <Title>회원 관리</Title>
 
-      <TopControlsSection crrentSize={size} onChange={onChangeSize} />
+      <TopControlsSection currentSize={size} onChange={onChangeSize} />
 
-      {userList && userList?.contents.length > 0 ? (
+      {userList && userList.contents.length > 0 ? (
         <UserListSection userList={userList} currentPage={page} onChangePage={onChangePage} />
       ) : (
         <div className='text-md flex w-full items-center justify-center text-center text-gray-400'>

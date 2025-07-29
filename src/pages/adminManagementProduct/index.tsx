@@ -10,6 +10,7 @@ import { useGetProductList } from '@/hooks/api/admin/management';
 
 const Index = () => {
   const [page, setPage] = useState(1);
+
   const { data: productList } = useGetProductList(page, Math.min(...ADMIN_SELECT_ITEMS));
 
   const onChangePage = (page: number) => {
@@ -22,7 +23,7 @@ const Index = () => {
 
       <TopControlsSection />
 
-      {productList && productList?.contents.length > 0 ? (
+      {productList && productList.contents.length > 0 ? (
         <ProductListSection
           productList={productList}
           currentPage={page}

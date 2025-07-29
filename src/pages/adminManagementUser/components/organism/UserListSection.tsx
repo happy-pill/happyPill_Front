@@ -4,13 +4,13 @@ import type { AdminUserList } from '@/types/admin';
 
 import Pagination from '@/components/pagination/Pagination';
 
-interface userListSectionProps {
+interface UserListSectionProps {
   userList: AdminUserList;
   currentPage: number;
   onChangePage: (page: number) => void;
 }
 
-const UserListSection = ({ userList, currentPage, onChangePage }: userListSectionProps) => {
+const UserListSection = ({ userList, currentPage, onChangePage }: UserListSectionProps) => {
   return (
     <div className='flex w-full flex-col items-center gap-16'>
       <UserTable userList={userList} />

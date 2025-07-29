@@ -2,18 +2,18 @@ import Select from '@/components/select/Select';
 import { ADMIN_SELECT_ITEMS } from '@/constants/common';
 
 interface SelectBoxProps {
-  crrentSize: number;
+  currentSize: number;
   onChange: (value: number | string) => void;
 }
 
-const SelectBox = ({ crrentSize, onChange }: SelectBoxProps) => {
+const SelectBox = ({ currentSize, onChange }: SelectBoxProps) => {
   return (
     <Select
-      value={`${crrentSize}개`}
+      value={`${currentSize}개`}
       onChange={onChange}
       className='rounded-md border-1 border-[#DEDEDE] bg-white'
     >
-      <Select.Trigger className='gap-1 px-2' placeholder={`${crrentSize}개`} iconPosition='left' />
+      <Select.Trigger className='gap-1 px-2' placeholder={`${currentSize}개`} iconPosition='left' />
       <Select.Content className='border-1 border-[#DEDEDE]'>
         <Select.Group className='grid'>
           {ADMIN_SELECT_ITEMS.map((item) => (
