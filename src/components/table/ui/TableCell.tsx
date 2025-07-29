@@ -23,19 +23,23 @@ const TableCell = ({
         return 'text-white';
       case 'td':
         return 'text-[#666666]';
+      default:
+        return '';
     }
   };
 
   const getTextAlignClass = () => {
-    if (type !== 'text') return;
+    if (type !== 'text') return '';
 
     switch (textAlign) {
       case 'center':
-        return 'item-center text-center';
+        return 'items-center text-center';
       case 'left':
         return 'text-left';
       case 'right':
         return 'text-right';
+      default:
+        return '';
     }
   };
 
@@ -49,16 +53,19 @@ const TableCell = ({
         return 'flex-wrap';
       case 'default':
         return 'flex';
+      default:
+        return '';
     }
   };
 
-  const tableCellClass = `${className} ${getAttributeClass()} ${getTextAlignClass()}`;
+  const tableCellClasses = `${getAttributeClass()} ${getTextAlignClass()}`;
 
   return (
     <div
       className={cn(
         'table-cell items-center justify-center gap-1 px-2 py-3 text-center align-middle text-sm break-keep',
-        tableCellClass,
+        className,
+        tableCellClasses,
       )}
     >
       {type === 'text' && <>{children}</>}
