@@ -3,6 +3,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import { routePath } from '@/constants/path';
 import {
   AdminLayout,
+  CartPage,
   Layout,
   LoginPage,
   MainPage,
@@ -23,6 +24,7 @@ const router = createBrowserRouter([
       },
       { path: routePath.common.oauthRedirect, element: <OauthRedirectPage /> },
       { path: routePath.common.product.root, element: <ProductPage /> },
+      { path: routePath.common.cart, element: <CartPage /> },
     ],
   },
   {
