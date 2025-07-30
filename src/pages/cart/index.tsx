@@ -15,7 +15,7 @@ import { cartStorage } from '@/utils/cartStorage';
 
 export interface CartItemProps {
   productId: string;
-  productName: string;
+  name: string;
   price: number;
   briefDescription: string;
   thumbnailUrl: string;
