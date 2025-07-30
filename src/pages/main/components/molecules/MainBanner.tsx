@@ -1,12 +1,12 @@
 import Carousel from '@/components/carousel/Carousel';
-import { MAIN_BANNER_DATA } from '@/constants/locale';
+import { MAIN_BANNER_DATA } from '@/constants/locale/main';
 import useLocale from '@/hooks/useLocale';
 
 const MainBanner = () => {
   const { locale } = useLocale();
   const TABLET_BREAKPOINT = 768;
   return (
-    <div className='mx-auto mt-5 overflow-hidden md:mt-10'>
+    <div className='mx-auto mt-5 overflow-hidden'>
       <Carousel
         variant='centered'
         centerPadding={window.innerWidth < 768 ? 30 : 0}
