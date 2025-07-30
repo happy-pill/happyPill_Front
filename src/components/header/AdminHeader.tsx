@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { Logo } from '@/assets/icon';
 import { HEADER_HEIGHT_SIZE } from '@/constants/common';
@@ -6,6 +6,8 @@ import { ADMIN_HEADER_ITEMS } from '@/constants/navigation';
 import { routePath } from '@/constants/path';
 
 const AdminHeader = () => {
+  const navigate = useNavigate();
+
   return (
     <header
       className='px-md flex w-full items-center border-b border-solid border-[#E2E2E2] bg-white'
@@ -28,14 +30,14 @@ const AdminHeader = () => {
           </div>
 
           {ADMIN_HEADER_ITEMS.map((item) => (
-            <Link
+            <button
               key={item.type}
-              to={item.path}
+              onClick={() => navigate(item.path)}
               className='relative flex flex-col items-center justify-center gap-1'
             >
               {item.icon}
               <span className='text-xs font-semibold'>{item.name}</span>
-            </Link>
+            </button>
           ))}
         </nav>
       </div>

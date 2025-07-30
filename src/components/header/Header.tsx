@@ -1,5 +1,5 @@
 import { CiMenuBurger } from 'react-icons/ci';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import Select from '../select/Select';
 
@@ -17,6 +17,7 @@ import useLocale from '@/hooks/useLocale';
 import useLoginedStore from '@/stores/loginedStore';
 
 const Header = () => {
+  const navigate = useNavigate();
   const { locale, changeLocale } = useLocale();
 
   const isLogined = useLoginedStore((state) => state.isLogined);
@@ -25,11 +26,9 @@ const Header = () => {
     ? [...LOGGEND_IN_ITEMS, ...HEADER_COMMON_ITEMS]
     : [...LOGGEND_OUT_ITEMS, ...HEADER_COMMON_ITEMS];
 
-  const onChangeLocale = (value: string) => {
-    if (value === 'ko' || value === 'en') {
-      changeLocale(value);
-      location.reload();
-    }
+  const onChangeLocale = () => {
+    changeLocale(locale === 'ko' ? 'en' : 'ko');
+    location.reload();
   };
 
   return (
@@ -49,7 +48,7 @@ const Header = () => {
           <nav className='gap-x-md hidden items-center md:flex'>
             <Select
               value={locale === 'ko' ? '한국어' : 'English'}
-              onChange={() => onChangeLocale(locale === 'ko' ? 'en' : 'ko')}
+              onChange={onChangeLocale}
               className='flex items-center justify-center gap-1 rounded-md py-1 text-sm font-semibold hover:bg-gray-50'
             >
               <Select.Trigger
@@ -71,36 +70,27 @@ const Header = () => {
               </Select.Content>
             </Select>
 
-            {headerItems.map((item) =>
-              item.type === 'logout' ? (
-                <button
-                  key={item.type}
-                  onClick={() => {
-                    if (typeof item.path === 'function') {
-                      item.path();
-                    }
-                  }}
-                  className='relative flex flex-col items-center justify-center gap-1'
-                >
-                  {item.icon}
-                  <span className='text-xs font-semibold'>{item.name}</span>
-                </button>
-              ) : (
-                <Link
-                  key={item.type}
-                  to={item.path as string}
-                  className='relative flex flex-col items-center justify-center gap-1'
-                >
-                  {item.type === 'cart' && (
-                    <span className='absolute -top-1 right-1 flex aspect-square h-4 w-4 items-center justify-center rounded-full bg-black text-[10px] text-white'>
-                      0
-                    </span>
-                  )}
-                  {item.icon}
-                  <span className='text-xs font-semibold'>{item.name}</span>
-                </Link>
-              ),
-            )}
+            {headerItems.map((item) => (
+              <button
+                key={item.type}
+                onClick={() => {
+                  if (typeof item.path === 'function' && item.type === 'logout') {
+                    item.path();
+                  } else {
+                    navigate(item.path as string);
+                  }
+                }}
+                className='relative flex flex-col items-center justify-center gap-1'
+              >
+                {item.type === 'cart' && (
+                  <span className='absolute -top-1 right-1 flex aspect-square h-4 w-4 items-center justify-center rounded-full bg-black text-[10px] text-white'>
+                    0
+                  </span>
+                )}
+                {item.icon}
+                <span className='text-xs font-semibold'>{item.name}</span>
+              </button>
+            ))}
           </nav>
         )}
       </div>
