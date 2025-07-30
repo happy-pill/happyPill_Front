@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Carousel from '@/components/carousel/Carousel';
-import { RELATED_PRODUCTS_SECTION } from '@/constants/locale';
+import { RELATED_PRODUCTS_SECTION } from '@/constants/locale/product';
 import useLocale from '@/hooks/useLocale';
 
 interface RelatedProductsCarouselProps {
