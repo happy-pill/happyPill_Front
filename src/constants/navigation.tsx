@@ -40,7 +40,7 @@ export const LOGGEND_IN_ITEMS = [
     type: 'user',
     name: '내정보',
     icon: <CiUser size={NAVIGATION_ICON_SIZE} />,
-    path: routePath.member.mypage,
+    path: routePath.member.mypage.root,
   },
 ];
 
