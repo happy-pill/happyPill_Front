@@ -10,7 +10,7 @@ const RemoveButton = ({ onRemove }: RemoveButtonProps) => {
   return (
     <Button
       onClick={onRemove}
-      className='flex items-center justify-center rounded p-1 text-[clamp(15px,1vw,20px)] transition-colors'
+      className='flex items-center justify-center rounded p-1 text-[clamp(15px,1vw,20px)]'
     >
       <CgClose />
     </Button>
