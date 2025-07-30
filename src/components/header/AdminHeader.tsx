@@ -1,40 +1,24 @@
-import { CiLogout, CiUser } from 'react-icons/ci';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { Logo } from '@/assets/icon';
+import { HEADER_HEIGHT_SIZE } from '@/constants/common';
+import { ADMIN_HEADER_ITEMS } from '@/constants/header';
 import { routePath } from '@/constants/path';
 
-// TODO  기능 추가 필요/반응형 작업 필요
-const AdminHeader: React.FC = () => {
-  const ICON_SIZE = 25;
-
-  const adminHeaderItems = [
-    {
-      type: 'logout',
-      name: '로그아웃',
-      icon: <CiLogout size={ICON_SIZE} />,
-      path: '/',
-    },
-    {
-      type: 'user',
-      name: '사용자 전환',
-      icon: <CiUser size={ICON_SIZE} />,
-      path: '/',
-    },
-  ];
+const AdminHeader = () => {
+  const navigate = useNavigate();
 
   return (
-    <header className='px-md flex h-[100px] items-center border-b border-solid border-[#E2E2E2] bg-white'>
-      <div className='max-width-container mx-auto flex w-full items-center justify-between'>
+    <header
+      className='px-md flex w-full items-center border-b border-solid border-[#E2E2E2] bg-white'
+      style={{ height: `${HEADER_HEIGHT_SIZE}px` }}
+    >
+      <div className='mx-auto flex w-full items-center justify-between'>
         <h2 className='flex items-center gap-1'>
           <Link to={routePath.common.root} title='admin home'>
-            <img src={Logo} alt='logo' width={129} height={21} />
+            <img src={Logo} alt='logo' width={100} />
           </Link>
-          <Link
-            to={routePath.admin.management.subscribe}
-            title='admin home'
-            className='text-[30px]'
-          >
+          <Link to={routePath.admin.management.subscribe} title='admin home' className='text-xl'>
             Admin
           </Link>
         </h2>
@@ -45,15 +29,15 @@ const AdminHeader: React.FC = () => {
             <span className='font-bold'>홍길동님</span>
           </div>
 
-          {adminHeaderItems.map((item) => (
-            <Link
+          {ADMIN_HEADER_ITEMS.map((item) => (
+            <button
               key={item.type}
-              to={item.path}
+              onClick={() => navigate(item.path)}
               className='relative flex flex-col items-center justify-center gap-1'
             >
               {item.icon}
               <span className='text-xs font-semibold'>{item.name}</span>
-            </Link>
+            </button>
           ))}
         </nav>
       </div>
