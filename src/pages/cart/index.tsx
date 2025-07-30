@@ -12,6 +12,7 @@ import { routePath } from '@/constants/path';
 import useLocale from '@/hooks/useLocale';
 import useModal from '@/hooks/useModal';
 import { cartStorage } from '@/utils/cartStorage';
+import { purchaseStorage } from '@/utils/purchaseStorage';
 
 export interface CartItemProps {
   productId: string;
@@ -89,7 +90,7 @@ const Index = () => {
       });
     }
 
-    localStorage.setItem('purchase_items', JSON.stringify(selectedItemsId));
+    purchaseStorage.set(selectedItemsId);
     navigate(routePath.common.purchase.cart);
   };
 
