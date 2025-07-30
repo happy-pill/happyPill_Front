@@ -2,7 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import { Logo } from '@/assets/icon';
 import { HEADER_HEIGHT_SIZE } from '@/constants/common';
-import { ADMIN_HEADER_ITEMS } from '@/constants/navigation';
+import { ADMIN_HEADER_ITEMS } from '@/constants/header';
 import { routePath } from '@/constants/path';
 
 const AdminHeader = () => {

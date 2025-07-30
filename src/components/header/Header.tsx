@@ -10,8 +10,8 @@ import {
   LOGGEND_IN_ITEMS,
   HEADER_COMMON_ITEMS,
   LOGGEND_OUT_ITEMS,
-  NAVIGATION_ICON_SIZE,
-} from '@/constants/navigation';
+  HEADER_ICON_SIZE,
+} from '@/constants/header';
 import { routePath } from '@/constants/path';
 import useLocale from '@/hooks/useLocale';
 import useLoginedStore from '@/stores/loginedStore';
@@ -97,7 +97,7 @@ const Header = () => {
 
       {/* mo nav */}
       <button className='block md:hidden' onClick={() => console.log('show mobile nav')}>
-        <CiMenuBurger size={NAVIGATION_ICON_SIZE} />
+        <CiMenuBurger size={HEADER_ICON_SIZE} />
       </button>
     </header>
   );
