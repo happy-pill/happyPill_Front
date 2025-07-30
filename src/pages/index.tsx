@@ -2,6 +2,7 @@
 export { default as MainPage } from './main/index';
 export { default as Layout } from '../components/layout/Layout';
 export { default as ProductPage } from '@/pages/product/index';
+export { default as CartPage } from '@/pages/cart/index';
 /* admin */
 export { default as AdminLayout } from '../components/layout/AdminLayout';
 
