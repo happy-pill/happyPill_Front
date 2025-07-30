@@ -110,7 +110,7 @@ const Index = () => {
       <div className='relative my-[clamp(40px,6vw,100px)]'>
         <PageTitle>{CART_LOCALES[locale].pageTitle}</PageTitle>
         <div className='mb-24 grid grid-cols-1 gap-x-6 lg:mb-0 lg:grid-cols-[2.5fr_1fr]'>
-          <div>
+          <>
             <CartHeader
               itemCount={cartItems.length}
               isAllSelected={isAllSelected}
@@ -125,7 +125,7 @@ const Index = () => {
               onPeriodChange={handlePeriodChange}
               onRemoveItem={handleRemoveItem}
             />
-          </div>
+          </>
           <PurchaseSummary
             onPurchaseItems={handlePurchaseItems}
             totalPrice={totalPrice}
