@@ -1,6 +1,14 @@
 import type { Dispatch, RefObject } from 'react';
 
-import { createContext, useContext, useEffect, useRef, useState, useCallback } from 'react';
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+  useCallback,
+  useMemo,
+} from 'react';
 
 import Item from './Item';
 import ItemList from './ItemList';
@@ -91,13 +99,42 @@ const Carousel = ({
   const isDraggingRef = useRef(false); // 마우스 클릭/드래그 판별용
   const transitionTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  const cloneCount = isInfinite ? Math.min(slideCount, Math.max(visibleCount, 1)) : 0; // 무한스크롤을 위한 복제된 슬라이드
-  const totalSlides = isInfinite ? slideCount + cloneCount * 2 : slideCount; // 렌더링 되는 전체 슬라이드 개수
-  const maxIndex = isInfinite
-    ? totalSlides - 1
-    : variant === 'centered' || variant === 'peek'
-      ? slideCount - 1
-      : Math.max(0, slideCount - visibleCount);
+  const cloneCount = useMemo(
+    () => (isInfinite ? Math.min(slideCount, Math.max(visibleCount, 1)) : 0),
+    [isInfinite, slideCount, visibleCount],
+  );
+
+  const totalSlides = useMemo(
+    () => (isInfinite ? slideCount + cloneCount * 2 : slideCount),
+    [isInfinite, slideCount, cloneCount],
+  );
+
+  const maxIndex = useMemo(
+    () =>
+      isInfinite
+        ? totalSlides - 1
+        : variant === 'centered' || variant === 'peek'
+          ? slideCount - 1
+          : Math.max(0, slideCount - visibleCount),
+    [isInfinite, totalSlides, variant, slideCount, visibleCount],
+  );
+
+  // 실제 슬라이드 엘리먼트의 너비를 측정하는 함수
+  const measureSlideWidth = useCallback((): number => {
+    const listElement = listRef.current;
+    if (!listElement) return 0;
+
+    const firstSlide = listElement.children[0] as HTMLElement;
+    if (!firstSlide) return 0;
+
+    // 엘리먼트의 실제 크기 측정 (margin, padding, border 포함)
+    const rect = firstSlide.getBoundingClientRect();
+    const computedStyle = window.getComputedStyle(firstSlide);
+    const marginLeft = parseFloat(computedStyle.marginLeft) || 0;
+    const marginRight = parseFloat(computedStyle.marginRight) || 0;
+
+    return rect.width + marginLeft + marginRight;
+  }, []);
 
   // centerPadding 계산 (centered 모드에서 0이면 자동으로 적절한 값 설정)
   const getEffectiveCenterPadding = useCallback(() => {
@@ -159,21 +196,23 @@ const Carousel = ({
       const availableWidth = containerWidth - effectivePadding - peekSize;
       calculatedSlideWidth = visibleSlides
         ? (availableWidth - gap * (visibleCount - 1)) / visibleCount
-        : Math.max(200, (availableWidth - gap * (visibleCount - 1)) / visibleCount);
+        : measureSlideWidth() || availableWidth * 0.8;
     } else {
       if (visibleSlides) {
         calculatedSlideWidth = (containerWidth - gap * (visibleCount - 1)) / visibleCount;
       } else {
         // default 모드
-        // 최소 200px 기준
-        const minSlideWidth = 200;
-        // 최대 슬라이드 개수 계산
-        const maxPossibleSlides = Math.floor((containerWidth + gap) / (minSlideWidth + gap));
-        //실제 보여줄 슬라이드 개수 설정( 실제 슬라이드 개수와 계산된 최대 개수 중 작은 값)
-        const actualCount = Math.min(maxPossibleSlides, slideCount);
-        //최증 슬라이드 너비 계산함
-        calculatedSlideWidth = (containerWidth - gap * (actualCount - 1)) / actualCount;
-        setVisibleCount(actualCount);
+        const measuredWidth = measureSlideWidth();
+        if (measuredWidth > 0) {
+          calculatedSlideWidth = measuredWidth;
+          // 실제 보여줄 슬라이드 개수 설정(실제 슬라이드 개수와 계산된 최대 개수 중 작은 값)
+          const actualCount = Math.floor((containerWidth + gap) / (measuredWidth + gap)) || 1;
+          setVisibleCount(Math.min(actualCount, slideCount));
+        } else {
+          // 측정할 수 없는 경우 컨테이너 전체 너비 사용
+          calculatedSlideWidth = containerWidth;
+          setVisibleCount(1);
+        }
       }
     }
 
@@ -193,6 +232,7 @@ const Carousel = ({
     totalSlides,
     slideCount,
     getEffectiveCenterPadding,
+    measureSlideWidth,
   ]);
 
   // 무한스크롤 위치 조정 함수
@@ -315,7 +355,6 @@ const Carousel = ({
 
       goTo(newIndex);
 
-      isDraggingRef.current = false;
       startXRef.current = null;
       startScrollXRef.current = null;
     },

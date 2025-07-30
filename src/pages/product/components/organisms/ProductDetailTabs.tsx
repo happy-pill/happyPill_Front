@@ -30,7 +30,7 @@ const ProductDetailTabs = ({
   const { locale: currentLocale } = useLocale();
 
   const PRODUCT_DETAIL_FIELDS = [
-    { label: PRODUCT_DETAIL[currentLocale].name, value: product.name },
+    { label: PRODUCT_DETAIL[currentLocale].name, value: product.productName },
     { label: PRODUCT_DETAIL[currentLocale].quantityDetails, value: product.quantityDetails },
     { label: PRODUCT_DETAIL[currentLocale].company, value: product.company },
     { label: PRODUCT_DETAIL[currentLocale].usage, value: product.usage },

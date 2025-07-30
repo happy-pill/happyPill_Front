@@ -64,6 +64,8 @@ const StickySummary: React.FC<StickySummaryProps> = ({
             price={price}
             quantity={subscriptionOption}
             priceLabel={CART_MODAL[locale].totalPriceLabel}
+            monthlyPriceLabelPrefix={CART_MODAL[locale].monthlyPriceLabelPrefix}
+            monthlyPriceLabelSuffix={CART_MODAL[locale].monthlyPriceLabelSuffix}
             className='mt-40'
           />
           <PurchaseOption.ButtonGroup>

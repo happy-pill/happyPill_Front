@@ -18,7 +18,7 @@ export interface Product {
 
 export interface ProductDetail {
   productId: string;
-  name: string;
+  productName: string;
   company: string;
   price: number;
   briefDescription: string;

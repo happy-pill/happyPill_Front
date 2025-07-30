@@ -33,7 +33,7 @@ const ProductPage: React.FC = () => {
 
     const item = {
       productId: productData.productId,
-      name: productData.name,
+      productName: productData.name,
       price: productData.price,
       briefDescription: productData.briefDescription,
       thumbnailUrl: productData.thumbnailUrl,

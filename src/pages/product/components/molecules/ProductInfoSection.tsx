@@ -52,7 +52,7 @@ const ProductInfoSection: React.FC<productInfoProps> = ({
 
   return (
     <div className='max-width-container mx-auto grid w-full grid-cols-1 gap-x-5 md:grid-cols-2'>
-      <ProductThumbnail src={product?.thumbnailUrl} alt={product?.name} />
+      <ProductThumbnail src={product?.thumbnailUrl} alt={product?.productName} />
       <div className='pt-5 md:p-8'>
         <ProductHeader product={product} />
 
@@ -67,6 +67,8 @@ const ProductInfoSection: React.FC<productInfoProps> = ({
           <PurchaseOption.PriceSection
             price={product?.price}
             quantity={subscriptionOption}
+            monthlyPriceLabelPrefix={CART_MODAL[locale].monthlyPriceLabelPrefix}
+            monthlyPriceLabelSuffix={CART_MODAL[locale].monthlyPriceLabelSuffix}
             priceLabel={CART_MODAL[locale].totalPriceLabel}
             className='mt-[clamp(30px,5vw,90px)]'
           />
