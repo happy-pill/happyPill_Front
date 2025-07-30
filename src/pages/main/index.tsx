@@ -7,6 +7,7 @@ import ProductSection from './components/organisms/Product';
 
 import type { Category } from '@/types/category';
 
+import LoadingSpinner from '@/components/common/LoadingSpinner';
 import { useGetCategoryDetail } from '@/hooks/api/member/category';
 import { useGetBestProductList, useGetProductList } from '@/hooks/api/member/product';
 import { useGetUserInfo } from '@/hooks/api/member/user';
@@ -56,9 +57,14 @@ const Index = () => {
       openModal({ type: 'welcomeStep' });
     }
   }, [userData]);
-
+  if (isCategoryLoading || !categoryBlock)
+    return (
+      <div className='flex flex-1 items-center justify-center'>
+        <LoadingSpinner />
+      </div>
+    );
   return (
-    <div className='mt-[100px]'>
+    <div className='mt-[clamp(20px,10vw,100px)]'>
       <MainBanner />
       <BestProductSection products={bestProductBlock} isLoading={isBestProductLoading} />
       <PromotionBanner />
