@@ -16,7 +16,7 @@ const PurchaseSummary = ({
   onPurchaseItems,
 }: SummarySectionProps) => {
   const { locale } = useLocale();
-  const priceItems = [
+  const PRICE_ITEMS = [
     {
       label: CART_LOCALES[locale].purchaseSummary.totalAmount,
       value: totalPrice.toLocaleString() + CURRENCY_UNIT[locale],
@@ -37,7 +37,7 @@ const PurchaseSummary = ({
           {CART_LOCALES[locale].purchaseSummary.title}
         </PurchaseOption.Title>
         <div className='grid gap-y-1.5'>
-          {priceItems.map(({ label, value }) => (
+          {PRICE_ITEMS.map(({ label, value }) => (
             <div
               key={label}
               className='flex items-center justify-between text-[clamp(11px,1vw,15px)] font-bold'
