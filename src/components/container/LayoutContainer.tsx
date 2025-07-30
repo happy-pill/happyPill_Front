@@ -1,3 +1,4 @@
+import { HEADER_HEIGHT_SIZE } from '@/constants/common';
 import { cn } from '@/utils/classNames';
 
 interface LayoutContainerProps {
@@ -17,10 +18,8 @@ const LayoutContainer = ({
 }: LayoutContainerProps) => {
   return (
     <main
-      className={cn(
-        `mx-auto w-full flex-1 ${isHeader && 'mt-[100px]'} ${isMaxW && 'max-width-container'} ${px}`,
-        className,
-      )}
+      className={cn(`mx-auto w-full flex-1 ${isMaxW && 'max-width-container'} ${px}`, className)}
+      style={{ marginTop: `${isHeader ? HEADER_HEIGHT_SIZE : 0}px` }}
     >
       {children}
     </main>
