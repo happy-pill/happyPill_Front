@@ -1,5 +1,5 @@
 import Carousel from '@/components/carousel/Carousel';
-import { PROMOTION_BANNER_DATA } from '@/constants/locale';
+import { PROMOTION_BANNER_DATA } from '@/constants/locale/main';
 import useLocale from '@/hooks/useLocale';
 
 const PromotionBanner = () => {
