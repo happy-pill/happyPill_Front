@@ -7,7 +7,7 @@ import StyledButton from '../button/StyledButton';
 
 import logoHappypill from '@/assets/icon/logo-happypill.svg';
 import Modal from '@/components/modal/ui/Modal';
-import { CREATE_WELCOME_STEPS } from '@/constants/locale';
+import { CREATE_WELCOME_STEPS } from '@/constants/locale/modal';
 import { usePostUserNickname } from '@/hooks/api/member/user';
 import useLocale from '@/hooks/useLocale';
 import useModal from '@/hooks/useModal';
