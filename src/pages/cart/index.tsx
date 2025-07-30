@@ -107,7 +107,7 @@ const Index = () => {
   }, 0);
 
   return (
-    <LayoutContainer className=''>
+    <LayoutContainer>
       <div className='relative my-[clamp(40px,6vw,100px)]'>
         <PageTitle>{CART_LOCALES[locale].pageTitle}</PageTitle>
         <div className='mb-24 grid grid-cols-1 gap-x-6 lg:mb-0 lg:grid-cols-[2.5fr_1fr]'>
