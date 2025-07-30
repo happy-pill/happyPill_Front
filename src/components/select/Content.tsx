@@ -114,7 +114,7 @@ const Content: React.FC<SelectContentProps> = ({ children, className, placement 
     <div
       ref={contentRef}
       className={cn(
-        'absolute z-99 overflow-hidden rounded-sm bg-white shadow-md',
+        'absolute z-100 overflow-hidden rounded-sm bg-white shadow-md',
         'animate-in slide-in-from-top-2 duration-200',
         className,
       )}

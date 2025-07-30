@@ -18,7 +18,7 @@ const Item: React.FC<ItemProps> = ({ value, children, className, activeClassName
   };
   return (
     <div
-      className={cn('cursor-pointer', isActive && activeClassName, className)}
+      className={cn('cursor-pointer', className, isActive && activeClassName)}
       onClick={() => handleSelectedTab(value)}
     >
       {children}
