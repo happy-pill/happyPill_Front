@@ -7,14 +7,14 @@ interface CartHeaderProps {
   itemCount: number;
   isAllSelected: boolean;
   onSelectAll: () => void;
-  onRemoveSelected: () => void;
+  onRemoveSelectedItem: () => void;
 }
 
 const CartHeader = ({
   itemCount,
   isAllSelected,
   onSelectAll,
-  onRemoveSelected,
+  onRemoveSelectedItem,
 }: CartHeaderProps) => {
   const { locale } = useLocale();
   return (
@@ -29,7 +29,7 @@ const CartHeader = ({
         <span>{CART_LOCALES[locale].selectAll(itemCount)}</span>
       </label>
       <StyledButton
-        onClick={onRemoveSelected}
+        onClick={onRemoveSelectedItem}
         variant='border'
         className='bg-white text-[clamp(10px,1vw,14px)]'
       >
