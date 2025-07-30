@@ -1,6 +1,8 @@
-import { CgClose } from 'react-icons/cg';
-
 import Modal from './ui/Modal';
+import Button from '../button/BaseButton';
+import StyledButton from '../button/StyledButton';
+
+import useModal from '@/hooks/useModal';
 
 interface MessageModalProps {
   type: 'confirm' | 'alert';
@@ -11,34 +13,26 @@ interface MessageModalProps {
 
 const MessageModal: React.FC<MessageModalProps> = (props) => {
   const { type, title, message, onConfirm } = props;
+  const { closeModal } = useModal();
   return (
     <Modal>
-      <Modal.Backdrop />
-      <Modal.Content className='relative w-full max-w-[430px]'>
-        <Modal.Close className='absolute right-2 top-2'>
-          <CgClose color='#777777' />
-        </Modal.Close>
-        <div className='mb-8 flex flex-col items-center'>
-          <h2 className='text-22 font-semibold'>{title}</h2>
+      <Modal.Content className='relative flex w-full max-w-[430px] flex-col'>
+        <div className='mt-4 mb-8 flex flex-col items-center'>
+          <h2 className='text-[clamp(15px,2vw,20px)] font-semibold'>{title}</h2>
         </div>
-        <div className='break-all py-5 text-center text-[18px]'>{message}</div>
+        <div className='flex-1 text-center text-[clamp(14px,1.5vw,18px)] break-all'>{message}</div>
         {type == 'confirm' ? (
           <div className='mt-10 flex items-center gap-x-4'>
-            <button
-              onClick={() => onConfirm()}
-              className='w-full rounded-3xl bg-button-secondary py-2 font-semibold text-white'
-            >
-              확인
-            </button>
-            <Modal.Close className='w-full rounded-3xl border border-solid border-button-secondary bg-white py-2 text-14 font-semibold text-button-secondary'>
+            <Button onClick={() => onConfirm()}>확인</Button>
+            <Modal.Close className='border-button-secondary text-14 text-button-secondary w-full rounded-3xl border border-solid bg-white py-2 font-semibold'>
               취소
             </Modal.Close>
           </div>
         ) : (
-          <div className='mt-10 text-center'>
-            <Modal.Close className='w-[150px] rounded-3xl bg-button-secondary py-2 text-14 font-semibold text-white'>
+          <div className='mt-10 flex w-full items-center justify-center'>
+            <StyledButton variant='green' onClick={closeModal}>
               확인
-            </Modal.Close>
+            </StyledButton>
           </div>
         )}
       </Modal.Content>
