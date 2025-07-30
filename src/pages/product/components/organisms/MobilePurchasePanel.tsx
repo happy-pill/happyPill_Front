@@ -3,7 +3,7 @@ import { useState, type Dispatch, type SetStateAction } from 'react';
 import StyledButton from '@/components/button/StyledButton';
 import PurchaseOption from '@/components/purchaseOption/PurchaseOption';
 import Select from '@/components/select/Select';
-import { CART_MODAL } from '@/constants/locale';
+import { CART_MODAL } from '@/constants/locale/modal';
 import { SUBSCRIPTION_MONTH_OPTIONS } from '@/constants/subscription';
 import useLocale from '@/hooks/useLocale';
 
@@ -87,7 +87,7 @@ const MobilePurchasePanel = ({
             </PurchaseOption.Header>
             <PurchaseOption.PriceSection
               price={price}
-              quantity={subscriptionOption}
+              totalPrice={price * subscriptionOption}
               priceLabel={CART_MODAL[locale].totalPriceLabel}
               monthlyPriceLabelPrefix={CART_MODAL[locale].monthlyPriceLabelPrefix}
               monthlyPriceLabelSuffix={CART_MODAL[locale].monthlyPriceLabelSuffix}

@@ -4,7 +4,7 @@ import type { ProductItem } from './products';
 export type ModalPropsMap = {
   addToCart: { product: Omit<ProductItem, 'company' | 'categoryId'> };
   cartAddSuccess: undefined;
-  message: { type: 'alert' | 'confirm'; title?: string; message?: string; onConfirm: () => void };
+  message: { type: 'alert' | 'confirm'; title?: string; message?: string; onConfirm?: () => void };
   welcomeStep: undefined;
 };
 

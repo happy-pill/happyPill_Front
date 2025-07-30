@@ -11,7 +11,7 @@ import type { ProductDetail } from '@/types/products';
 
 import StyledButton from '@/components/button/StyledButton';
 import PurchaseOption from '@/components/purchaseOption/PurchaseOption';
-import { CART_MODAL } from '@/constants/locale';
+import { CART_MODAL } from '@/constants/locale/modal';
 import useLocale from '@/hooks/useLocale';
 
 interface productInfoProps {
@@ -51,8 +51,8 @@ const ProductInfoSection: React.FC<productInfoProps> = ({
   ] as const;
 
   return (
-    <div className='max-width-container mx-auto grid w-full grid-cols-1 gap-x-5 md:grid-cols-2'>
-      <ProductThumbnail src={product?.thumbnailUrl} alt={product?.productName} />
+    <div className='grid w-full grid-cols-1 gap-x-5 md:grid-cols-2'>
+      <ProductThumbnail src={product?.thumbnailUrl} alt={product?.name} />
       <div className='pt-5 md:p-8'>
         <ProductHeader product={product} />
 
@@ -61,12 +61,12 @@ const ProductInfoSection: React.FC<productInfoProps> = ({
           setSubscriptionOption={setSubscriptionOption}
         />
 
-        <ProductDescription description={product?.briefDescription} />
+        <ProductDescription description={product?.description} />
 
         <PurchaseOption className='p-0'>
           <PurchaseOption.PriceSection
             price={product?.price}
-            quantity={subscriptionOption}
+            totalPrice={product?.price * subscriptionOption}
             monthlyPriceLabelPrefix={CART_MODAL[locale].monthlyPriceLabelPrefix}
             monthlyPriceLabelSuffix={CART_MODAL[locale].monthlyPriceLabelSuffix}
             priceLabel={CART_MODAL[locale].totalPriceLabel}

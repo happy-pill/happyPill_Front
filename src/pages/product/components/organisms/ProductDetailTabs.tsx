@@ -7,7 +7,7 @@ import type { ProductDetail } from '@/types/products';
 
 import LoadingSpinner from '@/components/common/LoadingSpinner';
 import Tabs from '@/components/tabs/Tabs';
-import { PRODUCT_DETAIL, PRODUCT_TABS } from '@/constants/locale';
+import { PRODUCT_DETAIL, PRODUCT_TABS } from '@/constants/locale/product';
 import useLocale from '@/hooks/useLocale';
 import useScrollTrigger from '@/hooks/useScrollTrigger';
 import cn from '@/utils/classNames';
@@ -27,18 +27,16 @@ const ProductDetailTabs = ({
   onAddToCart,
   onCheckout,
 }: ProductDetailTabsProps) => {
-  const { locale: currentLocale } = useLocale();
-
+  const { locale } = useLocale();
   const PRODUCT_DETAIL_FIELDS = [
-    { label: PRODUCT_DETAIL[currentLocale].name, value: product.productName },
-    { label: PRODUCT_DETAIL[currentLocale].quantityDetails, value: product.quantityDetails },
-    { label: PRODUCT_DETAIL[currentLocale].company, value: product.company },
-    { label: PRODUCT_DETAIL[currentLocale].usage, value: product.usage },
-    { label: PRODUCT_DETAIL[currentLocale].warningMessage, value: product.warningMessage },
-    { label: PRODUCT_DETAIL[currentLocale].description, value: product.description },
+    { label: PRODUCT_DETAIL[locale].name, value: product.name },
+    { label: PRODUCT_DETAIL[locale].quantityDetails, value: product.quantityDetails },
+    { label: PRODUCT_DETAIL[locale].company, value: product.company },
+    { label: PRODUCT_DETAIL[locale].usage, value: product.usage },
+    { label: PRODUCT_DETAIL[locale].warningMessage, value: product.warningMessage },
+    { label: PRODUCT_DETAIL[locale].description, value: product.description },
   ] as const;
 
-  const { locale } = useLocale();
   const { isFixed, triggerRef } = useScrollTrigger();
   const TAB_KEYS = ['product-info', 'product-detail'] as const;
   return (
@@ -48,7 +46,7 @@ const ProductDetailTabs = ({
         <Tabs.List
           className={cn(
             'border-primary-text bg-baseBg relative gap-x-0 rounded-none border-b',
-            isFixed && 'top-[100px] z-10 w-full md:fixed',
+            isFixed && 'top-[80px] z-10 w-full md:fixed',
           )}
         >
           {TAB_KEYS.map((value) => (

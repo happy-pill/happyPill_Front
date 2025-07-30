@@ -1,6 +1,6 @@
 import type { ProductDetail } from '@/types/products';
 
-import { PRODUCT_DELIVERY_BADGE } from '@/constants/locale';
+import { PRODUCT_DELIVERY_BADGE } from '@/constants/locale/product';
 import useLocale from '@/hooks/useLocale';
 
 interface ProductHeaderProps {
@@ -18,8 +18,8 @@ const ProductHeader = ({ product }: ProductHeaderProps) => {
           <strong className='ml-1'>{PRODUCT_DELIVERY_BADGE[locale].highlight}</strong>
         </p>
       </div>
-      <h2 className='mt-1 mb-2 text-[clamp(20px,2vw,34px)] font-bold'>{product?.productName}</h2>
-      <p className='text-[clamp(10px,1.8vw,16px)] font-medium'> {product?.description}</p>
+      <h2 className='mt-1 mb-2 text-[clamp(20px,2vw,34px)] font-bold'>{product?.name}</h2>
+      <p className='text-[clamp(10px,1.8vw,16px)] font-medium'> {product?.briefDescription}</p>
     </div>
   );
 };
