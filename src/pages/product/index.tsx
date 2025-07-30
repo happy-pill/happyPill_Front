@@ -8,6 +8,7 @@ import { cartStorage } from '../../utils/cartStorage';
 import ProductDetailTabs from './components/organisms/ProductDetailTabs';
 
 import LoadingSpinner from '@/components/common/LoadingSpinner';
+import LayoutContainer from '@/components/container/LayoutContainer';
 import { routePath } from '@/constants/path';
 import { useGetProductDetail, useGetRelatedProducts } from '@/hooks/api/member/product';
 
@@ -33,7 +34,7 @@ const ProductPage: React.FC = () => {
 
     const item = {
       productId: productData.productId,
-      productName: productData.name,
+      name: productData.name,
       price: productData.price,
       briefDescription: productData.briefDescription,
       thumbnailUrl: productData.thumbnailUrl,
@@ -64,24 +65,26 @@ const ProductPage: React.FC = () => {
     );
   }
   return (
-    <div className='max-width-container mx-auto w-full px-[30px] pt-[clamp(120px,15vw,200px)] pb-[40px]'>
-      <ProductInfoSection
-        product={productData}
-        subscriptionOption={subscriptionOption}
-        setSubscriptionOption={setSubscriptionOption}
-        onAddToCart={handleAddToCart}
-        onCheckout={handlePurchase}
-      />
+    <LayoutContainer>
+      <div className='mt-[clamp(20px,10vw,100px)]'>
+        <ProductInfoSection
+          product={productData}
+          subscriptionOption={subscriptionOption}
+          setSubscriptionOption={setSubscriptionOption}
+          onAddToCart={handleAddToCart}
+          onCheckout={handlePurchase}
+        />
 
-      <ProductDetailTabs
-        product={productData}
-        subscriptionOption={subscriptionOption}
-        setSubscriptionOption={setSubscriptionOption}
-        onAddToCart={handleAddToCart}
-        onCheckout={handlePurchase}
-      />
-      <RelatedProductsCarousel products={bestProductData} onClickProduct={handleProductClick} />
-    </div>
+        <ProductDetailTabs
+          product={productData}
+          subscriptionOption={subscriptionOption}
+          setSubscriptionOption={setSubscriptionOption}
+          onAddToCart={handleAddToCart}
+          onCheckout={handlePurchase}
+        />
+        <RelatedProductsCarousel products={bestProductData} onClickProduct={handleProductClick} />
+      </div>
+    </LayoutContainer>
   );
 };
 export default ProductPage;
