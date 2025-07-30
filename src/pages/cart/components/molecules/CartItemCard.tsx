@@ -54,10 +54,7 @@ const CartItemCard = ({
             monthlyPrice={item.price}
           />
         </div>
-        <RemoveButton
-          onRemove={() => onRemoveItem(item.productId)}
-          className='text-[clamp(15px,1vw,20px)]'
-        />
+        <RemoveButton onRemove={() => onRemoveItem(item.productId)} />
       </div>
     </div>
   );
