@@ -2,7 +2,7 @@ import { cn } from '@/utils/classNames';
 
 interface LayoutContainerProps {
   children: React.ReactNode;
-  className: string;
+  className?: string;
   px?: 'px-md' | 'px-0';
   isMaxW?: boolean;
   isHeader?: boolean;

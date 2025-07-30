@@ -5,16 +5,16 @@ import { routePath } from '@/constants/path';
 const AdminNavigation = () => {
   const location = useLocation();
 
-  const navItems = [
+  const NAV_ITEMS = [
     {
       type: 'managementSubscribe',
       name: '구독 상품 관리',
       path: routePath.admin.management.subscribe,
     },
     {
-      type: 'managementMember',
+      type: 'managementUser',
       name: '회원 관리',
-      path: routePath.admin.management.member,
+      path: routePath.admin.management.user,
     },
     {
       type: 'managementProduct',
@@ -36,7 +36,7 @@ const AdminNavigation = () => {
         관리
       </h3>
       <div className='flex flex-col'>
-        {navItems.map((item) => (
+        {NAV_ITEMS.map((item) => (
           <Link
             key={item.type}
             to={item.path}

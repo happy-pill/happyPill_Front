@@ -19,8 +19,15 @@ interface TableCompoundProps {
 
 const Table: React.FC<TableProps> & TableCompoundProps = ({ className, children }) => {
   return (
-    <div className={cn('table w-full border-collapse overflow-hidden rounded-t-md', className)}>
-      {children}
+    <div className='w-full overflow-x-scroll'>
+      <div
+        className={cn(
+          'min-w-min-width table w-full border-collapse overflow-hidden rounded-t-md',
+          className,
+        )}
+      >
+        {children}
+      </div>
     </div>
   );
 };

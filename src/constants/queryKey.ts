@@ -16,7 +16,24 @@ const member = {
     updateNickname: ['userUpdateNickname'],
   },
 };
-const admin = {};
+const admin = {
+  management: {
+    subscribe: {
+      list: (page?: number, size?: number) => ['managementSubscribeList', page, size],
+    },
+    user: {
+      list: (page?: number, size?: number) => ['managementUserList', page, size],
+    },
+    product: {
+      list: (page?: number, size?: number, categories?: number) => [
+        'managementProductList',
+        page,
+        size,
+        categories,
+      ],
+    },
+  },
+};
 
 export const queryKey = {
   member,
