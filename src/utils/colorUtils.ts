@@ -5,7 +5,7 @@ import { CATEGORY_COLORS } from '@/constants/colors';
 
 export const getCategoryColor = (categoryName: string): string => {
   let hash = 0;
-  for (let i = 0; i < categoryName.length; i++) {
+  for (let i = 0; i < categoryName?.length; i++) {
     const char = categoryName.charCodeAt(i);
     hash = (hash << 5) - hash + char;
     hash = hash & hash;

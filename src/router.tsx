@@ -1,8 +1,12 @@
 import { createBrowserRouter } from 'react-router-dom';
 
-import { routePath } from '@/constants/path';
+import { routePath } from './constants/path';
+
 import {
   AdminLayout,
+  AdminManagementUserPage,
+  AdminManagementProductPage,
+  AdminManagementSubscribePage,
   CartPage,
   Layout,
   LoginPage,
@@ -12,6 +16,7 @@ import {
 } from '@/pages/index';
 
 const router = createBrowserRouter([
+  /** MEMBER */
   {
     path: routePath.common.root,
     element: <Layout />,
@@ -27,6 +32,7 @@ const router = createBrowserRouter([
       { path: routePath.common.cart, element: <CartPage /> },
     ],
   },
+  /** ADMIN */
   {
     path: routePath.admin.root,
     element: <AdminLayout />,
@@ -34,15 +40,15 @@ const router = createBrowserRouter([
     children: [
       {
         path: routePath.admin.management.subscribe,
-        element: null,
+        element: <AdminManagementSubscribePage />,
       },
       {
-        path: routePath.admin.management.member,
-        element: null,
+        path: routePath.admin.management.user,
+        element: <AdminManagementUserPage />,
       },
       {
         path: routePath.admin.management.product,
-        element: null,
+        element: <AdminManagementProductPage />,
       },
       {
         path: routePath.admin.management.category,

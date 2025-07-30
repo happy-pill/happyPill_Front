@@ -11,5 +11,6 @@ export const useGetCategoryDetail = () => {
   return useQuery({
     queryKey: queryKey.member.category.detail,
     queryFn: () => categoryAPI.getCategoryDetail(),
+    staleTime: 1000 * 60 * 60, // 1시간 동안 stale 데이터 표시
   });
 };

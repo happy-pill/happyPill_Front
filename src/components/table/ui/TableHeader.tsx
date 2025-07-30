@@ -6,7 +6,11 @@ interface TableHeaderProps {
 }
 
 const TableHeader = ({ className, children }: TableHeaderProps) => {
-  return <div className={cn('bg-primary table-header-group w-full', className)}>{children}</div>;
+  return (
+    <div className={cn('bg-primary table-header-group w-full whitespace-nowrap', className)}>
+      {children}
+    </div>
+  );
 };
 
 export default TableHeader;
