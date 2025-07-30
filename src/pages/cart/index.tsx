@@ -59,7 +59,7 @@ const Index = () => {
   };
 
   // 선택된 상품들 삭제
-  const handleRemoveSelected = () => {
+  const handleRemoveSelectedItem = () => {
     setCartItems((prev) => {
       const updatedItems = prev.filter((item) => !selectedItemsId.includes(item.productId));
       cartStorage.set(updatedItems);
@@ -116,7 +116,7 @@ const Index = () => {
               itemCount={cartItems.length}
               isAllSelected={isAllSelected}
               onSelectAll={handleSelectAll}
-              onRemoveSelected={handleRemoveSelected}
+              onRemoveSelectedItem={handleRemoveSelectedItem}
             />
 
             <CartItemList
