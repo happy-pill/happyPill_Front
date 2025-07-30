@@ -1,18 +1,16 @@
 import { CgClose } from 'react-icons/cg';
 
 import Button from '@/components/button/BaseButton';
-import cn from '@/utils/classNames';
 
 interface RemoveButtonProps {
   onRemove: () => void;
-  className?: string;
 }
 
-const RemoveButton = ({ onRemove, className }: RemoveButtonProps) => {
+const RemoveButton = ({ onRemove }: RemoveButtonProps) => {
   return (
     <Button
       onClick={onRemove}
-      className={cn('flex items-center justify-center rounded p-1 transition-colors', className)}
+      className='flex items-center justify-center rounded p-1 text-[clamp(15px,1vw,20px)] transition-colors'
     >
       <CgClose />
     </Button>
