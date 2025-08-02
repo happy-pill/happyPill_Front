@@ -3,16 +3,16 @@ import { useFormContext } from 'react-hook-form';
 import StyledButton from '@/components/button/StyledButton';
 
 interface ActionButtonSectionProps {
+  userId: string;
   isDeleted?: boolean;
-  userId?: string;
   handleUserActivate: (userId: string) => void;
   handleUserDeactivate: (userId: string) => void;
   onSubmit: () => void;
 }
 
 const ActionButtonSection = ({
-  isDeleted,
   userId,
+  isDeleted,
   handleUserActivate,
   handleUserDeactivate,
   onSubmit,
@@ -22,11 +22,11 @@ const ActionButtonSection = ({
   return (
     <section className='mx-auto flex items-center justify-center gap-2'>
       {isDeleted ? (
-        <StyledButton variant='border' size='M' onClick={() => handleUserActivate(userId || '')}>
+        <StyledButton variant='border' size='M' onClick={() => handleUserActivate(userId)}>
           복구
         </StyledButton>
       ) : (
-        <StyledButton variant='orange' size='M' onClick={() => handleUserDeactivate(userId || '')}>
+        <StyledButton variant='orange' size='M' onClick={() => handleUserDeactivate(userId)}>
           비활성화
         </StyledButton>
       )}

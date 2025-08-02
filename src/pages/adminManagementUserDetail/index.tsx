@@ -18,16 +18,15 @@ import {
 import { formatDateToFullDateSlide } from '@/utils/format';
 
 const Index = () => {
-  const param = useParams();
-  const { userId } = param;
+  const { userId = '' } = useParams<{ userId?: string }>();
 
   const [isUserDeleted, setIsUserDeleted] = useState(false);
 
-  const { data: userDetail } = useGetUserDetail(userId || '');
+  const { data: userDetail } = useGetUserDetail(userId);
 
-  const mutatePatchUserDeactivate = usePatchUserDeactivate(userId || '');
-  const mutatePatchUserActivate = usePatchUserActivate(userId || '');
-  const mutatePatchUserDetail = usePatchUserDetail(userId || '');
+  const mutatePatchUserDeactivate = usePatchUserDeactivate(userId);
+  const mutatePatchUserActivate = usePatchUserActivate(userId);
+  const mutatePatchUserDetail = usePatchUserDetail(userId);
 
   const methods = useForm<AdminUserDetail>();
 
@@ -36,7 +35,7 @@ const Index = () => {
 
     mutatePatchUserDetail.mutate(
       {
-        userId: userId || '',
+        userId: userId,
         nickName: formData.nickname || userDetail?.nickname,
         notifyEmail: formData.notifyEmail || userDetail?.notifyEmail,
       },
@@ -52,7 +51,7 @@ const Index = () => {
   };
 
   const handleUserDeactivate = (userId: string) => {
-    mutatePatchUserDeactivate.mutate(userId || '', {
+    mutatePatchUserDeactivate.mutate(userId, {
       onSuccess: (userData) => {
         setIsUserDeleted(userData.isDeleted);
       },
@@ -60,7 +59,7 @@ const Index = () => {
   };
 
   const handleUserActivate = (userId: string) => {
-    mutatePatchUserActivate.mutate(userId || '', {
+    mutatePatchUserActivate.mutate(userId, {
       onSuccess: (userData) => {
         setIsUserDeleted(userData.isDeleted);
       },
@@ -72,8 +71,8 @@ const Index = () => {
       setIsUserDeleted(userDetail.isDeleted);
       methods.reset({
         ...userDetail,
-        createdAt: formatDateToFullDateSlide(String(userDetail?.createdAt || '')) || '',
-        deletedAt: formatDateToFullDateSlide(String(userDetail?.deletedAt || '')) || '',
+        createdAt: formatDateToFullDateSlide(String(userDetail?.createdAt)),
+        deletedAt: formatDateToFullDateSlide(String(userDetail?.deletedAt)),
       });
     }
   }, [userDetail, methods]);
@@ -85,7 +84,7 @@ const Index = () => {
       <FormProvider {...methods}>
         <FiedFormSection />
         <ActionButtonSection
-          userId={userId || ''}
+          userId={userId}
           isDeleted={isUserDeleted}
           handleUserActivate={handleUserActivate}
           handleUserDeactivate={handleUserDeactivate}
