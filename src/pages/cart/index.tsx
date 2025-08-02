@@ -8,6 +8,7 @@ import PurchaseSummary from './components/organisms/PurchaseSummary';
 import PageTitle from '@/components/common/PageTitle';
 import LayoutContainer from '@/components/container/LayoutContainer';
 import { CART_LOCALES } from '@/constants/locale/cart';
+import { PURCHASE_ALERT_MODAL } from '@/constants/locale/modal';
 import { routePath } from '@/constants/path';
 import useLocale from '@/hooks/useLocale';
 import useModal from '@/hooks/useModal';
@@ -84,8 +85,8 @@ const Index = () => {
         type: 'message',
         props: {
           type: 'alert',
-          title: '선택된 상품이 없습니다',
-          message: '장바구니에서 구매할 상품을 먼저 선택해주세요.',
+          title: PURCHASE_ALERT_MODAL[locale].title,
+          message: PURCHASE_ALERT_MODAL[locale].message,
         },
       });
     }
