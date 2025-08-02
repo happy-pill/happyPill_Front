@@ -30,7 +30,7 @@ const UserTable = ({ userList }: UserTableProps) => {
       <Table.Body>
         {userList.contents.map((item) => (
           <Table.Row key={item.userId}>
-            <Table.Cell>{item.nickname}</Table.Cell>
+            <Table.Cell>{item.nickName}</Table.Cell>
             <Table.Cell>{item.loginEmail}</Table.Cell>
             <Table.Cell type='image'>
               <img

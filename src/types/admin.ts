@@ -16,7 +16,7 @@ export interface AdminUserSubscribeList {
 
 export interface AdminUser {
   userId: string;
-  nickname: string;
+  nickName: string;
   loginEmail: string;
   provider: 'GOOGLE' | 'KAKAO';
   createdAt: string;
@@ -33,6 +33,7 @@ export interface AdminUserList {
   totalPages: number;
 }
 
+// FIXME nickname/ nickName 데이터 반환 필드 대소문자 다름! (추후 수정 필요)
 export interface AdminUserDetail {
   userId: string;
   loginEmail: string;
