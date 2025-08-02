@@ -6,6 +6,7 @@ export { default as ProductPage } from '@/pages/product/index';
 export { default as AdminLayout } from '../components/layout/AdminLayout';
 export { default as AdminManagementSubscribePage } from './adminManagementSubscribe/index';
 export { default as AdminManagementUserPage } from './adminManagementUser/index';
+export { default as AdminManagementUserDetailPage } from './adminManagementUserDetail/index';
 export { default as AdminManagementProductPage } from './adminManagementProduct/index';
 
 /* common */

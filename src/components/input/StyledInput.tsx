@@ -3,9 +3,13 @@ import { forwardRef, type InputHTMLAttributes } from 'react';
 
 import Input from './ui/BaseInput';
 
+import type { UseFormRegister, FieldValues } from 'react-hook-form';
+
 import { cn } from '@/utils/classNames';
 
-interface Props extends InputHTMLAttributes<HTMLInputElement>, VariantProps<typeof InputVariants> {}
+interface Props extends InputHTMLAttributes<HTMLInputElement>, VariantProps<typeof InputVariants> {
+  register?: UseFormRegister<FieldValues>;
+}
 
 export const InputVariants = cva('flex items-center justify-center cursor-pointer w-full', {
   variants: {
@@ -15,8 +19,8 @@ export const InputVariants = cva('flex items-center justify-center cursor-pointe
       none: 'px-2',
     },
     inputSize: {
-      M: 'rounded-md py-2 text-m-regular text-md',
-      S: 'rounded-sm py-1 text-sm-regular text-xs',
+      M: 'rounded-md py-3 text-s-regular',
+      S: 'rounded-sm py-2 text-xs-regular',
     },
     variant: {
       base: 'border border-solid border-[#DEDEDE] text-primary-text bg-white disabled:bg-gray-100 focus:border-gray-400 invalid:border-invalid',
@@ -31,9 +35,9 @@ export const InputVariants = cva('flex items-center justify-center cursor-pointe
 });
 
 const StyledInput = forwardRef<HTMLInputElement, Props>(
-  ({ variant, icon, inputSize, className, ...rest }, ref) => {
+  ({ variant, icon, inputSize, className, register, ...rest }, ref) => {
     const inputClasses = cn(InputVariants({ variant, icon, inputSize }), className);
-    return <Input ref={ref} className={inputClasses} {...rest} />;
+    return <Input ref={ref} className={inputClasses} register={register} {...rest} />;
   },
 );
 
