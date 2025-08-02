@@ -23,6 +23,7 @@ const admin = {
     },
     user: {
       list: (page?: number, size?: number) => ['managementUserList', page, size],
+      detail: (userId: string) => ['managementUserDetail', userId],
     },
     product: {
       list: (page?: number, size?: number, categories?: number) => [

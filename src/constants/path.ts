@@ -35,7 +35,14 @@ const admin = {
   management: {
     root: '/admin/management',
     subscribe: '/admin/management/subscribe-product', // 구독상품 관리
-    user: '/admin/management/user', // 회원 관리
+    // 회원 관리
+    user: {
+      root: '/admin/management/user',
+      detail: {
+        root: '/admin/management/user/detail/:userId',
+        route: (userId: string) => `/admin/management/user/detail/${userId}`,
+      },
+    },
     product: '/admin/management/product', // 상품 관리
     category: '/admin/management/category-product', // 카테고리 관리
   },

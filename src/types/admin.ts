@@ -21,7 +21,7 @@ export interface AdminUser {
   provider: 'GOOGLE' | 'KAKAO';
   createdAt: string;
   deletedAt: string;
-  isDeleted: boolean;
+  deleted: boolean;
 }
 
 export interface AdminUserList {
@@ -31,6 +31,17 @@ export interface AdminUserList {
   pageSize: number;
   totalElements: number;
   totalPages: number;
+}
+
+export interface AdminUserDetail {
+  userId: string;
+  loginEmail: string;
+  nickname: string;
+  notifyEmail: string;
+  provider: string;
+  createdAt: string;
+  deletedAt: string;
+  isDeleted: boolean;
 }
 
 export interface AdminProduct {
