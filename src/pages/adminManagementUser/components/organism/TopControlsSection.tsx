@@ -10,7 +10,7 @@ interface TopControlsSectionProps {
 
 const TopControlsSection = ({ currentSize, onChange }: TopControlsSectionProps) => {
   return (
-    <div className='mb-5 flex w-full justify-between'>
+    <div className='mb-5 flex w-full items-center justify-between'>
       <SearchInput />
       <SelectBox currentSize={currentSize} onChange={onChange} />
     </div>
