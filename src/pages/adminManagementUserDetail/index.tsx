@@ -9,6 +9,7 @@ import type { AdminUserDetail } from '@/types/admin';
 
 import PageTitle from '@/components/common/PageTitle';
 import LayoutContainer from '@/components/container/LayoutContainer';
+import { AUTH_PROVIDER_LABELS_KO } from '@/constants/common';
 import {
   useGetUserDetail,
   usePatchUserActivate,
@@ -73,6 +74,7 @@ const Index = () => {
         ...userDetail,
         createdAt: formatDateToFullDateSlide(String(userDetail?.createdAt)),
         deletedAt: formatDateToFullDateSlide(String(userDetail?.deletedAt)),
+        provider: AUTH_PROVIDER_LABELS_KO[userDetail.provider],
       });
     }
   }, [userDetail, methods]);
