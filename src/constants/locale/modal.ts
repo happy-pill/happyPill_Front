@@ -70,3 +70,14 @@ export const CART_COMPLETE_MODAL = {
     message: 'Your item has been added to the cart.',
   },
 };
+
+export const PURCHASE_ALERT_MODAL = {
+  ko: {
+    title: '선택된 상품이 없습니다.',
+    message: '장바구니에서 구매할 상품을 먼저 선택해주세요.',
+  },
+  en: {
+    title: 'No items selected.',
+    message: 'Please select the items you want to purchase from the cart first.',
+  },
+};
