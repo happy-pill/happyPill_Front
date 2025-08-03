@@ -7,6 +7,7 @@ import {
   AdminManagementUserPage,
   AdminManagementProductPage,
   AdminManagementSubscribePage,
+  CartPage,
   Layout,
   LoginPage,
   MainPage,
@@ -29,6 +30,7 @@ const router = createBrowserRouter([
       },
       { path: routePath.common.oauthRedirect, element: <OauthRedirectPage /> },
       { path: routePath.common.product.root, element: <ProductPage /> },
+      { path: routePath.common.cart, element: <CartPage /> },
     ],
   },
   /** ADMIN */
