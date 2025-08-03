@@ -1,17 +1,12 @@
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 
-interface CheckoutProduct {
-  productId: string;
-  name: string;
-  price: number;
-  period: number;
-  thumbnailUrl: string;
-}
+import type { CheckoutProduct } from '@/types/products';
 
 interface CheckoutStoreState {
   items: CheckoutProduct[];
   setItems: (items: CheckoutProduct[]) => void;
+  addItem: (item: CheckoutProduct) => void; // 추가
   clearItems: () => void;
 }
 
@@ -23,11 +18,15 @@ const useCheckoutStore = create<CheckoutStoreState>()(
         set(() => ({
           items,
         })),
+      addItem: (item) =>
+        set(() => ({
+          items: [item],
+        })),
       clearItems: () => set(() => ({ items: [] })),
     }),
     {
-      name: 'checkout-storage',
-      storage: createJSONStorage(() => sessionStorage),
+      name: 'purchase-storage',
+      storage: createJSONStorage(() => localStorage),
     },
   ),
 );

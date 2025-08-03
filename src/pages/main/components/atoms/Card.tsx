@@ -37,7 +37,7 @@ const Card = ({ product }: CardProps) => {
         </Link>
       </div>
       <div className='px-[20px] py-[30px]'>
-        <p className='text-xl-bold'>{product.name}</p>
+        <p className='text-xl-bold'>{product.productName}</p>
         <p className='text-12 mt-[15px]'>{product.company}</p>
         <div className='mt-5xl flex justify-between'>
           <p className='text-xl-medium'>{product.price}</p>

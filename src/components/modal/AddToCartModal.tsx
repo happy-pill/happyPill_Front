@@ -7,13 +7,14 @@ import StyledButton from '../button/StyledButton';
 import PurchaseOption from '../purchaseOption/PurchaseOption';
 import Select from '../select/Select';
 
-import type { ProductDetail } from '@/types/products';
+import type { CheckoutProduct, ProductDetail } from '@/types/products';
 
 import { CART_MODAL } from '@/constants/locale/modal';
 import { routePath } from '@/constants/path';
 import { SUBSCRIPTION_MONTH_OPTIONS } from '@/constants/subscription';
 import useLocale from '@/hooks/useLocale';
 import useModal from '@/hooks/useModal';
+import useCheckoutStore from '@/stores/checkoutStore';
 import { cartStorage } from '@/utils/cartStorage';
 
 type CartProductProps = {
@@ -21,19 +22,28 @@ type CartProductProps = {
 };
 
 const AddToCartModal: React.FC<CartProductProps> = ({ product }) => {
-  const { productId, name, price, briefDescription, thumbnailUrl } = product;
+  const { productId, productName, price, briefDescription, thumbnailUrl } = product;
   const [subscriptionOption, setSubscriptionOption] = useState<number>(1);
   const { openModal, closeModal } = useModal();
-
+  const { addItem } = useCheckoutStore();
   const navigate = useNavigate();
   const { locale } = useLocale();
+  const item: CheckoutProduct = {
+    productId,
+    productName,
+    price,
+    briefDescription,
+    thumbnailUrl,
+    period: subscriptionOption,
+  };
 
   const handleChange = (value: string | number) => {
     setSubscriptionOption(Number(value));
   };
 
-  const handlePurchase = (productId: string) => {
-    navigate(routePath.common.purchase.direct.route(productId));
+  const handlePurchase = () => {
+    navigate(routePath.common.purchase);
+    addItem(item);
   };
 
   const handleAddToCart = () => {
@@ -43,22 +53,13 @@ const AddToCartModal: React.FC<CartProductProps> = ({ product }) => {
       return;
     }
 
-    const item = {
-      productId,
-      name,
-      price,
-      briefDescription,
-      thumbnailUrl,
-      period: subscriptionOption,
-    };
-
     cartStorage.save(item);
     closeModal();
     openModal({ type: 'cartAddSuccess' });
   };
   const BUTTONS = [
     { key: 'addToCart', variant: 'border', onClick: handleAddToCart },
-    { key: 'buyNow', variant: 'green', onClick: () => handlePurchase(productId) },
+    { key: 'buyNow', variant: 'green', onClick: handlePurchase },
   ] as const;
 
   return (
