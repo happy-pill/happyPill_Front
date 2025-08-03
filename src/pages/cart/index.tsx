@@ -12,12 +12,12 @@ import { PURCHASE_ALERT_MODAL } from '@/constants/locale/modal';
 import { routePath } from '@/constants/path';
 import useLocale from '@/hooks/useLocale';
 import useModal from '@/hooks/useModal';
+import useCheckoutStore from '@/stores/checkoutStore';
 import { cartStorage } from '@/utils/cartStorage';
-import { purchaseStorage } from '@/utils/purchaseStorage';
 
 export interface CartItemProps {
   productId: string;
-  name: string;
+  productName: string;
   price: number;
   briefDescription: string;
   thumbnailUrl: string;
@@ -30,6 +30,7 @@ const Index = () => {
   const isAllSelected = cartItems.length > 0 && selectedItemsId.length === cartItems.length;
   const { locale } = useLocale();
   const { openModal } = useModal();
+  const { setItems } = useCheckoutStore();
   const navigate = useNavigate();
 
   // 체크박스 클릭 이벤트
@@ -91,8 +92,8 @@ const Index = () => {
       });
     }
 
-    purchaseStorage.set(selectedItemsId);
-    navigate(routePath.common.purchase.cart);
+    setItems(cartItems);
+    navigate(routePath.common.purchase);
   };
 
   useEffect(() => {
@@ -112,7 +113,7 @@ const Index = () => {
       <div className='relative my-[clamp(40px,6vw,100px)]'>
         <PageTitle>{CART_LOCALES[locale].pageTitle}</PageTitle>
         <div className='mb-24 grid grid-cols-1 gap-x-6 lg:mb-0 lg:grid-cols-[2.5fr_1fr]'>
-          <>
+          <div>
             <CartHeader
               itemCount={cartItems.length}
               isAllSelected={isAllSelected}
@@ -127,7 +128,7 @@ const Index = () => {
               onPeriodChange={handlePeriodChange}
               onRemoveItem={handleRemoveItem}
             />
-          </>
+          </div>
           <PurchaseSummary
             onPurchaseItems={handlePurchaseItems}
             totalPrice={totalPrice}
