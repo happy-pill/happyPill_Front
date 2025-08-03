@@ -3,7 +3,7 @@ import { HiMiniCheckCircle } from 'react-icons/hi2';
 
 import Modal from './ui/Modal';
 
-import { CART_COMPLETE_MODAL } from '@/constants/locale';
+import { CART_COMPLETE_MODAL } from '@/constants/locale/modal';
 import useLocale from '@/hooks/useLocale';
 import useModal from '@/hooks/useModal';
 

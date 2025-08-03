@@ -1,7 +1,7 @@
 import PeriodSelector from '../atoms/PeriodSelector';
 import PriceDisplay from '../atoms/PriceDisplay';
 import ProductInfo from '../atoms/ProductInfo';
-import ProductThunmbnail from '../atoms/ProductThunmbnail';
+import ProductThumbnail from '../atoms/ProductThumbnail';
 import RemoveButton from '../atoms/RemoveButton';
 
 import type { CartItemProps } from '@/pages/cart/index';
@@ -36,7 +36,7 @@ const CartItemCard = ({
       />
 
       <div className='grid grid-cols-[max-content_auto_30px] items-center gap-x-[clamp(8px,2vw,20px)]'>
-        <ProductThunmbnail productId={item.productId} src={item.thumbnailUrl} alt={item.name} />
+        <ProductThumbnail productId={item.productId} src={item.thumbnailUrl} alt={item.name} />
         <div className='grid grid-cols-[1fr_auto] items-center gap-x-[clamp(8px,2vw,20px)]'>
           <div className='grid items-center gap-x-[clamp(10px,2vw,20px)] gap-y-2 lg:grid-cols-[1fr_1fr] lg:justify-between'>
             <ProductInfo productName={item.name} briefDescription={item.briefDescription} />
