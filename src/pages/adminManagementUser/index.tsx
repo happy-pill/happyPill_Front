@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
-import Title from './components/atom/Title';
 import TopControlsSection from './components/organism/TopControlsSection';
 import UserListSection from './components/organism/UserListSection';
 
+import PageTitle from '@/components/common/PageTitle';
 import LayoutContainer from '@/components/container/LayoutContainer';
 import { ADMIN_SELECT_ITEMS } from '@/constants/common';
 import { useGetUserList } from '@/hooks/api/admin/management';
@@ -24,7 +24,7 @@ const Index = () => {
 
   return (
     <LayoutContainer isMaxW={false} isHeader={false} px='px-0'>
-      <Title>회원 관리</Title>
+      <PageTitle>회원 관리</PageTitle>
 
       <TopControlsSection currentSize={size} onChange={onChangeSize} />
 

@@ -18,7 +18,7 @@ const SearchInput = ({ onClick, onChange }: SearchInputProps) => {
         iconItem={{ icon: <CiSearch size={20} />, position: 'left' }}
         onChange={onChange}
       />
-      <StyledButton size='M' variant='green' onClick={onClick}>
+      <StyledButton size='M' variant='green' onClick={onClick} className='whitespace-nowrap'>
         검색
       </StyledButton>
     </div>

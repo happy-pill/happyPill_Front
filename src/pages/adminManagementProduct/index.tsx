@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
-import Title from './components/atom/Title';
 import ProductListSection from './components/organism/ProductListSection';
 import TopControlsSection from './components/organism/TopControlsSection';
 
+import PageTitle from '@/components/common/PageTitle';
 import LayoutContainer from '@/components/container/LayoutContainer';
 import { ADMIN_SELECT_ITEMS } from '@/constants/common';
 import { useGetProductList } from '@/hooks/api/admin/management';
@@ -19,7 +19,7 @@ const Index = () => {
 
   return (
     <LayoutContainer isMaxW={false} isHeader={false} px='px-0'>
-      <Title>상품 관리</Title>
+      <PageTitle>상품 관리</PageTitle>
 
       <TopControlsSection />
 

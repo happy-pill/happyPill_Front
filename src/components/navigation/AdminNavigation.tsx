@@ -1,32 +1,9 @@
 import { Link, useLocation } from 'react-router-dom';
 
-import { routePath } from '@/constants/path';
+import { ADMIN_NAV_ITEMS } from '@/constants/navigation';
 
 const AdminNavigation = () => {
   const location = useLocation();
-
-  const NAV_ITEMS = [
-    {
-      type: 'managementSubscribe',
-      name: '구독 상품 관리',
-      path: routePath.admin.management.subscribe,
-    },
-    {
-      type: 'managementUser',
-      name: '회원 관리',
-      path: routePath.admin.management.user,
-    },
-    {
-      type: 'managementProduct',
-      name: '상품 관리',
-      path: routePath.admin.management.product,
-    },
-    {
-      type: 'managementCategory',
-      name: '카테고리 관리',
-      path: routePath.admin.management.category,
-    },
-  ];
 
   const activeCalss = 'bg-primary text-white';
 
@@ -36,11 +13,11 @@ const AdminNavigation = () => {
         관리
       </h3>
       <div className='flex flex-col'>
-        {NAV_ITEMS.map((item) => (
+        {ADMIN_NAV_ITEMS.map((item) => (
           <Link
             key={item.type}
             to={item.path}
-            className={`rounded-md p-[10px] text-sm ${item.path === location.pathname ? activeCalss : 'bg-white hover:bg-gray-50'} `}
+            className={`rounded-md p-[10px] text-sm ${location.pathname.includes(item.path) ? activeCalss : 'bg-white hover:bg-gray-50'} `}
           >
             {item.name}
           </Link>

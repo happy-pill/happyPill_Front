@@ -13,6 +13,7 @@ import {
   MainPage,
   OauthRedirectPage,
   ProductPage,
+  AdminManagementUserDetailPage,
 } from '@/pages/index';
 
 const router = createBrowserRouter([
@@ -43,8 +44,12 @@ const router = createBrowserRouter([
         element: <AdminManagementSubscribePage />,
       },
       {
-        path: routePath.admin.management.user,
+        path: routePath.admin.management.user.root,
         element: <AdminManagementUserPage />,
+      },
+      {
+        path: routePath.admin.management.user.detail.root,
+        element: <AdminManagementUserDetailPage />,
       },
       {
         path: routePath.admin.management.product,

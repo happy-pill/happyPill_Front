@@ -5,6 +5,8 @@ import InputErrorMsg from './ui/InputErrorMsg';
 import InputIcon from './ui/InputIcon';
 import InputLabel from './ui/InputLabel';
 
+import type { UseFormRegister, FieldValues } from 'react-hook-form';
+
 import cn from '@/utils/classNames';
 
 interface FiledInputProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -14,12 +16,13 @@ interface FiledInputProps extends InputHTMLAttributes<HTMLInputElement> {
   errorMsg?: string;
   iconItem?: { icon: React.ReactNode; position: 'left' | 'right' };
   contentItem?: { item: React.ReactNode; position: 'left' | 'right' };
+  register?: UseFormRegister<FieldValues>;
 }
 
 const FiledInput = forwardRef<HTMLInputElement, FiledInputProps>(
-  ({ className, label, isRequired, errorMsg, iconItem, contentItem, ...rest }, ref) => {
+  ({ className, label, isRequired, errorMsg, iconItem, contentItem, register, ...rest }, ref) => {
     return (
-      <label className='flex flex-col items-start gap-1'>
+      <label className='flex w-full flex-col items-start gap-1'>
         {label && (
           <InputLabel>
             {label}
@@ -47,6 +50,7 @@ const FiledInput = forwardRef<HTMLInputElement, FiledInputProps>(
             className={cn('outline-none', className)}
             required={isRequired}
             aria-invalid={!!errorMsg}
+            register={register}
             {...rest}
           />
         </div>
