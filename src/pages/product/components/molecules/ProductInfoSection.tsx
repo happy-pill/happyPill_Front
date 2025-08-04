@@ -52,7 +52,7 @@ const ProductInfoSection: React.FC<productInfoProps> = ({
 
   return (
     <div className='grid w-full grid-cols-1 gap-x-5 md:grid-cols-2'>
-      <ProductThumbnail src={product?.thumbnailUrl} alt={product?.name} />
+      <ProductThumbnail src={product?.thumbnailUrl} alt={product?.productName} />
       <div className='pt-5 md:p-8'>
         <ProductHeader product={product} />
 
