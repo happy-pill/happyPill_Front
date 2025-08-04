@@ -39,7 +39,7 @@ const CartItemCard = ({
         <ProductThumbnail productId={item.productId} src={item.thumbnailUrl} alt={item.name} />
         <div className='grid grid-cols-[1fr_auto] items-center gap-x-[clamp(8px,2vw,20px)]'>
           <div className='grid items-center gap-x-[clamp(10px,2vw,20px)] gap-y-2 lg:grid-cols-[1fr_1fr] lg:justify-between'>
-            <ProductInfo productName={item.name} briefDescription={item.briefDescription} />
+            <ProductInfo productName={item.productName} briefDescription={item.briefDescription} />
             <PeriodSelector
               period={item.period}
               onChange={(value: string | number) => onPeriodChange(item.productId, Number(value))}
