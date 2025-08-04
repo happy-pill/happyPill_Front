@@ -15,6 +15,7 @@ import useCheckoutStore from '@/stores/checkoutStore';
 
 const ProductPage: React.FC = () => {
   const { productId } = useParams();
+
   const [subscriptionOption, setSubscriptionOption] = useState(1);
 
   const navigate = useNavigate();
@@ -26,11 +27,11 @@ const ProductPage: React.FC = () => {
   const { data: bestProductData, isLoading: isLoadingRelatedProducts } = useGetRelatedProducts();
 
   const item = {
-    productId: productData.productId,
-    productName: productData.name,
-    price: productData.price,
-    briefDescription: productData.briefDescription,
-    thumbnailUrl: productData.thumbnailUrl,
+    productId: productData?.productId,
+    productName: productData?.name,
+    price: productData?.price,
+    briefDescription: productData?.briefDescription,
+    thumbnailUrl: productData?.thumbnailUrl,
     period: subscriptionOption,
   };
 
