@@ -60,7 +60,7 @@ const RecipientForm = ({ register }: RecipientFormProps) => {
           {/* 이메일 */}
           <div className={STYLES.fieldContainer}>
             <label className={STYLES.label}>{LOCALE_LABELS[locale].recipientForm.email}</label>
-            <input type='text' className={STYLES.input} {...register('email')} />
+            <input type='text' className={STYLES.input} autoComplete='off' {...register('email')} />
           </div>
         </div>
       </AccordionSection>
