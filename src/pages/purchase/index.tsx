@@ -61,6 +61,14 @@ const Index = () => {
   }, 0);
 
   const onSubmit = async (data: PurchaseFormData) => {
+    if (payMethod === 'VIRTUAL_ACCOUNT')
+      return openModal({
+        type: 'message',
+        props: {
+          type: 'alert',
+          message: '가상계좌 결제는 현재 준비중입니다.',
+        },
+      });
     const phoneNumber = [
       data.phonePrefix.toString(),
       data.phoneMiddle.toString(),
