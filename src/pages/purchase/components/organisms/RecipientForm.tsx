@@ -5,14 +5,14 @@ import type { UseFormRegister } from 'react-hook-form';
 
 import { LOCALE_LABELS } from '@/constants/locale/purchase';
 import useLocale from '@/hooks/useLocale';
-import AccordionSection from '@/pages/purchase/components/atoms/AccordionSection';
+import Accordion from '@/pages/purchase/components/molecules/Accordion';
 
 interface RecipientFormProps {
   register: UseFormRegister<PurchaseFormData>;
 }
 
 const RecipientForm = ({ register }: RecipientFormProps) => {
-  const phoneNumbers = ['010', '011', '016', '017', '018', '019'];
+  const PHONE_NUMBERS = ['010', '011', '016', '017', '018', '019'];
   const { locale } = useLocale();
 
   const STYLES = {
@@ -23,7 +23,7 @@ const RecipientForm = ({ register }: RecipientFormProps) => {
 
   return (
     <div className='rounded-md bg-white'>
-      <AccordionSection title={LOCALE_LABELS[locale].recipientForm.title}>
+      <Accordion title={LOCALE_LABELS[locale].recipientForm.title}>
         <div className='grid max-w-[900px] gap-y-4 p-5'>
           {/* 이름 */}
           <div className={STYLES.fieldContainer}>
@@ -36,7 +36,7 @@ const RecipientForm = ({ register }: RecipientFormProps) => {
             <div className='flex flex-wrap items-center gap-2'>
               <div className='relative min-w-[80px] flex-1 rounded-sm border border-[#dedede]'>
                 <select className='w-full appearance-none p-2' {...register('phonePrefix')}>
-                  {phoneNumbers.map((phone) => (
+                  {PHONE_NUMBERS.map((phone) => (
                     <option key={phone} value={phone}>
                       {phone}
                     </option>
@@ -63,7 +63,7 @@ const RecipientForm = ({ register }: RecipientFormProps) => {
             <input type='text' className={STYLES.input} autoComplete='off' {...register('email')} />
           </div>
         </div>
-      </AccordionSection>
+      </Accordion>
     </div>
   );
 };
