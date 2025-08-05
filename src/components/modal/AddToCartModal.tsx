@@ -42,8 +42,8 @@ const AddToCartModal: React.FC<CartProductProps> = ({ product }) => {
   };
 
   const handlePurchase = () => {
-    navigate(routePath.common.purchase);
     addItem(item);
+    navigate(routePath.common.purchase.root);
   };
 
   const handleAddToCart = () => {
