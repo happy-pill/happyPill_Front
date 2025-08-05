@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import type { CheckoutProduct } from '@/types/products';
 
 import { LOCALE_LABELS } from '@/constants/locale/purchase';
+import { routePath } from '@/constants/path';
 import useLocale from '@/hooks/useLocale';
 import AccordionSection from '@/pages/purchase/components/atoms/AccordionSection';
 import { cn } from '@/utils/classNames';
@@ -26,12 +27,12 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({ items }) => {
               <div key={`${item.productName} + ${idx}`} className={cn('p-5', idx !== 0 && 'pt-3')}>
                 <div className={cn(`flex border-b border-[#e9e9e9] py-5`, isLast && 'border-none')}>
                   <div className='mr-5 h-[90px] w-[90px]'>
-                    <a href={`product/${item.productId}`}>
+                    <a href={routePath.common.product.route(item.productId)}>
                       <img src={item.thumbnailUrl} alt={item.productName} width={90} height={90} />
                     </a>
                   </div>
                   <div className='grid'>
-                    <Link to={`product/${item.productId}`}>
+                    <Link to={routePath.common.product.route(item.productId)}>
                       <strong className='mb-2 text-[clamp(13px,1vw,16px)] font-medium'>
                         {item.productName}
                       </strong>
