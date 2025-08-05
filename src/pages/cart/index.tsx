@@ -92,7 +92,8 @@ const Index = () => {
       });
     }
 
-    setItems(cartItems);
+    const selectedItems = cartItems.filter((item) => selectedItemsId.includes(item.productId));
+    setItems(selectedItems);
     navigate(routePath.common.purchase);
   };
 
