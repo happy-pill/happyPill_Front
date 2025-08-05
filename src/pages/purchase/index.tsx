@@ -5,17 +5,19 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import z from 'zod';
 
+import type { PayMethod } from '@/types/order';
+
 import PageTitle from '@/components/common/PageTitle';
 import LayoutContainer from '@/components/container/LayoutContainer';
-import { LOCALE_LABELS } from '@/constants/locale/purchase';
+import { LOCALE_LABELS, PAYMENT_METHODS } from '@/constants/locale/purchase';
 import { routePath } from '@/constants/path';
 import { useCreateOrder } from '@/hooks/api/member/purchase';
 import useLocale from '@/hooks/useLocale';
 import useModal from '@/hooks/useModal';
-import PaymentMethodSelector from '@/pages/purchase/components/atoms/PaymentMethodSelector';
-import OrderSummary from '@/pages/purchase/components/molecules/OrderSummary';
-import PaymentSummary from '@/pages/purchase/components/molecules/PaymentSummary';
-import RecipientForm from '@/pages/purchase/components/molecules/RecipientForm';
+import PaymentMethodSelector from '@/pages/purchase/components/molecules/PaymentMethodSelector';
+import OrderSummary from '@/pages/purchase/components/organisms/OrderSummary';
+import PaymentSummary from '@/pages/purchase/components/organisms/PaymentSummary';
+import RecipientForm from '@/pages/purchase/components/organisms/RecipientForm';
 import useCheckoutStore from '@/stores/checkoutStore';
 
 const userSchema = z.object({
@@ -35,7 +37,7 @@ const userSchema = z.object({
 export type PurchaseFormData = z.infer<typeof userSchema>;
 
 const Index = () => {
-  const [payMethod, setPayMethod] = useState<'CARD' | 'VIRTUAL_ACCOUNT'>('CARD');
+  const [payMethod, setPayMethod] = useState<PayMethod>(PAYMENT_METHODS.CARD);
   const { items } = useCheckoutStore();
   const createOrderMutation = useCreateOrder();
   const { locale } = useLocale();
@@ -50,8 +52,8 @@ const Index = () => {
     defaultValues: {
       name: '',
       phonePrefix: '010',
-      phoneMiddle: undefined,
-      phoneLast: undefined,
+      phoneMiddle: '',
+      phoneLast: '',
       email: '',
     },
     mode: 'onChange',
@@ -131,7 +133,8 @@ const Index = () => {
         }
       },
       onError: (error) => {
-        console.error('주문 생성 실패:', error);
+        const err = error as Error;
+        console.error('주문 생성 실패:', err);
       },
     });
   };
