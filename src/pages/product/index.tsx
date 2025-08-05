@@ -48,7 +48,7 @@ const ProductPage: React.FC = () => {
   };
 
   const handlePurchase = () => {
-    navigate(routePath.common.purchase);
+    navigate(routePath.common.purchase.root);
     addItem(item);
   };
 
