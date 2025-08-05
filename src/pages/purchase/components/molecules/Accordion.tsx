@@ -3,13 +3,13 @@ import { IoIosArrowUp } from 'react-icons/io';
 
 import { cn } from '@/utils/classNames';
 
-interface AccordionSectionProps {
+interface AccordionProps {
   title: string;
   children: React.ReactNode;
   defaultOpen?: boolean;
 }
 
-const AccordionSection = ({ title, children, defaultOpen = true }: AccordionSectionProps) => {
+const Accordion = ({ title, children, defaultOpen = true }: AccordionProps) => {
   const [isOpen, setIsOpen] = useState(defaultOpen);
 
   return (
@@ -29,4 +29,4 @@ const AccordionSection = ({ title, children, defaultOpen = true }: AccordionSect
   );
 };
 
-export default AccordionSection;
+export default Accordion;
