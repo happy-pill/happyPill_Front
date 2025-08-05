@@ -58,3 +58,8 @@ export const LOCALE_LABELS = {
     },
   },
 } as const;
+
+export const PAYMENT_METHODS = {
+  CARD: 'CARD',
+  VIRTUAL_ACCOUNT: 'VIRTUAL_ACCOUNT',
+} as const;
