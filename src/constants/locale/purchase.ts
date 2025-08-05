@@ -12,6 +12,13 @@ export const LOCALE_LABELS = {
       CARD: '카드 결제',
       VIRTUAL_ACCOUNT: '가상 계좌',
     },
+    orderSummary: {
+      title: '주문상품',
+      subscriptionPeriod: {
+        prefix: '구독',
+        suffix: '개월',
+      },
+    },
     paymentSummary: {
       title: '결제금액',
       productAmount: '상품금액',
@@ -33,6 +40,13 @@ export const LOCALE_LABELS = {
       title: 'Payment Method',
       CARD: 'Card payment',
       VIRTUAL_ACCOUNT: 'Virtual Account',
+    },
+    orderSummary: {
+      title: 'Order Items',
+      subscriptionPeriod: {
+        prefix: 'Subscribe for ',
+        suffix: ' months',
+      },
     },
     paymentSummary: {
       title: 'Payment Summary',
