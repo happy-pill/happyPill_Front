@@ -11,6 +11,11 @@ const member = {
       filteredCategoryIds,
     ],
   },
+  order: {
+    create: ['orderCreate'],
+    list: ['orderList'],
+    detail: (orderId: string) => ['orderDetail', orderId],
+  },
   user: {
     info: ['userInfo'],
     updateNickname: ['userUpdateNickname'],

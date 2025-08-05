@@ -14,6 +14,7 @@ import {
   OauthRedirectPage,
   ProductPage,
   AdminManagementUserDetailPage,
+  PurchasePage,
 } from '@/pages/index';
 
 const router = createBrowserRouter([
@@ -31,6 +32,7 @@ const router = createBrowserRouter([
       { path: routePath.common.oauthRedirect, element: <OauthRedirectPage /> },
       { path: routePath.common.product.root, element: <ProductPage /> },
       { path: routePath.common.cart, element: <CartPage /> },
+      { path: routePath.common.purchase.root, element: <PurchasePage /> },
     ],
   },
   /** ADMIN */

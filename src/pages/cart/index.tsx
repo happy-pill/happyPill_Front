@@ -92,8 +92,9 @@ const Index = () => {
       });
     }
 
-    setItems(cartItems);
-    navigate(routePath.common.purchase);
+    const selectedItems = cartItems.filter((item) => selectedItemsId.includes(item.productId));
+    setItems(selectedItems);
+    navigate(routePath.common.purchase.root);
   };
 
   useEffect(() => {

@@ -11,7 +11,13 @@ const common = {
     route: (productId: string) => `/product/${productId}`,
   },
   cart: '/cart',
-  purchase: '/purchase',
+  purchase: {
+    root: '/purchase',
+    complete: {
+      root: '/purchase/complete/:paymentId',
+      route: (paymentId: string) => `/purchase/complete/${paymentId}`,
+    },
+  },
 };
 
 /** MEMBER - 로그인 후 접근 */
