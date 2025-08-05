@@ -2,11 +2,13 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import PortOne from '@portone/browser-sdk/v2';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import z from 'zod';
 
 import PageTitle from '@/components/common/PageTitle';
 import LayoutContainer from '@/components/container/LayoutContainer';
 import { LOCALE_LABELS } from '@/constants/locale/purchase';
+import { routePath } from '@/constants/path';
 import { useCreateOrder } from '@/hooks/api/member/purchase';
 import useLocale from '@/hooks/useLocale';
 import useModal from '@/hooks/useModal';
@@ -38,7 +40,7 @@ const Index = () => {
   const createOrderMutation = useCreateOrder();
   const { locale } = useLocale();
   const { openModal } = useModal();
-
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -123,6 +125,7 @@ const Index = () => {
             });
             return;
           }
+          navigate(routePath.common.purchase.complete.route(response.paymentUid));
         } catch (error) {
           console.error('결제 중 오류가 발생했습니다.', error);
         }
