@@ -3,7 +3,7 @@ import React, { type Dispatch, type SetStateAction } from 'react';
 import StyledButton from '@/components/button/StyledButton';
 import { LOCALE_LABELS, PAYMENT_METHODS } from '@/constants/locale/purchase';
 import useLocale from '@/hooks/useLocale';
-import AccordionSection from '@/pages/purchase/components/molecules/Accordion';
+import Accordion from '@/pages/purchase/components/molecules/Accordion';
 import { cn } from '@/utils/classNames';
 
 type PayMethod = 'CARD' | 'VIRTUAL_ACCOUNT';
@@ -35,7 +35,7 @@ const PaymentMethodSelector: React.FC<PaymentMethodSelector> = ({ selected, onSe
 
   return (
     <div className='rounded-md bg-white'>
-      <AccordionSection title={LOCALE_LABELS[locale].paymentMethod.title}>
+      <Accordion title={LOCALE_LABELS[locale].paymentMethod.title}>
         <div className='grid grid-cols-4 gap-2 p-5'>
           {PAYMENT_METHOD.map((method, idx) => (
             <StyledButton
@@ -47,7 +47,7 @@ const PaymentMethodSelector: React.FC<PaymentMethodSelector> = ({ selected, onSe
             </StyledButton>
           ))}
         </div>
-      </AccordionSection>
+      </Accordion>
     </div>
   );
 };
