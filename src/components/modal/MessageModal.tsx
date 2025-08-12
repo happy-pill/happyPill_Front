@@ -1,5 +1,4 @@
 import Modal from './ui/Modal';
-import Button from '../button/BaseButton';
 import StyledButton from '../button/StyledButton';
 
 import useModal from '@/hooks/useModal';
@@ -22,11 +21,13 @@ const MessageModal: React.FC<MessageModalProps> = (props) => {
         </div>
         <div className='flex-1 text-center text-[clamp(14px,1.5vw,18px)] break-all'>{message}</div>
         {type == 'confirm' ? (
-          <div className='mt-10 flex items-center gap-x-4'>
-            <Button onClick={() => onConfirm()}>확인</Button>
-            <Modal.Close className='border-button-secondary text-14 text-button-secondary w-full rounded-3xl border border-solid bg-white py-2 font-semibold'>
+          <div className='mt-10 flex items-center justify-center gap-x-4'>
+            <StyledButton variant='border' onClick={closeModal}>
               취소
-            </Modal.Close>
+            </StyledButton>
+            <StyledButton variant='green' onClick={() => onConfirm()}>
+              확인
+            </StyledButton>
           </div>
         ) : (
           <div className='mt-10 flex w-full items-center justify-center'>

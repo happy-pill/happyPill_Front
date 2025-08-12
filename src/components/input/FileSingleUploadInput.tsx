@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { type UseFormRegisterReturn } from 'react-hook-form';
 import { FaCamera } from 'react-icons/fa';
 
 import InputErrorMsg from './ui/InputErrorMsg';
@@ -8,14 +9,27 @@ import { cn } from '@/utils/classNames';
 
 interface FileUploadInputProps {
   label?: string;
+  name?: string;
+  thumbnailUrl?: string;
   isRequired?: boolean;
   errorMsg?: string;
+  register?: UseFormRegisterReturn;
   onChange?: (files: FileList | null) => void;
 }
 
-const FileSingleUploadInput = ({ label, isRequired, errorMsg, onChange }: FileUploadInputProps) => {
+const FileSingleUploadInput = ({
+  label,
+  name,
+  thumbnailUrl,
+  isRequired,
+  errorMsg,
+  register,
+  onChange,
+}: FileUploadInputProps) => {
   const [thumbnail, setThumbnail] = useState('');
   const [isEditFile, setIsEditFile] = useState(false);
+
+  const isThumbnailUrl = !!(typeof thumbnailUrl === 'string' && thumbnailUrl);
 
   const fileEditClass = isEditFile
     ? 'z-2 *:text-white *:fill-white'
@@ -43,24 +57,24 @@ const FileSingleUploadInput = ({ label, isRequired, errorMsg, onChange }: FileUp
       {label && <InputLabel>{label}</InputLabel>}
 
       <div
-        className='invalid:border-invalid relative aspect-square w-full max-w-[200px] overflow-hidden rounded-md border border-solid border-gray-100'
+        className='invalid:border-invalid relative aspect-square w-full max-w-[200px] overflow-hidden rounded-md border border-solid border-gray-100 focus-within:border-gray-400'
         onMouseLeave={() => {
-          if (thumbnail) setIsEditFile(false);
+          if (isThumbnailUrl || thumbnail) setIsEditFile(false);
         }}
         onMouseEnter={() => {
-          if (thumbnail) setIsEditFile(true);
+          if (isThumbnailUrl || thumbnail) setIsEditFile(true);
         }}
       >
-        {thumbnail && (
+        {(thumbnail || isThumbnailUrl) && (
           <img
-            src={thumbnail}
+            src={thumbnail ? thumbnail : thumbnailUrl || ''}
             alt='file-thumbnail'
             className='absolute z-1 h-full w-full bg-white object-cover'
           />
         )}
 
         <label
-          htmlFor='upload-file'
+          htmlFor={register?.name || name}
           className={cn(
             'absolute top-0 left-0 flex h-full w-full cursor-pointer flex-col items-center justify-center gap-2',
             fileEditClass,
@@ -72,17 +86,21 @@ const FileSingleUploadInput = ({ label, isRequired, errorMsg, onChange }: FileUp
           {isEditFile && (
             <div className='absolute top-0 left-0 z-[-1] h-full w-full bg-black opacity-60' />
           )}
+          <input
+            type='file'
+            id={register?.name || name}
+            name={register?.name || name}
+            className='absolute -top-1 -left-1 h-1 w-1 overflow-hidden'
+            accept='image/*'
+            required={register?.required || isRequired}
+            onChange={(e) => {
+              onChangeFile(e);
+              register?.onChange?.(e);
+            }}
+            ref={register?.ref}
+            onBlur={register?.onBlur}
+          />
         </label>
-
-        <input
-          type='file'
-          id='upload-file'
-          name='upload-file'
-          className='hidden'
-          accept='image/*'
-          required={isRequired}
-          onChange={onChangeFile}
-        />
       </div>
       {errorMsg && <InputErrorMsg>{errorMsg}</InputErrorMsg>}
     </div>

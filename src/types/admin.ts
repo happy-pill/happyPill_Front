@@ -1,3 +1,4 @@
+/** 구독 상품 관리 */
 export interface AdminUserSubscribe {
   productName: string;
   notifyEmail: string;
@@ -14,9 +15,10 @@ export interface AdminUserSubscribeList {
   totalPages: number;
 }
 
+/** 유저 관리 */
 export interface AdminUser {
   userId: string;
-  nickName: string;
+  nickname: string;
   loginEmail: string;
   provider: 'GOOGLE' | 'KAKAO';
   createdAt: string;
@@ -33,7 +35,6 @@ export interface AdminUserList {
   totalPages: number;
 }
 
-// FIXME nickname/ nickName 데이터 반환 필드 대소문자 다름! (추후 수정 필요)
 export interface AdminUserDetail {
   userId: string;
   loginEmail: string;
@@ -45,10 +46,11 @@ export interface AdminUserDetail {
   isDeleted: boolean;
 }
 
+/** 상품 등록 */
 export interface AdminProduct {
   productId: string;
   categoryId: string;
-  name: string;
+  productName: string;
   company: string;
   price: number;
   stock: number;
@@ -64,4 +66,49 @@ export interface AdminProductList {
   pageSize: number;
   totalElements: number;
   totalPages: number;
+}
+export interface AdminProductInfo {
+  language: string; //'KO' | 'EN';
+  name: string;
+  briefDescription: string;
+  description: string;
+  contentImageUrl: string;
+  company: string;
+  quantityDetails: string;
+  usage: string;
+  warningMessage: string;
+}
+
+// 표시
+export interface AdminProductDetail {
+  categoryId: number;
+  thumbnailUrl: string;
+  isAvailable: boolean;
+  stock: number;
+  price: number;
+  productInfo: AdminProductInfo[];
+}
+
+// 변경/등록
+export interface AdminProductDetailEdit {
+  categoryId: number;
+  thumbnailUrl: string;
+  isAvailable: boolean;
+  stock: number;
+  price: number;
+  productInfos: AdminProductInfo[];
+}
+
+export interface AdminProductPriseHistorys {
+  date: string;
+  price: number;
+  isUsed: boolean;
+}
+export interface AdminProductPriseHistory {
+  contents: AdminProductPriseHistorys[];
+  page: number;
+  pageSize: number;
+  totalElements: number;
+  totalPages: number;
+  last: boolean;
 }
