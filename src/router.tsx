@@ -14,6 +14,7 @@ import {
   OauthRedirectPage,
   ProductPage,
   AdminManagementUserDetailPage,
+  AdminManagementProductEditPage,
 } from '@/pages/index';
 
 const router = createBrowserRouter([
@@ -52,8 +53,16 @@ const router = createBrowserRouter([
         element: <AdminManagementUserDetailPage />,
       },
       {
-        path: routePath.admin.management.product,
+        path: routePath.admin.management.product.root,
         element: <AdminManagementProductPage />,
+      },
+      {
+        path: routePath.admin.management.product.register.root,
+        element: <AdminManagementProductEditPage />,
+      },
+      {
+        path: routePath.admin.management.product.edit.root,
+        element: <AdminManagementProductEditPage />,
       },
       {
         path: routePath.admin.management.category,

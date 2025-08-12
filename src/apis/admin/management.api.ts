@@ -2,9 +2,12 @@ import instance from '../instance/main';
 
 import type {
   AdminProductList,
+  AdminProductDetail,
   AdminUserDetail,
   AdminUserList,
   AdminUserSubscribeList,
+  AdminProductPriseHistory,
+  AdminProductDetailEdit,
 } from '@/types/admin';
 
 /**
@@ -105,14 +108,82 @@ const getProductList = async (
   return response.data;
 };
 
+/**
+ * 상품 상세 정보
+ * @param productId
+ * @returns AdminProductDetail
+ */
+const getProductDetail = async (productId: string): Promise<AdminProductDetail> => {
+  const response = await instance.get(`/api/admin/products/${productId}`);
+  return response.data;
+};
+
+/**
+ * 상품 등록
+ * @param registerData
+ * @returns
+ */
+const postProductRegister = async (registerData: AdminProductDetailEdit) => {
+  const response = await instance.post(`/api/admin/products`, { ...registerData });
+  return response.data;
+};
+
+/**
+ * 상품 정보 수정
+ * @param productId
+ * @param editData
+ * @returns AdminProductDetail
+ */
+const patchProductEdit = async (
+  productId: string,
+  editData: AdminProductDetailEdit,
+): Promise<AdminProductDetailEdit> => {
+  const response = await instance.patch(`/api/admin/products/${productId}`, { ...editData });
+  return response.data;
+};
+
+/**
+ * 상품 금액 조회
+ * @param productId
+ * @param page
+ * @param size
+ * @returns AdminProductPriseHistory
+ */
+const getProductPriceHistory = async (
+  productId: string,
+  page?: number,
+  size?: number,
+): Promise<AdminProductPriseHistory> => {
+  const response = await instance.get(
+    `/api/admin/products/${productId}/price-history?page=${page || 1}&size=${size || 5}`,
+  );
+  return response.data;
+};
+
+/**
+ * 상품 삭제
+ * @param productId
+ */
+const deleteProduct = async (productId: string) => {
+  await instance.delete(`/api/admin/products/${productId}`);
+};
+
 const adminManagementAPI = {
+  // subscribe
   getUserSubscribeList,
+  // user
   getUserList,
   getUserDetail,
   patchUserDetail,
   patchUserDeactivate,
   patchUserActivate,
+  // product
   getProductList,
+  getProductDetail,
+  getProductPriceHistory,
+  postProductRegister,
+  patchProductEdit,
+  deleteProduct,
 };
 
 export default adminManagementAPI;

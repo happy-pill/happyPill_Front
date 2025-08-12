@@ -26,11 +26,18 @@ const admin = {
       detail: (userId: string) => ['managementUserDetail', userId],
     },
     product: {
+      detail: (productId: string) => ['managementProductDetail', productId],
       list: (page?: number, size?: number, categories?: number) => [
         'managementProductList',
         page,
         size,
         categories,
+      ],
+      history: (productId: string, page?: number, size?: number) => [
+        'managementProductHistory',
+        productId,
+        page,
+        size,
       ],
     },
   },

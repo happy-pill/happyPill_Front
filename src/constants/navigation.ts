@@ -14,7 +14,7 @@ export const ADMIN_NAV_ITEMS = [
   {
     type: 'managementProduct',
     name: '상품 관리',
-    path: routePath.admin.management.product,
+    path: routePath.admin.management.product.root,
   },
   {
     type: 'managementCategory',

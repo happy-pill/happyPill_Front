@@ -9,6 +9,7 @@ export { default as AdminManagementSubscribePage } from './adminManagementSubscr
 export { default as AdminManagementUserPage } from './adminManagementUser/index';
 export { default as AdminManagementUserDetailPage } from './adminManagementUserDetail/index';
 export { default as AdminManagementProductPage } from './adminManagementProduct/index';
+export { default as AdminManagementProductEditPage } from './adminManagementProductEdit/index';
 
 /* common */
 export { default as LoginPage } from './login/index';
