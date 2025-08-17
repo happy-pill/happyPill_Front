@@ -19,7 +19,7 @@ import {
   usePostProductRegister,
 } from '@/hooks/api/admin/management';
 
-interface ProductFormData {
+export interface ProductFormData {
   categoryId: number;
   thumbnailUrl: string;
   isAvailable: boolean;
@@ -164,15 +164,13 @@ const Index = () => {
           <LanguageSelectBox />
         </PageTitle>
 
-        <form onSubmit={methods.handleSubmit(onSubmit)}>
-          <section className='min-w-min-width mx-auto flex w-full max-w-[760px] flex-col items-center justify-center gap-2'>
-            <ProductInfoFieldFormSection />
-            <ProductContentFieldFormSection />
-            <ProductDetailFieldFormSection />
-            {errorMsg && <span className='text-sm text-red-300'>{errorMsg}</span>}
-            <ActionButtonSection productId={productId} />
-          </section>
-        </form>
+        <section className='min-w-min-width mx-auto flex w-full max-w-[760px] flex-col items-center justify-center gap-2'>
+          <ProductInfoFieldFormSection />
+          <ProductContentFieldFormSection />
+          <ProductDetailFieldFormSection />
+          {errorMsg && <span className='text-sm text-red-300'>{errorMsg}</span>}
+          <ActionButtonSection productId={productId} onSubmit={onSubmit} />
+        </section>
       </FormProvider>
     </LayoutContainer>
   );
