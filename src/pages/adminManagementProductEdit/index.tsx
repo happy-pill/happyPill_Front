@@ -19,7 +19,7 @@ import {
   usePostProductRegister,
 } from '@/hooks/api/admin/management';
 
-interface ProdcutFormData {
+interface ProductFormData {
   categoryId: number;
   thumbnailUrl: string;
   isAvailable: boolean;
@@ -46,8 +46,8 @@ const Index = () => {
   const mutatePatchProductEdit = usePatchProductEdit(productId);
   const { data: productItem } = useGetProductDetail(productId);
 
-  const RegisterMethods = useForm<ProdcutFormData>();
-  const EditMethods = useForm<ProdcutFormData>();
+  const RegisterMethods = useForm<ProductFormData>();
+  const EditMethods = useForm<ProductFormData>();
 
   const methods = productId ? EditMethods : RegisterMethods;
 
@@ -56,7 +56,7 @@ const Index = () => {
     return Number(removeStringValue);
   };
 
-  const getFormData = (formData: ProdcutFormData) => {
+  const getFormData = (formData: ProductFormData) => {
     // NOTE 임시 이미지 url
     const thumbnailUrl =
       'https://cdn.pixabay.com/photo/2013/11/05/23/59/gel-capsules-206150_1280.jpg';
@@ -87,7 +87,7 @@ const Index = () => {
     return data;
   };
 
-  const onSubmitEdit = (formData: ProdcutFormData) => {
+  const onSubmitEdit = (formData: ProductFormData) => {
     const editData = getFormData(formData) as AdminProductDetailEdit;
 
     mutatePatchProductEdit.mutate(
@@ -105,7 +105,7 @@ const Index = () => {
     );
   };
 
-  const onSubmitRegister = (formData: ProdcutFormData) => {
+  const onSubmitRegister = (formData: ProductFormData) => {
     const registerData = getFormData(formData) as AdminProductDetailEdit;
 
     mutatePostProductRegister.mutate(
@@ -123,7 +123,7 @@ const Index = () => {
     );
   };
 
-  const onSubmit = (formData: ProdcutFormData) => {
+  const onSubmit = (formData: ProductFormData) => {
     if (!formData.language) return setErrorMsg('언어 설정은 필수 입니다.');
 
     if (productId) {
