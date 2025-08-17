@@ -15,6 +15,8 @@ import {
   ProductPage,
   AdminManagementUserDetailPage,
   PurchasePage,
+  MypageAccountPage,
+  MypageAccountEditPage,
 } from '@/pages/index';
 
 const router = createBrowserRouter([
@@ -33,6 +35,8 @@ const router = createBrowserRouter([
       { path: routePath.common.product.root, element: <ProductPage /> },
       { path: routePath.common.cart, element: <CartPage /> },
       { path: routePath.common.purchase.root, element: <PurchasePage /> },
+      { path: routePath.member.mypage.account.root, element: <MypageAccountPage /> },
+      { path: routePath.member.mypage.accountEdit.root, element: <MypageAccountEditPage /> },
     ],
   },
   /** ADMIN */

@@ -4,6 +4,9 @@ export { default as Layout } from '../components/layout/Layout';
 export { default as ProductPage } from '@/pages/product/index';
 export { default as CartPage } from '@/pages/cart/index';
 export { default as PurchasePage } from '@/pages/purchase/index';
+export { default as MypageAccountPage } from '@/pages/mypageAccount/index';
+export { default as MypageAccountEditPage } from '@/pages/mypageAccountEdit/index';
+
 /* admin */
 export { default as AdminLayout } from '../components/layout/AdminLayout';
 export { default as AdminManagementSubscribePage } from './adminManagementSubscribe/index';

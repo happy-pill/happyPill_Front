@@ -25,6 +25,14 @@ const member = {
   root: '/',
   mypage: {
     root: '/mypage',
+    account: {
+      root: '/mypage/account/:userId',
+      route: (userId: string) => `/mypage/account/${userId}`,
+    },
+    accountEdit: {
+      root: '/mypage/account/:userId/edit',
+      route: (userId: string) => `/mypage/account/${userId}/edit`,
+    },
   },
 };
 
