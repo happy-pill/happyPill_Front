@@ -2,7 +2,7 @@ import { getCartStorageKey } from './cartKeyUtil';
 
 interface CartItem {
   productId: string;
-  name: string;
+  productName: string;
   price: number;
   thumbnailUrl: string;
   briefDescription: string;

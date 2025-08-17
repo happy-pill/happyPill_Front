@@ -1,0 +1,58 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+
+import type { CheckoutProduct } from '@/types/products';
+
+import { LOCALE_LABELS } from '@/constants/locale/purchase';
+import { routePath } from '@/constants/path';
+import useLocale from '@/hooks/useLocale';
+import Accordion from '@/pages/purchase/components/molecules/Accordion';
+import { cn } from '@/utils/classNames';
+
+interface OrderSummaryProps {
+  items: CheckoutProduct[];
+}
+
+const OrderSummary: React.FC<OrderSummaryProps> = ({ items }) => {
+  const { locale } = useLocale();
+  const ORDER_SUMMARY = LOCALE_LABELS[locale].orderSummary;
+  return (
+    <div className='rounded-md bg-white'>
+      <Accordion title={ORDER_SUMMARY.title}>
+        {items &&
+          items.map((item, idx) => {
+            const isLast = idx === items.length - 1;
+
+            return (
+              <div key={`${item.productName} + ${idx}`} className={cn('p-5', idx !== 0 && 'pt-3')}>
+                <div className={cn(`flex border-b border-[#e9e9e9] py-5`, isLast && 'border-none')}>
+                  <div className='mr-5 h-[90px] w-[90px]'>
+                    <Link to={routePath.common.product.route(item.productId)}>
+                      <img src={item.thumbnailUrl} alt={item.productName} width={90} height={90} />
+                    </Link>
+                  </div>
+                  <div className='grid'>
+                    <Link to={routePath.common.product.route(item.productId)}>
+                      <strong className='mb-2 text-[clamp(13px,1vw,16px)] font-medium'>
+                        {item.productName}
+                      </strong>
+                    </Link>
+
+                    <p className='mb-4 text-[clamp(11px,1vw,14px)] text-[#606060]'>
+                      {ORDER_SUMMARY.subscriptionPeriod.prefix}: {item.period}
+                      {ORDER_SUMMARY.subscriptionPeriod.suffix}
+                    </p>
+                    <p className='text-[clamp(11px,1vw,14px)] font-semibold'>
+                      {item.price.toLocaleString()}원
+                    </p>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+      </Accordion>
+    </div>
+  );
+};
+
+export default OrderSummary;

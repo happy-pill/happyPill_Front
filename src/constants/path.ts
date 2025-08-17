@@ -12,11 +12,11 @@ const common = {
   },
   cart: '/cart',
   purchase: {
-    direct: {
-      root: '/purchase/:productId',
-      route: (productId: string) => `/purchase/${productId}`,
+    root: '/purchase',
+    complete: {
+      root: '/purchase/complete/:paymentId',
+      route: (paymentId: string) => `/purchase/complete/${paymentId}`,
     },
-    cart: 'purchase/cart',
   },
 };
 

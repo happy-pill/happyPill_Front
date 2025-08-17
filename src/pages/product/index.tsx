@@ -11,18 +11,29 @@ import LoadingSpinner from '@/components/common/LoadingSpinner';
 import LayoutContainer from '@/components/container/LayoutContainer';
 import { routePath } from '@/constants/path';
 import { useGetProductDetail, useGetRelatedProducts } from '@/hooks/api/member/product';
+import useCheckoutStore from '@/stores/checkoutStore';
 
 const ProductPage: React.FC = () => {
   const { productId } = useParams();
+
   const [subscriptionOption, setSubscriptionOption] = useState(1);
 
   const navigate = useNavigate();
   const { openModal } = useModal();
-
+  const { addItem } = useCheckoutStore();
   const { data: productData, isLoading: isLoadingProductDetail } = useGetProductDetail(
     productId ?? '',
   );
   const { data: bestProductData, isLoading: isLoadingRelatedProducts } = useGetRelatedProducts();
+
+  const item = {
+    productId: productData?.productId,
+    productName: productData?.name,
+    price: productData?.price,
+    briefDescription: productData?.briefDescription,
+    thumbnailUrl: productData?.thumbnailUrl,
+    period: subscriptionOption,
+  };
 
   const handleProductClick = (productId: string) => {
     navigate(routePath.common.product.route(productId));
@@ -32,21 +43,13 @@ const ProductPage: React.FC = () => {
   const handleAddToCart = () => {
     if (!productData) return;
 
-    const item = {
-      productId: productData.productId,
-      name: productData.name,
-      price: productData.price,
-      briefDescription: productData.briefDescription,
-      thumbnailUrl: productData.thumbnailUrl,
-      period: subscriptionOption,
-    };
-
     cartStorage.save(item);
     openModal({ type: 'cartAddSuccess' });
   };
 
-  const handlePurchase = (productId: string) => {
-    navigate(routePath.common.purchase.direct.route(productId));
+  const handlePurchase = () => {
+    navigate(routePath.common.purchase.root);
+    addItem(item);
   };
 
   useEffect(() => {

@@ -1,7 +1,7 @@
 export interface ProductItem {
   productId: string;
   categoryId: string;
-  name: string;
+  productName: string;
   company: string;
   price: number;
   briefDescription: string;
@@ -18,7 +18,7 @@ export interface Product {
 
 export interface ProductDetail {
   productId: string;
-  name: string;
+  productName: string;
   company: string;
   price: number;
   briefDescription: string;
@@ -37,10 +37,11 @@ export interface RelatedProduct {
 }
 export interface CheckoutProduct {
   productId: string;
-  name: string;
+  productName: string;
   price: number;
   period: number;
   thumbnailUrl: string;
+  briefDescription: string;
 }
 
 export interface BestProduct extends ProductItem {
