@@ -1,16 +1,16 @@
-import { forwardRef, type InputHTMLAttributes } from 'react';
+import { forwardRef, type TextareaHTMLAttributes } from 'react';
 
-import StyledInput from './StyledInput';
-import InputErrorMsg from './ui/InputErrorMsg';
-import InputIcon from './ui/InputIcon';
-import InputLabel from './ui/InputLabel';
-import InputTextState from './ui/InputTextState';
+import StyledTextArea from './StyledTextArea';
+import ErrorMsg from './ui/ErrorMsg';
+import Icon from './ui/Icon';
+import Label from './ui/Label';
+import TextState from './ui/TextState';
 
 import type { UseFormRegister, FieldValues } from 'react-hook-form';
 
 import cn from '@/utils/classNames';
 
-interface FiledInputProps extends InputHTMLAttributes<HTMLInputElement> {
+interface FiledTextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   className?: string;
   label?: string;
   isRequired?: boolean;
@@ -21,33 +21,33 @@ interface FiledInputProps extends InputHTMLAttributes<HTMLInputElement> {
   register?: UseFormRegister<FieldValues>;
 }
 
-const FiledInput = forwardRef<HTMLInputElement, FiledInputProps>(
+const FiledTextArea = forwardRef<HTMLTextAreaElement, FiledTextAreaProps>(
   (
     { className, label, isRequired, errorMsg, iconItem, contentItem, textState, register, ...rest },
     ref,
   ) => {
     return (
-      <label className='flex w-full flex-col items-start gap-1'>
+      <div className='flex w-full flex-col items-start gap-1'>
         {(label || textState) && (
           <div className='flex w-full items-center justify-between'>
             {label && (
-              <InputLabel>
+              <Label>
                 {label}
                 {isRequired && <span className='text-invalid'>*</span>}
-              </InputLabel>
+              </Label>
             )}
 
             {textState && rest.maxLength && (
-              <InputTextState>{`${textState} / ${rest.maxLength}`}</InputTextState>
+              <TextState>{`${textState} / ${rest.maxLength}`}</TextState>
             )}
           </div>
         )}
 
         <div className='relative w-full'>
           {iconItem && (
-            <InputIcon className={iconItem.position === 'left' ? 'left-2' : 'right-2'}>
+            <Icon className={iconItem.position === 'left' ? 'left-2' : 'right-2'}>
               {iconItem.icon}
-            </InputIcon>
+            </Icon>
           )}
 
           {contentItem && (
@@ -58,7 +58,7 @@ const FiledInput = forwardRef<HTMLInputElement, FiledInputProps>(
             </div>
           )}
 
-          <StyledInput
+          <StyledTextArea
             ref={ref}
             className={cn('outline-none', className)}
             required={isRequired}
@@ -68,10 +68,10 @@ const FiledInput = forwardRef<HTMLInputElement, FiledInputProps>(
           />
         </div>
 
-        {errorMsg && <InputErrorMsg>{errorMsg}</InputErrorMsg>}
-      </label>
+        {errorMsg && <ErrorMsg>{errorMsg}</ErrorMsg>}
+      </div>
     );
   },
 );
 
-export default FiledInput;
+export default FiledTextArea;

@@ -7,6 +7,7 @@ import WelcomeStepModal from './WelcomeStepModal';
 
 import type { ModalItem, ModalPropsMap, ModalType } from '@/types/modal';
 
+import ProductStockModal from '@/pages/adminManagementProductEdit/components/molecule/ProductStockModal';
 import useModalStore from '@/stores/modal';
 
 const MODAL_COMPONENTS = {
@@ -14,6 +15,7 @@ const MODAL_COMPONENTS = {
   cartAddSuccess: CartAddSuccessModal,
   message: MessageModal,
   welcomeStep: WelcomeStepModal,
+  adminProductStock: ProductStockModal,
 } as const;
 
 const renderModal = <T extends ModalType>(modal: ModalItem<T>, index: number) => {

@@ -43,7 +43,16 @@ const admin = {
         route: (userId: string) => `/admin/management/user/detail/${userId}`,
       },
     },
-    product: '/admin/management/product', // 상품 관리
+    product: {
+      root: '/admin/management/product', // 상품 관리
+      edit: {
+        root: '/admin/management/product/:productId',
+        route: (productId: string) => `/admin/management/product/${productId}`,
+      },
+      register: {
+        root: '/admin/management/product/register',
+      },
+    },
     category: '/admin/management/category-product', // 카테고리 관리
   },
 };
