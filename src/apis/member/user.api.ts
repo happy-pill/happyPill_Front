@@ -8,18 +8,21 @@
 
 import instance from '../instance/main';
 
-const getUserInfo = async () => {
+import type { MemberInfo } from '@/types/member';
+
+const getUserInfo = async (): Promise<MemberInfo> => {
   const response = await instance.get('/api/user/me');
 
   return response.data;
 };
 
 // TODO: 로그인 이후 store에 유저 id이 들어가면 해당 store에서 상태를 가져와서 해당 함수 인자로 넣어 사용하면 될 것 같습니다
-const postUserNickname = async (nickName: string) => {
-  const response = await instance.patch('/api/user/me', { nickName });
+const postUserNickname = async (nickname: string): Promise<MemberInfo> => {
+  const response = await instance.patch('/api/user/me', { nickname });
 
   return response.data;
 };
+
 const userAPI = {
   getUserInfo,
   postUserNickname,
