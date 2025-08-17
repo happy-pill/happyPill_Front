@@ -28,18 +28,20 @@ const FiledInput = forwardRef<HTMLInputElement, FiledInputProps>(
   ) => {
     return (
       <label className='flex w-full flex-col items-start gap-1'>
-        <div className='flex w-full items-center justify-between'>
-          {label && (
-            <InputLabel>
-              {label}
-              {isRequired && <span className='text-invalid'>*</span>}
-            </InputLabel>
-          )}
+        {(label || textState) && (
+          <div className='flex w-full items-center justify-between'>
+            {label && (
+              <InputLabel>
+                {label}
+                {isRequired && <span className='text-invalid'>*</span>}
+              </InputLabel>
+            )}
 
-          {textState && rest.maxLength && (
-            <InputTextState>{`${textState} / ${rest.maxLength}`}</InputTextState>
-          )}
-        </div>
+            {textState && rest.maxLength && (
+              <InputTextState>{`${textState} / ${rest.maxLength}`}</InputTextState>
+            )}
+          </div>
+        )}
 
         <div className='relative w-full'>
           {iconItem && (

@@ -28,18 +28,20 @@ const FiledTextArea = forwardRef<HTMLTextAreaElement, FiledTextAreaProps>(
   ) => {
     return (
       <div className='flex w-full flex-col items-start gap-1'>
-        <div className='flex w-full items-center justify-between'>
-          {label && (
-            <Label>
-              {label}
-              {isRequired && <span className='text-invalid'>*</span>}
-            </Label>
-          )}
+        {(label || textState) && (
+          <div className='flex w-full items-center justify-between'>
+            {label && (
+              <Label>
+                {label}
+                {isRequired && <span className='text-invalid'>*</span>}
+              </Label>
+            )}
 
-          {textState && rest.maxLength && (
-            <TextState>{`${textState} / ${rest.maxLength}`}</TextState>
-          )}
-        </div>
+            {textState && rest.maxLength && (
+              <TextState>{`${textState} / ${rest.maxLength}`}</TextState>
+            )}
+          </div>
+        )}
 
         <div className='relative w-full'>
           {iconItem && (
