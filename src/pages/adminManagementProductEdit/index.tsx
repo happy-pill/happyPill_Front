@@ -91,11 +91,15 @@ const Index = () => {
     const editData = getFormData(formData) as AdminProductDetailEdit;
 
     mutatePatchProductEdit.mutate(
-      { productId, editData },
+      { editData },
       {
         onSuccess: () => {
           setErrorMsg('');
           navigate(routePath.admin.management.product.root);
+        },
+        onError(error) {
+          setErrorMsg('예기치 못한 에러가 발생했습니다. 다시 시도해 주세요.');
+          return console.error(error);
         },
       },
     );
@@ -110,6 +114,10 @@ const Index = () => {
         onSuccess: () => {
           setErrorMsg('');
           navigate(routePath.admin.management.product.root);
+        },
+        onError(error) {
+          setErrorMsg('예기치 못한 에러가 발생했습니다. 다시 시도해 주세요.');
+          return console.error(error);
         },
       },
     );

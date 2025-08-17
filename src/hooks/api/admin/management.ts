@@ -153,13 +153,10 @@ export const useGetProductPriceHistory = (productId: string, page?: number, size
 export const usePatchProductEdit = (productId: string) => {
   return useMutation({
     mutationKey: queryKey.admin.management.product.detail(productId),
-    mutationFn: async ({
-      productId,
-      editData,
-    }: {
-      productId: string;
-      editData: AdminProductDetailEdit;
-    }) => await adminManagementAPI.patchProductEdit(productId, editData),
+    mutationFn: async ({ editData }: { editData: AdminProductDetailEdit }) => {
+      if (!productId) return;
+      await adminManagementAPI.patchProductEdit(productId, editData);
+    },
     onSuccess: (data) => {
       return data;
     },
